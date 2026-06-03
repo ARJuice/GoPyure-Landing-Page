@@ -131,6 +131,8 @@ body {
 /* ── Seed breathing glow ── */
 .seed-breathe {
   animation: seed-breathe 4s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(155, 183, 174, 0.12);
+  transition: border-color 0.5s, background-color 0.5s, box-shadow 0.5s;
 }
 
 .seed-breathe.seed-breathe--active {
@@ -139,37 +141,104 @@ body {
 
 @keyframes seed-breathe {
   0%, 100% {
-    box-shadow: 0 0 14px rgba(155,183,174,0.1), 0 0 28px rgba(10,80,57,0.06);
+    box-shadow: 0 0 16px rgba(155,183,174,0.08), 0 0 32px rgba(10,80,57,0.04);
     transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 24px rgba(155,183,174,0.28), 0 0 48px rgba(10,80,57,0.12);
-    transform: scale(1.03);
+    box-shadow: 0 0 28px rgba(155,183,174,0.22), 0 0 54px rgba(10,80,57,0.08);
+    transform: scale(1.02);
   }
 }
 
 @keyframes seed-breathe-active {
   0%, 100% {
-    box-shadow: 0 0 18px rgba(155,183,174,0.18), 0 0 36px rgba(10,80,57,0.1);
+    box-shadow: 0 0 24px rgba(155,183,174,0.18), 0 0 40px rgba(10,80,57,0.08);
     transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 32px rgba(155,183,174,0.45), 0 0 60px rgba(10,80,57,0.22);
-    transform: scale(1.06);
+    box-shadow: 0 0 38px rgba(155,183,174,0.38), 0 0 68px rgba(10,80,57,0.18);
+    transform: scale(1.05);
+  }
+}
+
+/* ── Sprout Icon Heartbeat ── */
+.sprout-heartbeat {
+  animation: sprout-heartbeat 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes sprout-heartbeat {
+  0%, 100% {
+    transform: scale(0.96);
+    opacity: 0.88;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* ── Expanding Water Ripple Ring ── */
+.ripple-ring {
+  animation: ripple-expand 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+@keyframes ripple-expand {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.65;
+  }
+  38% {
+    transform: scale(2.0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.0);
+    opacity: 0;
   }
 }
 
 /* ── Root pulse traveling along branches ── */
 .root-pulse-path {
-  stroke-dasharray: 28 320;
-  animation: root-pulse-travel 4s ease-in-out infinite;
+  stroke-dasharray: 10 320;
+  stroke-linecap: round;
+  animation: root-pulse-travel 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
 @keyframes root-pulse-travel {
-  0%   { stroke-dashoffset: 348; opacity: 0; }
-  12%  { opacity: 1; }
-  82%  { opacity: 1; }
-  100% { stroke-dashoffset: 0; opacity: 0; }
+  0%, 8% {
+    stroke-dashoffset: 348;
+    opacity: 0;
+  }
+  11% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 1;
+  }
+  46%, 100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+/* ── Seed Glow Breathe Animation ── */
+.seed-glow-backdrop {
+  animation: seed-glow-breathe 4s ease-in-out infinite;
+}
+
+@keyframes seed-glow-breathe {
+  0%, 100% {
+    transform: scale(0.92);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.85;
+  }
 }
 
 @theme inline {

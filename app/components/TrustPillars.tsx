@@ -183,44 +183,79 @@ export default function TrustPillars() {
             viewBox="0 0 750 580"
             preserveAspectRatio="xMidYMid meet"
           >
+            <defs>
+              {/* Gradients for each branch direction: starts bright near center (high opacity), fades to near-invisible (low opacity) near cards.
+                  This visually tapers the line (vein effect) and creates an elegant organic transition. */}
+              <linearGradient id="grad-top" x1="375" y1="256" x2="375" y2="95" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
+                <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
+              </linearGradient>
+              <linearGradient id="grad-right" x1="408" y1="290" x2="630" y2="290" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
+                <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
+              </linearGradient>
+              <linearGradient id="grad-bottom" x1="375" y1="324" x2="375" y2="470" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
+                <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
+              </linearGradient>
+              <linearGradient id="grad-left" x1="342" y1="290" x2="120" y2="290" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
+                <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
+              </linearGradient>
+              
+              {/* Traveling Pulse glow filter */}
+              <filter id="pulse-glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="1.5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
             {pillars.map((p) => (
               <g key={p.id}>
-                {/* Base root (always visible, dim) */}
+                {/* Base root (always visible, vein-like gradient) */}
                 <path
                   d={rootPaths[p.position]}
-                  stroke="rgba(155,183,174,0.13)"
-                  strokeWidth={hoveredId === p.id ? "2.5" : "1.5"}
+                  stroke={`url(#grad-${p.position})`}
+                  strokeWidth={hoveredId === p.id ? "2.5" : "1.4"}
                   fill="none"
                   strokeLinecap="round"
-                  style={{ transition: "stroke-width 0.5s, stroke 0.5s" }}
+                  style={{ transition: "stroke-width 0.4s" }}
                 />
 
                 {/* Hover glow layer */}
                 <path
                   d={rootPaths[p.position]}
-                  stroke="rgba(155,183,174,0.4)"
-                  strokeWidth="3"
+                  stroke={`url(#grad-${p.position})`}
+                  strokeWidth="3.5"
                   fill="none"
                   strokeLinecap="round"
                   style={{
-                    opacity: hoveredId === p.id ? 1 : 0,
-                    filter: "blur(3px)",
-                    transition: "opacity 0.45s",
+                    opacity: hoveredId === p.id ? 0.75 : 0,
+                    filter: "blur(2px)",
+                    transition: "opacity 0.4s",
                   }}
                 />
 
-                {/* Traveling pulse dot */}
+                {/* Traveling pulse droplet */}
                 <path
                   d={rootPaths[p.position]}
                   className="root-pulse-path"
                   stroke={
                     hoveredId === p.id
-                      ? "rgba(192,220,210,0.8)"
-                      : "rgba(155,183,174,0.28)"
+                      ? "#FFFDF9"
+                      : "rgba(212, 232, 223, 0.75)"
                   }
-                  strokeWidth={hoveredId === p.id ? "3" : "1.8"}
+                  strokeWidth={hoveredId === p.id ? "3.2" : "2.2"}
                   fill="none"
                   strokeLinecap="round"
+                  filter="url(#pulse-glow)"
                   style={{
                     animationDelay: pulseDelays[p.position],
                     transition: "stroke 0.4s, stroke-width 0.4s",
@@ -230,25 +265,50 @@ export default function TrustPillars() {
             ))}
           </svg>
 
-          {/* ── Central seed / sprout ── */}
+          {/* ── Central seed / sprout (The Heart of the Section) ── */}
           <div
-            className="absolute z-20"
+            className="absolute z-20 flex items-center justify-center"
             style={{
               left: "50%",
               top: "50%",
               transform: "translate(-50%, -50%)",
+              width: "160px",
+              height: "160px",
             }}
           >
+            {/* Very subtle glow behind to establish visual hierarchy */}
             <div
-              className={`w-[76px] h-[76px] rounded-full flex items-center justify-center seed-breathe ${
+              className="absolute w-[130px] h-[130px] rounded-full pointer-events-none seed-glow-backdrop"
+              style={{
+                background: "radial-gradient(circle, rgba(212, 232, 223, 0.22) 0%, rgba(10, 80, 57, 0) 70%)",
+                filter: "blur(6px)",
+              }}
+            />
+
+            {/* Faint expanding water ripple ring */}
+            <div
+              className="absolute ripple-ring rounded-full pointer-events-none"
+              style={{
+                width: "76px",
+                height: "76px",
+                border: "1px solid rgba(155, 183, 174, 0.35)",
+              }}
+            />
+
+            {/* Inner seed capsule */}
+            <div
+              className={`w-[76px] h-[76px] rounded-full flex items-center justify-center seed-breathe relative z-10 ${
                 hoveredId ? "seed-breathe--active" : ""
               }`}
               style={{
-                background: "rgba(155,183,174,0.12)",
-                border: "1px solid rgba(155,183,174,0.25)",
+                background: "rgba(8, 46, 35, 0.9)",
+                border: "1px solid rgba(155, 183, 174, 0.3)",
               }}
             >
-              <div style={{ transform: "translateY(-3px) translateX(1px)" }}>
+              <div 
+                className="sprout-heartbeat"
+                style={{ transform: "translateY(-3px) translateX(1px)" }}
+              >
                 <Image
                   src="/white logo - Icon Only.svg"
                   alt="GoPyure sprout"
@@ -270,60 +330,77 @@ export default function TrustPillars() {
                   left: positions[p.position].left,
                   top: positions[p.position].top,
                   transform: "translate(-50%, -50%)",
+                  width: "240px", /* stable, comfortable width to prevent text squishing */
                 }}
                 onMouseEnter={() => setHoveredId(p.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
-                {/* Icon */}
+                {/* Glassmorphic Background Card on hover */}
                 <motion.div
-                  className="mb-2"
+                  className="absolute inset-0 bg-[#073629]/75 border border-[#9BB7AE]/18 backdrop-blur-md rounded-2xl -z-10 shadow-xl"
+                  initial={{ opacity: 0, scale: 0.94 }}
                   animate={{
-                    scale: isHovered ? 1.22 : 1,
-                    color: isHovered ? "#d4e8df" : "#9BB7AE",
+                    opacity: isHovered ? 1 : 0,
+                    scale: isHovered ? 1 : 0.94,
                   }}
-                  transition={{ type: "spring", stiffness: 280, damping: 18 }}
-                  style={{ color: "#9BB7AE" }}
-                >
-                  {icons[p.iconKey]}
-                </motion.div>
+                  transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+                  style={{
+                    padding: "20px 24px",
+                    margin: "-16px -20px", /* expands outward for comfortable breathing room */
+                  }}
+                />
 
-                {/* Title */}
-                <motion.p
-                  className="text-sm font-semibold text-center whitespace-nowrap"
-                  style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
-                  animate={{ color: isHovered ? "#FFFDF9" : "rgba(255,253,249,0.85)" }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {p.title}
-                </motion.p>
+                {/* Content Wrapper */}
+                <div className="flex flex-col items-center w-full">
+                  {/* Icon */}
+                  <motion.div
+                    className="mb-2.5"
+                    animate={{
+                      scale: isHovered ? 1.18 : 1,
+                      color: isHovered ? "#FFFDF9" : "#9BB7AE",
+                    }}
+                    transition={{ type: "spring", stiffness: 280, damping: 18 }}
+                    style={{ color: "#9BB7AE" }}
+                  >
+                    {icons[p.iconKey]}
+                  </motion.div>
 
-                {/* Expanding description on hover */}
-                <AnimatePresence>
-                  {isHovered && (
-                    <motion.div
-                      initial={{ opacity: 0, maxHeight: 0 }}
-                      animate={{ opacity: 1, maxHeight: 200 }}
-                      exit={{ opacity: 0, maxHeight: 0 }}
-                      transition={{ duration: 0.38, ease: [0.25, 1, 0.5, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <p className="text-center leading-relaxed mt-2.5 max-w-[195px]">
-                        <span
-                          className="block text-xs font-medium mb-1"
-                          style={{ color: "rgba(255,253,249,0.92)" }}
-                        >
-                          {p.headline}
-                        </span>
-                        <span
-                          className="text-[11px]"
-                          style={{ color: "rgba(155,183,174,0.72)" }}
-                        >
-                          {p.description}
-                        </span>
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                  {/* Title */}
+                  <motion.p
+                    className="text-sm font-semibold text-center whitespace-nowrap"
+                    style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
+                    animate={{ color: isHovered ? "#FFFDF9" : "rgba(255,253,249,0.85)" }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {p.title}
+                  </motion.p>
+
+                  {/* Expanding description on hover */}
+                  <AnimatePresence>
+                    {isHovered && (
+                      <motion.div
+                        initial={{ opacity: 0, maxHeight: 0 }}
+                        animate={{ opacity: 1, maxHeight: 240 }}
+                        exit={{ opacity: 0, maxHeight: 0 }}
+                        transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
+                        className="overflow-hidden w-full"
+                      >
+                        <p className="text-center leading-relaxed mt-3 w-full">
+                          <span
+                            className="block text-[13px] font-semibold mb-1 text-cream-ivory"
+                          >
+                            {p.headline}
+                          </span>
+                          <span
+                            className="text-xs leading-relaxed text-[#d4e8df]"
+                          >
+                            {p.description}
+                          </span>
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
             );
           })}
