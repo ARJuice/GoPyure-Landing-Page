@@ -120,12 +120,12 @@ const positions: Record<Position, { left: string; top: string }> = {
   left:   { left: "15%", top: "50%" },
 };
 
-/* ── Pulse delay per branch (staggered slightly for organic feel) ── */
+/* ── Pulse delay per branch (very subtle delay of 0.25s to start right after the ripple begins) ── */
 const pulseDelays: Record<Position, string> = {
-  top: "0s",
-  right: "0s",
-  bottom: "0s",
-  left: "0s",
+  top: "0.25s",
+  right: "0.25s",
+  bottom: "0.25s",
+  left: "0.25s",
 };
 
 /* ═══════════════════════════════════════════════════════════════ */
@@ -277,11 +277,18 @@ export default function TrustPillars() {
             }}
           >
             {/* Very subtle glow behind to establish visual hierarchy */}
-            <div
+            {/* Very subtle glow behind to establish visual hierarchy, shifting dynamically on hover */}
+            <motion.div
               className="absolute w-[130px] h-[130px] rounded-full pointer-events-none seed-glow-backdrop"
+              animate={{
+                x: hoveredId === "ingredients" ? -18 : hoveredId === "preservatives" ? 18 : 0,
+                y: hoveredId === "vision" ? -18 : hoveredId === "established" ? 18 : 0,
+                scale: hoveredId ? 1.25 : 1,
+              }}
+              transition={{ type: "spring", stiffness: 100, damping: 18 }}
               style={{
-                background: "radial-gradient(circle, rgba(212, 232, 223, 0.22) 0%, rgba(10, 80, 57, 0) 70%)",
-                filter: "blur(6px)",
+                background: "radial-gradient(circle, rgba(212, 232, 223, 0.28) 0%, rgba(10, 80, 57, 0) 70%)",
+                filter: "blur(8px)",
               }}
             />
 
@@ -306,14 +313,13 @@ export default function TrustPillars() {
               }}
             >
               <div 
-                className="sprout-heartbeat"
-                style={{ transform: "translateY(-7.5px) translateX(5.2px)" }}
+                style={{ transform: "translateY(-4px) translateX(1.4px)" }}
               >
                 <Image
                   src="/white logo - Icon Only.svg"
                   alt="GoPyure sprout"
-                  width={40}
-                  height={40}
+                  width={44}
+                  height={44}
                 />
               </div>
             </div>
@@ -417,12 +423,12 @@ export default function TrustPillars() {
                 border: "1px solid rgba(155,183,174,0.25)",
               }}
             >
-              <div style={{ transform: "translateY(-4.5px) translateX(3px)" }}>
+              <div style={{ transform: "translateY(-3px) translateX(1.0px)" }}>
                 <Image
                   src="/white logo - Icon Only.svg"
                   alt="GoPyure sprout"
-                  width={32}
-                  height={32}
+                  width={36}
+                  height={36}
                 />
               </div>
             </div>
