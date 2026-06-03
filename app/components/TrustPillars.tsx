@@ -123,9 +123,9 @@ const positions: Record<Position, { left: string; top: string }> = {
 /* ── Pulse delay per branch (staggered slightly for organic feel) ── */
 const pulseDelays: Record<Position, string> = {
   top: "0s",
-  right: "0.12s",
-  bottom: "0.24s",
-  left: "0.36s",
+  right: "0s",
+  bottom: "0s",
+  left: "0s",
 };
 
 /* ═══════════════════════════════════════════════════════════════ */
@@ -307,7 +307,7 @@ export default function TrustPillars() {
             >
               <div 
                 className="sprout-heartbeat"
-                style={{ transform: "translateY(-3px) translateX(1px)" }}
+                style={{ transform: "translateY(-7.5px) translateX(5.2px)" }}
               >
                 <Image
                   src="/white logo - Icon Only.svg"
@@ -337,13 +337,13 @@ export default function TrustPillars() {
               >
                 {/* Glassmorphic Background Card on hover */}
                 <motion.div
-                  className="absolute inset-0 bg-[#073629]/75 border border-[#9BB7AE]/18 backdrop-blur-md rounded-2xl -z-10 shadow-xl"
+                  className="absolute inset-0 bg-[#073629]/75 border border-[#9BB7AE]/18 backdrop-blur-md rounded-sm -z-10 shadow-xl"
                   initial={{ opacity: 0, scale: 0.94 }}
                   animate={{
                     opacity: isHovered ? 1 : 0,
                     scale: isHovered ? 1 : 0.94,
                   }}
-                  transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+                  transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
                   style={{
                     padding: "20px 24px",
                     margin: "-16px -20px", /* expands outward for comfortable breathing room */
@@ -382,7 +382,7 @@ export default function TrustPillars() {
                         initial={{ opacity: 0, maxHeight: 0 }}
                         animate={{ opacity: 1, maxHeight: 240 }}
                         exit={{ opacity: 0, maxHeight: 0 }}
-                        transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
+                        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden w-full"
                       >
                         <p className="text-center leading-relaxed mt-3 w-full">
@@ -417,7 +417,7 @@ export default function TrustPillars() {
                 border: "1px solid rgba(155,183,174,0.25)",
               }}
             >
-              <div style={{ transform: "translateY(-2px) translateX(1px)" }}>
+              <div style={{ transform: "translateY(-4.5px) translateX(3px)" }}>
                 <Image
                   src="/white logo - Icon Only.svg"
                   alt="GoPyure sprout"
