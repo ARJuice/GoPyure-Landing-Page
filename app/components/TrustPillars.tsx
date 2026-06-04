@@ -349,7 +349,7 @@ export default function TrustPillars() {
                     opacity: isHovered ? 1 : 0,
                     scale: isHovered ? 1 : 0.94,
                   }}
-                  transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
                   style={{
                     padding: "20px 24px",
                     margin: "-16px -20px", /* expands outward for comfortable breathing room */
@@ -365,7 +365,7 @@ export default function TrustPillars() {
                       scale: isHovered ? 1.18 : 1,
                       color: isHovered ? "#FFFDF9" : "#9BB7AE",
                     }}
-                    transition={{ type: "spring", stiffness: 280, damping: 18 }}
+                    transition={{ type: "spring", stiffness: 120, damping: 22 }}
                     style={{ color: "#9BB7AE" }}
                   >
                     {icons[p.iconKey]}
@@ -376,7 +376,7 @@ export default function TrustPillars() {
                     className="text-sm font-semibold text-center whitespace-nowrap"
                     style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
                     animate={{ color: isHovered ? "#FFFDF9" : "rgba(255,253,249,0.85)" }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.5 }}
                   >
                     {p.title}
                   </motion.p>
@@ -388,7 +388,7 @@ export default function TrustPillars() {
                         initial={{ opacity: 0, maxHeight: 0 }}
                         animate={{ opacity: 1, maxHeight: 240 }}
                         exit={{ opacity: 0, maxHeight: 0 }}
-                        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden w-full"
                       >
                         <p className="text-center leading-relaxed mt-3 w-full">

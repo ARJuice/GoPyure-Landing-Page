@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
+import ProbioticsSection from "./components/ProbioticsSection";
 import ProductShowcase from "./components/ProductShowcase";
 import TrustPillars from "./components/TrustPillars";
 import Testimonials from "./components/Testimonials";
@@ -13,6 +14,7 @@ export default function Home() {
     <main className="overflow-x-hidden">
       <Navbar />
       <HeroSection />
+      <ProbioticsSection />
       <ProductShowcase />
       <TrustPillars />
       <Testimonials />
