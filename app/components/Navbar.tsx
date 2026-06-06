@@ -48,7 +48,9 @@ export default function Navbar() {
               alt="GoPyure"
               width={140}
               height={40}
-              className="h-8 lg:h-9 w-auto"
+              className={`h-8 lg:h-9 w-auto transition-all duration-300 ${
+                scrolled ? "" : "brightness-0 invert"
+              }`}
               priority
             />
           </Link>
@@ -59,7 +61,11 @@ export default function Navbar() {
               <button
                 key={link.label}
                 onClick={() => handleNavClick(link.href)}
-                className="text-sm font-medium text-ink-charcoal hover:text-pyure-deep transition-colors duration-200 tracking-wide"
+                className={`text-sm font-medium transition-colors duration-300 tracking-wide ${
+                  scrolled
+                    ? "text-ink-charcoal hover:text-pyure-deep"
+                    : "text-cream-ivory/80 hover:text-cream-ivory"
+                }`}
               >
                 {link.label}
               </button>
@@ -70,7 +76,11 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={() => handleNavClick("#contact")}
-              className="px-5 py-2.5 bg-pyure-deep text-cream-ivory text-sm font-semibold rounded-pill hover:bg-pyure-sage transition-all duration-300 hover:shadow-green tracking-wide"
+              className={`px-5 py-2.5 text-sm font-semibold rounded-pill transition-all duration-300 tracking-wide ${
+                scrolled
+                  ? "bg-pyure-deep text-cream-ivory hover:bg-pyure-sage hover:shadow-green"
+                  : "bg-cream-ivory text-pyure-deep hover:bg-cream-linen"
+              }`}
             >
               Get in Touch
             </button>
@@ -84,15 +94,21 @@ export default function Navbar() {
           >
             <motion.span
               animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 7 : 0 }}
-              className="block w-5 h-0.5 bg-pyure-deep rounded-full origin-center transition-all"
+              className={`block w-5 h-0.5 rounded-full origin-center transition-all ${
+                scrolled ? "bg-pyure-deep" : "bg-cream-ivory"
+              }`}
             />
             <motion.span
               animate={{ opacity: menuOpen ? 0 : 1 }}
-              className="block w-5 h-0.5 bg-pyure-deep rounded-full"
+              className={`block w-5 h-0.5 rounded-full transition-all ${
+                scrolled ? "bg-pyure-deep" : "bg-cream-ivory"
+              }`}
             />
             <motion.span
               animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -7 : 0 }}
-              className="block w-5 h-0.5 bg-pyure-deep rounded-full origin-center transition-all"
+              className={`block w-5 h-0.5 rounded-full origin-center transition-all ${
+                scrolled ? "bg-pyure-deep" : "bg-cream-ivory"
+              }`}
             />
           </button>
         </div>

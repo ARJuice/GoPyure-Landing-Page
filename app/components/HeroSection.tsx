@@ -20,38 +20,50 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: "linear-gradient(145deg, #FFFDF9 0%, #F9F1E6 55%, #EEE9DC 100%)" }}
+      className="relative min-h-screen flex items-center overflow-hidden bg-[#07251C]"
     >
-      {/* Background texture */}
+      {/* Background food photography scene */}
       <div
-        className="absolute inset-0 opacity-40 bg-cover bg-center pointer-events-none"
-        style={{ backgroundImage: "url('/hero-bg.png')" }}
+        className="absolute inset-0 bg-cover bg-[position:70%_center] lg:bg-center pointer-events-none transition-all duration-500"
+        style={{ backgroundImage: "url('/hero-mango-bg.png')" }}
       />
 
-      {/* Subtle organic circle blobs */}
+      {/* Dark gradient overlay for text readability */}
       <div
-        className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(155,183,174,0.12) 0%, transparent 70%)" }}
+        className="absolute inset-0 bg-gradient-to-r from-[#07251C]/95 via-[#07251C]/85 to-transparent pointer-events-none md:block hidden"
       />
+      {/* Mobile tint overlay */}
       <div
-        className="absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(10,80,57,0.06) 0%, transparent 70%)" }}
+        className="absolute inset-0 bg-[#07251C]/75 pointer-events-none md:hidden"
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-24 pb-20 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+      {/* Subtle organic light ray overlay */}
+      <div
+        className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay"
+        style={{
+          background: "radial-gradient(circle at 80% 20%, rgba(232, 169, 64, 0.4) 0%, transparent 60%)",
+        }}
+      />
 
-        {/* Left: Copy */}
-        <div className="flex flex-col items-start">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center min-h-screen">
+        
+        {/* Left: Premium Typography Copy */}
+        <div className="lg:col-span-7 flex flex-col items-start">
           {/* Badge */}
           <motion.div
             custom={0}
             variants={fadeUp}
             initial="hidden"
             animate="show"
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-pill bg-white/60 border border-[rgba(155,183,174,0.35)] text-pyure-sage text-xs font-semibold tracking-widest uppercase mb-6"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-pill bg-white/10 border border-white/15 text-pyure-mint text-xs font-semibold tracking-widest uppercase mb-6 backdrop-blur-sm"
           >
-            <Image src="/green logo - Icon Only.svg" alt="" width={14} height={14} />
+            <Image 
+              src="/white logo - Icon Only.svg" 
+              alt="GoPyure" 
+              width={14} 
+              height={14} 
+              className="brightness-0 invert-0"
+            />
             Pure Organic Dairy
           </motion.div>
 
@@ -61,11 +73,11 @@ export default function HeroSection() {
             variants={fadeUp}
             initial="hidden"
             animate="show"
-            className="text-display-xl text-pyure-deep leading-[1.12] mb-6"
+            className="text-display-xl text-cream-ivory leading-[1.12] mb-6"
             style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
           >
             The Goodness<br />
-            <span className="text-pyure-sage">You Can Trust</span>
+            <span className="text-[#E8A940]">You Can Trust</span>
           </motion.h1>
 
           {/* Subtext */}
@@ -74,7 +86,7 @@ export default function HeroSection() {
             variants={fadeUp}
             initial="hidden"
             animate="show"
-            className="text-base lg:text-lg text-ink-muted leading-relaxed max-w-md mb-10"
+            className="text-base lg:text-lg text-cream-linen/85 leading-relaxed max-w-md mb-10"
           >
             Fresh, preservative-free yogurts made from pure organic dairy.
             Honest ingredients, honest taste — crafted for your everyday family.
@@ -90,13 +102,13 @@ export default function HeroSection() {
           >
             <button
               onClick={() => scrollTo("#collection")}
-              className="px-7 py-3.5 bg-pyure-deep text-cream-ivory font-semibold text-sm rounded-pill hover:bg-pyure-sage transition-all duration-300 hover:shadow-green hover:-translate-y-0.5 tracking-wide"
+              className="px-7 py-3.5 bg-[#E8A940] hover:bg-[#d5962e] text-ink-black font-semibold text-sm rounded-pill hover:shadow-[0_12px_24px_-6px_rgba(232,169,64,0.45)] hover:-translate-y-0.5 transition-all duration-300 tracking-wide cursor-pointer"
             >
-              Explore Our Yogurts
+              Explore Our Collection
             </button>
             <button
               onClick={() => scrollTo("#contact")}
-              className="px-7 py-3.5 border border-pyure-sage text-pyure-sage font-semibold text-sm rounded-pill hover:bg-pyure-deep hover:text-cream-ivory hover:border-pyure-deep transition-all duration-300 tracking-wide"
+              className="px-7 py-3.5 border border-cream-linen/40 text-cream-linen font-semibold text-sm rounded-pill hover:bg-white/10 hover:border-cream-linen transition-all duration-300 tracking-wide cursor-pointer"
             >
               Contact Us
             </button>
@@ -108,7 +120,7 @@ export default function HeroSection() {
             variants={fadeUp}
             initial="hidden"
             animate="show"
-            className="mt-14 flex gap-8 divide-x divide-[rgba(155,183,174,0.3)]"
+            className="mt-14 flex gap-8 divide-x divide-white/10"
           >
             {[
               { value: "0%",    label: "Preservatives" },
@@ -117,12 +129,12 @@ export default function HeroSection() {
             ].map((stat, i) => (
               <div key={i} className={`${i !== 0 ? "pl-8" : ""} flex flex-col`}>
                 <span
-                  className="text-2xl font-bold text-pyure-deep leading-none"
+                  className="text-2xl font-bold text-[#E8A940] leading-none"
                   style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
                 >
                   {stat.value}
                 </span>
-                <span className="text-xs text-ink-muted mt-1 font-medium tracking-wide">
+                <span className="text-xs text-cream-linen/60 mt-1 font-medium tracking-wide">
                   {stat.label}
                 </span>
               </div>
@@ -130,56 +142,71 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Right: Product Visual */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.9, ease: [0.25, 1, 0.5, 1] }}
-          className="relative flex items-center justify-center"
-        >
-          {/* Soft glow circle */}
+        {/* Right: Tilted Floating Product Visual Over the Background bowl */}
+        <div className="lg:col-span-5 flex items-center justify-center relative h-[360px] sm:h-[460px] lg:h-[520px] w-full">
+          {/* Subtle warm backdrop glow behind the cup */}
           <div
-            className="absolute inset-0 rounded-full scale-90 blur-3xl pointer-events-none"
-            style={{ background: "radial-gradient(circle, rgba(155,183,174,0.25) 0%, transparent 70%)" }}
+            className="absolute w-[280px] h-[280px] rounded-full scale-90 blur-3xl pointer-events-none"
+            style={{ background: "radial-gradient(circle, rgba(232, 169, 64, 0.22) 0%, transparent 70%)" }}
           />
 
-          {/* Floating animation wrapper */}
+          {/* Floating tilted yogurt cup */}
           <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            initial={{ opacity: 0, scale: 0.92, rotate: -12 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1, 
+              rotate: [-6, -4, -6],
+              y: [0, -12, 0]
+            }}
+            transition={{
+              duration: 0.9,
+              ease: "easeOut",
+              rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+              y: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+            }}
             className="relative z-20"
           >
             <Image
               src="/Mango_Yogurt.png"
-              alt="GoPyure Mango Yogurt — fresh, preservative-free"
-              width={440}
-              height={520}
-              className="object-contain drop-shadow-2xl"
+              alt="GoPyure Mango Yogurt cup"
+              width={380}
+              height={450}
+              className="object-contain drop-shadow-[0_24px_50px_rgba(0,0,0,0.55)]"
               priority
             />
           </motion.div>
 
-          {/* Floating label pill */}
+          {/* Floating glassmorphic badges - mimicking hand-placed look */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-            className="absolute top-12 -right-6 sm:-right-12 lg:-right-16 glass rounded-card px-4 py-3 shadow-card z-10"
+            animate={{ opacity: 1, x: 0, y: [0, 4, 0] }}
+            transition={{ 
+              delay: 0.8, 
+              duration: 0.6,
+              y: { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
+            }}
+            className="absolute top-12 -right-2 sm:-right-8 lg:-right-4 bg-white/10 border border-white/10 backdrop-blur-md rounded-card px-4 py-2.5 shadow-xl z-30"
           >
-            <p className="text-xs text-ink-muted font-medium">Zero Additives</p>
-            <p className="text-sm font-bold text-pyure-deep mt-0.5">100% Pure</p>
+            <p className="text-[10px] text-cream-linen/60 font-medium uppercase tracking-widest">Alphonso</p>
+            <p className="text-xs font-bold text-cream-ivory mt-0.5">100% Real Fruit</p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.1, duration: 0.6 }}
-            className="absolute bottom-16 -left-6 sm:-left-12 lg:-left-16 glass rounded-card px-4 py-3 shadow-card z-10"
+            animate={{ opacity: 1, x: 0, y: [0, -4, 0] }}
+            transition={{ 
+              delay: 1.0, 
+              duration: 0.6,
+              y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+            }}
+            className="absolute bottom-16 -left-2 sm:-left-8 lg:-left-4 bg-white/10 border border-white/10 backdrop-blur-md rounded-card px-4 py-2.5 shadow-xl z-30"
           >
-            <p className="text-xs text-ink-muted font-medium">Certified Organic</p>
-            <p className="text-sm font-bold text-pyure-deep mt-0.5">Grass-Fed Dairy</p>
+            <p className="text-[10px] text-cream-linen/60 font-medium uppercase tracking-widest">Gut Health</p>
+            <p className="text-xs font-bold text-[#E8A940] mt-0.5">A2 Probiotic Base</p>
           </motion.div>
-        </motion.div>
+        </div>
+
       </div>
 
       {/* Scroll indicator */}
@@ -187,13 +214,13 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-ink-muted/60"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-cream-linen/40"
       >
-        <span className="text-xs font-medium tracking-widest uppercase">Scroll</span>
+        <span className="text-[10px] font-semibold tracking-widest uppercase">Scroll</span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-px h-8 bg-gradient-to-b from-pyure-mint/60 to-transparent"
+          className="w-px h-8 bg-gradient-to-b from-[#E8A940]/55 to-transparent"
         />
       </motion.div>
     </section>
