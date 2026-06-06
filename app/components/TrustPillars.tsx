@@ -135,13 +135,16 @@ export default function TrustPillars() {
   return (
     <section
       id="pillars"
-      className="py-24 lg:py-32 relative overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #0A5039 0%, #082E23 100%)" }}
+      className="py-24 lg:py-32 relative overflow-hidden bg-[#0A5039]"
     >
-      {/* Leaf pattern overlay */}
+      {/* Generated organic textured background image */}
       <div
-        className="absolute inset-0 opacity-5 bg-cover bg-center pointer-events-none"
-        style={{ backgroundImage: "url('/leaf-pattern.png')" }}
+        className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-[0.45] mix-blend-overlay"
+        style={{ backgroundImage: "url('/promise-bg.png')" }}
+      />
+      {/* Smooth backdrop styling overlay */}
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-[#0A5039]/65 to-[#082E23]/95 pointer-events-none"
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
