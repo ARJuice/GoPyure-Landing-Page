@@ -69,7 +69,7 @@ function StarRating({ count }: { count: number }) {
 function Card({ t }: { t: (typeof testimonials)[0] }) {
   return (
     <div
-      className="flex-shrink-0 w-[340px] sm:w-[380px] mx-4 rounded-sm p-7 select-none border border-pyure-mint/28 hover:border-pyure-sage/80 transition-colors duration-300"
+      className="flex-shrink-0 w-[340px] sm:w-[380px] mx-4 rounded-sm p-7 select-none border border-pyure-mint/28 hover:border-pyure-sage/45 transition-colors duration-300"
       style={{
         background: "rgba(255,249,240,0.92)",
         boxShadow: "0 6px 32px -4px rgba(10,80,57,0.07)",
