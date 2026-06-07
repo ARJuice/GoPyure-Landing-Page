@@ -3,6 +3,12 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+const fadeUp = (delay: number) => ({
+  initial: { opacity: 0, y: 28 },
+  animate: { opacity: 1, y: 0 },
+  transition: { delay, duration: 0.75, ease: "easeOut" as const },
+});
+
 export default function HeroSection() {
   const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
@@ -11,81 +17,72 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden"
     >
-      {/* ── Full-bleed background ── */}
+      {/* ── Full-bleed background food photo ── */}
       <div
-        className="absolute inset-0 bg-cover bg-center pointer-events-none"
+        className="absolute inset-0 bg-cover bg-[center_right] pointer-events-none"
         style={{ backgroundImage: "url('/hero-mango-bg.png')" }}
       />
-      {/* Dark vignette for contrast */}
-      <div className="absolute inset-0 bg-[#07251C]/60 pointer-events-none" />
-      {/* Bottom-to-top dark fade so the text block pops */}
+
+      {/* Left-side dark gradient — keeps text crisp, fades into photo on the right */}
       <div
-        className="absolute inset-x-0 bottom-0 h-[55%] pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to top, rgba(7,37,28,0.92) 0%, rgba(7,37,28,0.55) 60%, transparent 100%)",
+            "linear-gradient(to right, rgba(7,37,28,0.93) 0%, rgba(7,37,28,0.78) 45%, rgba(7,37,28,0.18) 75%, transparent 100%)",
         }}
       />
+      {/* Subtle global vignette */}
+      <div className="absolute inset-0 bg-[#07251C]/20 pointer-events-none" />
 
-      {/* ── Products image — centred upper half ── */}
-      <div className="relative z-10 flex flex-1 items-center justify-center pt-24 pb-0 px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 28, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.25, 1, 0.5, 1] }}
-          className="w-full max-w-[900px] lg:max-w-[1100px]"
-        >
-          <Image
-            src="/hero-products.png"
-            alt="GoPyure Mango, Plain & Blueberry Yogurt range"
-            width={1100}
-            height={740}
-            className="w-full h-auto object-contain drop-shadow-[0_32px_64px_rgba(0,0,0,0.5)]"
-            priority
-          />
-        </motion.div>
-      </div>
+      {/* ── Content: left column ── */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-14 pt-28 pb-16">
 
-      {/* ── Bottom copy block — Activia-style ── */}
-      <div className="relative z-10 w-full pb-14 lg:pb-20 px-6 lg:px-14">
-        <div className="max-w-7xl mx-auto">
+        {/* Left column — max ~half the viewport */}
+        <div className="flex flex-col items-start max-w-[560px] lg:max-w-[600px]">
 
-          {/* Headline — big & bold, flush left */}
+          {/* ── Product image — sits above the copy ── */}
+          <motion.div
+            {...fadeUp(0)}
+            className="w-full mb-6"
+          >
+            <Image
+              src="/hero-products.png"
+              alt="GoPyure Mango, Plain and Blueberry Yogurt range"
+              width={680}
+              height={460}
+              className="w-full h-auto object-contain drop-shadow-[0_24px_52px_rgba(0,0,0,0.55)]"
+              priority
+            />
+          </motion.div>
+
+          {/* ── Headline ── */}
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.75, ease: "easeOut" }}
-            className="text-cream-ivory font-bold leading-[1.08] tracking-tight mb-4"
+            {...fadeUp(0.18)}
+            className="text-cream-ivory font-bold leading-[1.1] tracking-tight mb-4"
             style={{
               fontFamily: "'Konkhmer Sleokchher', serif",
-              fontSize: "clamp(2.4rem, 5.5vw, 5rem)",
+              fontSize: "clamp(2rem, 4.2vw, 4rem)",
             }}
           >
             Good for your gut.<br />
             <span className="text-[#E8A940]">Great for your taste buds.</span>
           </motion.h1>
 
-          {/* Sub-line */}
+          {/* ── Sub-line ── */}
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.28, duration: 0.7, ease: "easeOut" }}
-            className="text-cream-linen/75 text-base lg:text-lg leading-relaxed max-w-lg mb-8"
+            {...fadeUp(0.32)}
+            className="text-cream-linen/70 text-base lg:text-lg leading-relaxed mb-9"
           >
             Delicious probiotic yogurts crafted to support everyday gut health.
           </motion.p>
 
-          {/* CTA — pill button like Activia */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.65, ease: "easeOut" }}
-          >
+          {/* ── CTA pill — Activia-style outlined button ── */}
+          <motion.div {...fadeUp(0.45)}>
             <button
               onClick={() => scrollTo("#collection")}
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-pill border-2 border-cream-ivory text-cream-ivory font-semibold text-sm tracking-wide hover:bg-cream-ivory hover:text-pyure-deep transition-all duration-300 cursor-pointer"
+              className="inline-flex items-center px-9 py-3.5 rounded-pill border-2 border-cream-ivory text-cream-ivory font-semibold text-sm tracking-widest uppercase hover:bg-cream-ivory hover:text-pyure-deep transition-all duration-300 cursor-pointer"
             >
               Our Yogurts
             </button>
@@ -98,10 +95,15 @@ export default function HeroSection() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-6 right-8 flex flex-col items-center gap-1 text-cream-linen/30"
+        transition={{ delay: 1.3 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-cream-linen/35"
       >
-        <span className="text-[9px] font-semibold tracking-widest uppercase rotate-90 origin-center">Scroll</span>
+        <span className="text-[9px] font-semibold tracking-widest uppercase">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="w-px h-7 bg-gradient-to-b from-[#E8A940]/50 to-transparent"
+        />
       </motion.div>
     </section>
   );
