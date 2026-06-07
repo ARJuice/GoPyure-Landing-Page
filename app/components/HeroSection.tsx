@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const fadeUp = (delay: number) => ({
-  initial: { opacity: 0, y: 28 },
+  initial: { opacity: 0, y: 22 },
   animate: { opacity: 1, y: 0 },
-  transition: { delay, duration: 0.75, ease: "easeOut" as const },
+  transition: { delay, duration: 0.7, ease: "easeOut" as const },
 });
 
 export default function HeroSection() {
@@ -17,72 +17,75 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative h-screen flex items-center overflow-hidden"
     >
-      {/* ── Full-bleed background food photo ── */}
+      {/* ── Background — stretched to fill exactly the viewport ── */}
       <div
-        className="absolute inset-0 bg-cover bg-[center_right] pointer-events-none"
-        style={{ backgroundImage: "url('/hero-mango-bg.png')" }}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('/hero-mango-bg.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+        }}
       />
 
-      {/* Left-side dark gradient — keeps text crisp, fades into photo on the right */}
+      {/* Left-to-right dark gradient so left text is readable */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to right, rgba(7,37,28,0.93) 0%, rgba(7,37,28,0.78) 45%, rgba(7,37,28,0.18) 75%, transparent 100%)",
+            "linear-gradient(to right, rgba(7,37,28,0.92) 0%, rgba(7,37,28,0.75) 40%, rgba(7,37,28,0.15) 70%, transparent 100%)",
         }}
       />
-      {/* Subtle global vignette */}
-      <div className="absolute inset-0 bg-[#07251C]/20 pointer-events-none" />
 
-      {/* ── Content: left column ── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-14 pt-28 pb-16">
+      {/* ── Content: single left column, all within h-screen ── */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-14 flex items-center h-full">
 
-        {/* Left column — max ~half the viewport */}
-        <div className="flex flex-col items-start max-w-[560px] lg:max-w-[600px]">
+        <div className="flex flex-col items-start justify-center w-full max-w-[520px] lg:max-w-[580px] pt-20">
 
-          {/* ── Product image — sits above the copy ── */}
+          {/* Product image — constrained so it doesn't push text off screen */}
           <motion.div
             {...fadeUp(0)}
-            className="w-full mb-6"
+            className="w-full mb-5"
           >
             <Image
               src="/hero-products.png"
-              alt="GoPyure Mango, Plain and Blueberry Yogurt range"
-              width={680}
-              height={460}
-              className="w-full h-auto object-contain drop-shadow-[0_24px_52px_rgba(0,0,0,0.55)]"
+              alt="GoPyure Mango, Plain and Blueberry Yogurt — full range"
+              width={660}
+              height={440}
+              className="w-full object-contain drop-shadow-[0_20px_44px_rgba(0,0,0,0.55)]"
+              style={{ maxHeight: "38vh" }}
               priority
             />
           </motion.div>
 
-          {/* ── Headline ── */}
+          {/* Headline */}
           <motion.h1
-            {...fadeUp(0.18)}
-            className="text-cream-ivory font-bold leading-[1.1] tracking-tight mb-4"
+            {...fadeUp(0.16)}
+            className="text-cream-ivory font-bold leading-[1.1] tracking-tight mb-3"
             style={{
               fontFamily: "'Konkhmer Sleokchher', serif",
-              fontSize: "clamp(2rem, 4.2vw, 4rem)",
+              fontSize: "clamp(1.65rem, 3.4vw, 3.4rem)",
             }}
           >
             Good for your gut.<br />
             <span className="text-[#E8A940]">Great for your taste buds.</span>
           </motion.h1>
 
-          {/* ── Sub-line ── */}
+          {/* Sub-line */}
           <motion.p
-            {...fadeUp(0.32)}
-            className="text-cream-linen/70 text-base lg:text-lg leading-relaxed mb-9"
+            {...fadeUp(0.28)}
+            className="text-cream-linen/68 text-sm lg:text-base leading-relaxed mb-7"
           >
             Delicious probiotic yogurts crafted to support everyday gut health.
           </motion.p>
 
-          {/* ── CTA pill — Activia-style outlined button ── */}
-          <motion.div {...fadeUp(0.45)}>
+          {/* CTA pill */}
+          <motion.div {...fadeUp(0.4)}>
             <button
               onClick={() => scrollTo("#collection")}
-              className="inline-flex items-center px-9 py-3.5 rounded-pill border-2 border-cream-ivory text-cream-ivory font-semibold text-sm tracking-widest uppercase hover:bg-cream-ivory hover:text-pyure-deep transition-all duration-300 cursor-pointer"
+              className="inline-flex items-center px-8 py-3 rounded-pill border-2 border-cream-ivory text-cream-ivory font-semibold text-sm tracking-widest uppercase hover:bg-cream-ivory hover:text-pyure-deep transition-all duration-300 cursor-pointer"
             >
               Our Yogurts
             </button>
@@ -91,18 +94,18 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — pinned bottom centre */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.3 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-cream-linen/35"
+        transition={{ delay: 1.2 }}
+        className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-cream-linen/30"
       >
-        <span className="text-[9px] font-semibold tracking-widest uppercase">Scroll</span>
+        <span className="text-[8px] font-semibold tracking-widest uppercase">Scroll</span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-px h-7 bg-gradient-to-b from-[#E8A940]/50 to-transparent"
+          className="w-px h-6 bg-gradient-to-b from-[#E8A940]/45 to-transparent"
         />
       </motion.div>
     </section>
