@@ -30,6 +30,62 @@ export default function Navbar() {
 
   return (
     <>
+      <style>{`
+        .btn-style-2 {
+          position: relative;
+          z-index: 1;
+          overflow: hidden;
+          cursor: pointer;
+          border: none;
+          border-radius: 0 !important;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          transition: color 0.5s ease, border-color 0.5s ease;
+        }
+
+        .btn-style-2:after {
+          content: "";
+          position: absolute;
+          z-index: -1;
+          left: -20%;
+          right: -20%;
+          top: 0;
+          bottom: 0;
+          transform: skewX(-45deg) scale(0, 1);
+          transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        .btn-style-2:hover:after {
+          transform: skewX(-45deg) scale(1, 1);
+        }
+
+        .btn-style-2-scrolled {
+          background-color: var(--pyure-deep);
+          color: var(--cream-ivory);
+          border: 1px solid var(--pyure-deep);
+        }
+        .btn-style-2-scrolled:after {
+          background-color: var(--cream-ivory);
+        }
+        .btn-style-2-scrolled:hover {
+          color: var(--pyure-deep);
+          border-color: var(--cream-ivory);
+        }
+
+        .btn-style-2-unscrolled {
+          background-color: var(--cream-ivory);
+          color: var(--pyure-deep);
+          border: 1px solid var(--cream-ivory);
+        }
+        .btn-style-2-unscrolled:after {
+          background-color: var(--pyure-deep);
+        }
+        .btn-style-2-unscrolled:hover {
+          color: var(--cream-ivory);
+          border-color: var(--pyure-deep);
+        }
+      `}</style>
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -76,10 +132,8 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={() => handleNavClick("#contact")}
-              className={`px-5 py-2.5 text-sm font-semibold rounded-pill transition-all duration-300 tracking-wide ${
-                scrolled
-                  ? "bg-pyure-deep text-cream-ivory hover:bg-pyure-sage hover:shadow-green"
-                  : "bg-cream-ivory text-pyure-deep hover:bg-cream-linen"
+              className={`btn-style-2 px-5 py-2.5 text-sm font-semibold tracking-wide ${
+                scrolled ? "btn-style-2-scrolled" : "btn-style-2-unscrolled"
               }`}
             >
               Get in Touch
@@ -139,7 +193,7 @@ export default function Navbar() {
               ))}
               <button
                 onClick={() => handleNavClick("#contact")}
-                className="mt-4 w-full py-3 bg-pyure-deep text-cream-ivory text-sm font-semibold rounded-pill hover:bg-pyure-sage transition-all"
+                className="mt-4 w-full py-3 btn-style-2 btn-style-2-scrolled text-sm font-semibold"
               >
                 Get in Touch
               </button>

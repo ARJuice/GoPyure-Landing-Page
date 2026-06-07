@@ -19,6 +19,61 @@ export default function HeroSection() {
       id="hero"
       className="relative h-screen flex items-center overflow-hidden"
     >
+      <style>{`
+        .btn-style-1 {
+          border: 2px solid var(--cream-ivory);
+          border-radius: 0 !important;
+          box-sizing: border-box;
+          display: inline-block;
+          font-weight: 600;
+          overflow: hidden;
+          padding: 12px 32px;
+          position: relative;
+          text-transform: uppercase;
+          font-size: 14px;
+          letter-spacing: 0.15em;
+          background: transparent;
+          color: var(--cream-ivory);
+          cursor: pointer;
+        }
+
+        .btn-style-1 .original {
+          background: var(--cream-ivory);
+          color: var(--pyure-deep);
+          display: grid;
+          inset: 0;
+          place-content: center;
+          position: absolute;
+          transition: transform 0.35s cubic-bezier(0.87, 0, 0.13, 1);
+          font-weight: 600;
+        }
+
+        .btn-style-1:hover .original {
+          transform: translateY(100%);
+        }
+
+        .btn-style-1 .letters {
+          display: inline-flex;
+        }
+
+        .btn-style-1 span {
+          opacity: 0;
+          transform: translateY(-15px);
+          transition: transform 0.35s cubic-bezier(0.87, 0, 0.13, 1), opacity 0.35s;
+          transition-delay: calc(var(--i) * 0.04s);
+          color: var(--cream-ivory);
+          display: inline-block;
+        }
+
+        .btn-style-1 span:nth-child(2n) {
+          transform: translateY(15px);
+        }
+
+        .btn-style-1:hover span {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      `}</style>
       {/* ── Background — stretched to fill exactly the viewport ── */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -97,9 +152,16 @@ export default function HeroSection() {
             <motion.div {...fadeUp(0.4)}>
               <button
                 onClick={() => scrollTo("#collection")}
-                className="inline-flex items-center px-8 py-3 rounded-pill border-2 border-cream-ivory text-cream-ivory font-semibold text-sm tracking-widest uppercase hover:bg-cream-ivory hover:text-pyure-deep transition-all duration-300 cursor-pointer"
+                className="btn-style-1"
               >
-                Our Yogurts
+                <div className="original">Our Yogurts</div>
+                <div className="letters">
+                  {["O", "u", "r", "\u00A0", "Y", "o", "g", "u", "r", "t", "s"].map((char, index) => (
+                    <span key={index} style={{ "--i": index } as React.CSSProperties}>
+                      {char}
+                    </span>
+                  ))}
+                </div>
               </button>
             </motion.div>
           </div>

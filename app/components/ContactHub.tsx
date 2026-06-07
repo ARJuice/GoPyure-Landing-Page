@@ -69,6 +69,49 @@ export default function ContactHub() {
       className="py-24 lg:py-32"
       style={{ background: "#F9F1E6" }}
     >
+      <style>{`
+        .btn-style-2 {
+          position: relative;
+          z-index: 1;
+          overflow: hidden;
+          cursor: pointer;
+          border: none;
+          border-radius: 0 !important;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          transition: color 0.5s ease, border-color 0.5s ease;
+        }
+
+        .btn-style-2:after {
+          content: "";
+          position: absolute;
+          z-index: -1;
+          left: -20%;
+          right: -20%;
+          top: 0;
+          bottom: 0;
+          transform: skewX(-45deg) scale(0, 1);
+          transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        .btn-style-2:hover:after {
+          transform: skewX(-45deg) scale(1, 1);
+        }
+
+        .btn-style-2-whatsapp {
+          background-color: transparent;
+          color: var(--cream-ivory);
+          border: 1px solid rgba(155, 183, 174, 0.4);
+        }
+        .btn-style-2-whatsapp:after {
+          background-color: var(--cream-ivory);
+        }
+        .btn-style-2-whatsapp:hover {
+          color: var(--pyure-deep);
+          border-color: var(--cream-ivory);
+        }
+      `}</style>
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
         {/* Header */}
@@ -209,7 +252,7 @@ export default function ContactHub() {
                 href="https://wa.me/919876543210"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 border border-pyure-mint/40 text-cream-ivory font-semibold text-sm rounded-pill hover:bg-pyure-sage/30 transition-all duration-300"
+                className="btn-style-2 btn-style-2-whatsapp px-5 py-2.5 text-sm font-semibold"
               >
                 WhatsApp
               </a>
