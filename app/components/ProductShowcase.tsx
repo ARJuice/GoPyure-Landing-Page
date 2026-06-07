@@ -9,7 +9,6 @@ const products = [
     id: "mango",
     name: "Mango Yogurt",
     weight: "100g",
-    mrp: 40,
     image: "/Mango_Yogurt.png",
     description: "A smooth blend of our signature probiotic yogurt and mango fruit preparation. Clean, refreshing, and naturally flavored.",
   },
@@ -17,7 +16,6 @@ const products = [
     id: "blueberry",
     name: "Blueberry Yogurt",
     weight: "100g",
-    mrp: 40,
     image: "/Blueberry_Yogurt.png",
     description: "Our classic probiotic yogurt combined with blueberry fruit preparation. Smooth texture with a delicious berry taste.",
   },
@@ -25,7 +23,6 @@ const products = [
     id: "plain",
     name: "Plain Yogurt",
     weight: "100g",
-    mrp: 30,
     image: "/Plain_Yogurt.png",
     description: "Pure, unsweetened probiotic yogurt made simply with organically sourced dairy and active live cultures.",
   },
@@ -88,11 +85,6 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
             >
               {product.name}
             </h3>
-          </div>
-          
-          <div className="flex items-center gap-1.5 px-2.5 py-1 border border-[#E8A940]/40 bg-[#FFFDF9] self-start mb-3.5">
-            <span className="text-[9px] font-bold tracking-widest text-[#E8A940] uppercase">MRP</span>
-            <span className="text-base font-extrabold text-[#E8A940]">₹{product.mrp}</span>
           </div>
           
           <p className="text-[10px] font-bold tracking-wider text-pyure-sage uppercase mb-2.5">

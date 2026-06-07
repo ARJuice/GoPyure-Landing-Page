@@ -70,7 +70,7 @@ const pillars: Pillar[] = [
     title: "Our Vision",
     headline: "Growing Beyond Yogurt.",
     description:
-      "From yogurt to a complete portfolio of honest, clean-label dairy products — GoPyure is on a path to become Kerala\u2019s most trusted name in everyday nutrition.",
+      "From yogurt to a complete portfolio of honest, clean-label dairy products — GoPyure is on a path to become Kerala’s most trusted name in everyday nutrition.",
     position: "top",
     iconKey: "vision",
   },
@@ -79,7 +79,7 @@ const pillars: Pillar[] = [
     title: "Selected Ingredients",
     headline: "Carefully Chosen Cultures.",
     description:
-      "Our starter cultures are sourced from the Netherlands \u2014 the gold standard in dairy fermentation. Every ingredient is chosen for its role in creating the cleanest, most authentic flavour.",
+      "Our starter cultures are sourced from the Netherlands — the gold standard in dairy fermentation. Every ingredient is chosen for its role in creating the cleanest, most authentic flavour.",
     position: "left",
     iconKey: "ingredients",
   },
@@ -88,7 +88,7 @@ const pillars: Pillar[] = [
     title: "No Preservatives",
     headline: "Pure Taste. Nothing Extra.",
     description:
-      "Our products are made without added preservatives, artificial colours, or flavour enhancers. Just carefully selected natural ingredients \u2014 the way food was meant to be.",
+      "Our products are made without added preservatives, artificial colours, or flavour enhancers. Just carefully selected natural ingredients — the way food was meant to be.",
     position: "right",
     iconKey: "preservatives",
   },
@@ -104,23 +104,24 @@ const pillars: Pillar[] = [
 ];
 
 /* ── SVG curved-root paths  ── */
-/* ViewBox = 750 × 580, seed center = (375, 290) */
+/* ViewBox = 800 × 700, seed center = (400, 370) */
+/* The root curves are stretched to make the branches longer and more natural */
 const rootPaths: Record<Position, string> = {
-  top:    "M 375 256 C 367 218, 383 155, 375 95",
-  right:  "M 408 290 C 458 282, 548 298, 630 290",
-  bottom: "M 375 324 C 383 362, 367 428, 375 470",
-  left:   "M 342 290 C 292 298, 202 282, 120 290",
+  top:    "M 400 336 C 385 270, 415 180, 400 115",
+  right:  "M 434 370 C 490 355, 600 385, 664 370",
+  bottom: "M 400 404 C 415 470, 385 540, 400 595",
+  left:   "M 366 370 C 310 385, 200 355, 136 370",
 };
 
 /* ── Pillar positions (% of container) ── */
 const positions: Record<Position, { left: string; top: string }> = {
-  top:    { left: "50%", top: "12%" },
-  right:  { left: "85%", top: "50%" },
-  bottom: { left: "50%", top: "85%" },
-  left:   { left: "15%", top: "50%" },
+  top:    { left: "50%", top: "10%" },
+  right:  { left: "88%", top: "53%" },
+  bottom: { left: "50%", top: "90%" },
+  left:   { left: "12%", top: "53%" },
 };
 
-/* ── Pulse delay per branch (very subtle delay of 0.25s to start right after the ripple begins) ── */
+/* ── Pulse delay per branch ── */
 const pulseDelays: Record<Position, string> = {
   top: "0.25s",
   right: "0.25s",
@@ -156,7 +157,7 @@ export default function TrustPillars() {
           transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
           className="text-center mb-6 lg:mb-2"
         >
-          <p className="text-xs font-semibold tracking-widest uppercase text-pyure-mint mb-3">
+          <p className="text-xs font-semibold tracking-widest uppercase text-[#E8A940] mb-3">
             The Sprout &amp; Drop Promise
           </p>
           <h2
@@ -165,46 +166,46 @@ export default function TrustPillars() {
           >
             The GoPyure Difference
           </h2>
-          <p className="text-pyure-mint/80 max-w-md mx-auto leading-relaxed text-sm">
+          <p className="text-cream-linen/80 max-w-md mx-auto leading-relaxed text-sm">
             Four principles that shape every product, every process,
             and every decision we make.
           </p>
         </motion.div>
 
         {/* ═══ DESKTOP — radial seed layout ═══ */}
+        {/* Increased height to 700px and added a top margin mt-24 to push it down and prevent card overlaps */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="hidden md:block relative mx-auto"
-          style={{ maxWidth: "750px", height: "580px", overflow: "visible" }}
+          className="hidden md:block relative mx-auto mt-24 lg:mt-32"
+          style={{ maxWidth: "800px", height: "700px", overflow: "visible" }}
         >
           {/* ── SVG root branches ── */}
           <svg
             className="absolute inset-0 w-full h-full pointer-events-none"
-            viewBox="0 0 750 580"
+            viewBox="0 0 800 700"
             preserveAspectRatio="xMidYMid meet"
           >
             <defs>
-              {/* Gradients for each branch direction: starts bright near center (high opacity), fades to near-invisible (low opacity) near cards.
-                  This visually tapers the line (vein effect) and creates an elegant organic transition. */}
-              <linearGradient id="grad-top" x1="375" y1="256" x2="375" y2="95" gradientUnits="userSpaceOnUse">
+              {/* Gradients for each branch direction */}
+              <linearGradient id="grad-top" x1="400" y1="336" x2="400" y2="115" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
                 <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
                 <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
               </linearGradient>
-              <linearGradient id="grad-right" x1="408" y1="290" x2="630" y2="290" gradientUnits="userSpaceOnUse">
+              <linearGradient id="grad-right" x1="434" y1="370" x2="664" y2="370" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
                 <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
                 <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
               </linearGradient>
-              <linearGradient id="grad-bottom" x1="375" y1="324" x2="375" y2="470" gradientUnits="userSpaceOnUse">
+              <linearGradient id="grad-bottom" x1="400" y1="404" x2="400" y2="595" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
                 <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
                 <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
               </linearGradient>
-              <linearGradient id="grad-left" x1="342" y1="290" x2="120" y2="290" gradientUnits="userSpaceOnUse">
+              <linearGradient id="grad-left" x1="366" y1="370" x2="136" y2="370" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
                 <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
                 <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
@@ -252,7 +253,7 @@ export default function TrustPillars() {
                   className="root-pulse-path"
                   stroke={
                     hoveredId === p.id
-                      ? "#FFFDF9"
+                      ? "#E8A940"
                       : "rgba(212, 232, 223, 0.75)"
                   }
                   strokeWidth={hoveredId === p.id ? "3.2" : "2.2"}
@@ -273,14 +274,13 @@ export default function TrustPillars() {
             className="absolute z-20 flex items-center justify-center"
             style={{
               left: "50%",
-              top: "50%",
+              top: "52.8%",
               transform: "translate(-50%, -50%)",
               width: "160px",
               height: "160px",
             }}
           >
             {/* Very subtle glow behind to establish visual hierarchy */}
-            {/* Very subtle glow behind to establish visual hierarchy, shifting dynamically on hover */}
             <motion.div
               className="absolute w-[130px] h-[130px] rounded-full pointer-events-none seed-glow-backdrop"
               animate={{
@@ -339,23 +339,23 @@ export default function TrustPillars() {
                   left: positions[p.position].left,
                   top: positions[p.position].top,
                   transform: "translate(-50%, -50%)",
-                  width: "240px", /* stable, comfortable width to prevent text squishing */
+                  width: "265px", /* expanded to give description more comfortable line wraps */
                 }}
                 onMouseEnter={() => setHoveredId(p.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
                 {/* Glassmorphic Background Card on hover */}
                 <motion.div
-                  className="absolute inset-0 bg-[#073629]/75 border border-[#9BB7AE]/18 backdrop-blur-md rounded-sm -z-10 shadow-xl"
+                  className="absolute inset-0 bg-[#073629]/88 border border-[#9BB7AE]/25 backdrop-blur-md rounded-sm -z-10 shadow-2xl"
                   initial={{ opacity: 0, scale: 0.94 }}
                   animate={{
                     opacity: isHovered ? 1 : 0,
                     scale: isHovered ? 1 : 0.94,
                   }}
-                  transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                   style={{
-                    padding: "20px 24px",
-                    margin: "-16px -20px", /* expands outward for comfortable breathing room */
+                    padding: "22px 26px",
+                    margin: "-18px -22px", /* expands outward for comfortable breathing room */
                   }}
                 />
 
@@ -366,7 +366,7 @@ export default function TrustPillars() {
                     className="mb-2.5"
                     animate={{
                       scale: isHovered ? 1.18 : 1,
-                      color: isHovered ? "#FFFDF9" : "#9BB7AE",
+                      color: isHovered ? "#E8A940" : "#9BB7AE",
                     }}
                     transition={{ type: "spring", stiffness: 120, damping: 22 }}
                     style={{ color: "#9BB7AE" }}
@@ -376,10 +376,10 @@ export default function TrustPillars() {
 
                   {/* Title */}
                   <motion.p
-                    className="text-sm font-semibold text-center whitespace-nowrap"
+                    className="text-base font-bold text-center tracking-wide whitespace-nowrap"
                     style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
-                    animate={{ color: isHovered ? "#FFFDF9" : "rgba(255,253,249,0.85)" }}
-                    transition={{ duration: 0.5 }}
+                    animate={{ color: isHovered ? "#E8A940" : "rgba(255,253,249,0.85)" }}
+                    transition={{ duration: 0.3 }}
                   >
                     {p.title}
                   </motion.p>
@@ -391,21 +391,23 @@ export default function TrustPillars() {
                         initial={{ opacity: 0, maxHeight: 0 }}
                         animate={{ opacity: 1, maxHeight: 240 }}
                         exit={{ opacity: 0, maxHeight: 0 }}
-                        transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
                         className="overflow-hidden w-full"
                       >
-                        <p className="text-center leading-relaxed mt-3 w-full">
+                        <div className="text-center mt-3 w-full">
+                          {/* Yellow Headline */}
                           <span
-                            className="block text-[13px] font-semibold mb-1 text-cream-ivory"
+                            className="block text-sm font-bold mb-1.5 text-[#E8A940]"
                           >
                             {p.headline}
                           </span>
+                          {/* Readable body description */}
                           <span
-                            className="text-xs leading-relaxed text-[#d4e8df]"
+                            className="text-[13px] leading-relaxed text-cream-linen/90 font-medium block"
                           >
                             {p.description}
                           </span>
-                        </p>
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -453,13 +455,13 @@ export default function TrustPillars() {
               <div className="text-pyure-mint shrink-0 mt-0.5">{icons[p.iconKey]}</div>
               <div>
                 <p
-                  className="text-sm font-semibold text-cream-ivory mb-1"
+                  className="text-base font-bold text-cream-ivory mb-1"
                   style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
                 >
                   {p.title}
                 </p>
-                <p className="text-xs leading-relaxed" style={{ color: "rgba(155,183,174,0.75)" }}>
-                  <span className="font-medium" style={{ color: "rgba(255,253,249,0.8)" }}>
+                <p className="text-sm leading-relaxed text-cream-linen/85">
+                  <span className="font-bold text-[#E8A940] block mb-0.5">
                     {p.headline}
                   </span>{" "}
                   {p.description}
@@ -477,9 +479,9 @@ export default function TrustPillars() {
           transition={{ delay: 0.5, duration: 0.6 }}
           className="mt-14 lg:mt-10 text-center"
         >
-          <p className="text-pyure-mint/60 text-sm">
+          <p className="text-pyure-mint/75 text-sm">
             Trusted by families across the region —&nbsp;
-            <span className="text-cream-ivory font-medium">
+            <span className="text-[#E8A940] font-semibold">
               pure, honest food since day one.
             </span>
           </p>
