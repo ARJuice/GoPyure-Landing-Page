@@ -1,177 +1,122 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 const products = [
   {
     id: "mango",
     name: "Mango Yogurt",
-    tag: "Fresh & Fruity",
+    weight: "100g",
     image: "/Mango_Yogurt.png",
     accent: "#E8A940",
-    accentLight: "rgba(232,169,64,0.1)",
-    badges: [
-      { metric: "100%", label: "Real Mango Pulp" },
-      { metric: "0g",   label: "Refined Sugar" },
-      { metric: "A2",   label: "Probiotic Dairy" },
-    ],
-    description: "Sun-ripened Alphonso mango blended into our pure organic yogurt base. Rich, creamy, and naturally sweet.",
+    accentLight: "rgba(232,169,64,0.06)",
+    description: "Creamy yogurt blended with rich mango flavor. Made with quality organic dairy for a delicious and refreshing snack.",
   },
   {
     id: "blueberry",
     name: "Blueberry Yogurt",
-    tag: "Antioxidant Rich",
+    weight: "100g",
     image: "/Blueberry_Yogurt.png",
     accent: "#5B4FC2",
-    accentLight: "rgba(91,79,194,0.08)",
-    badges: [
-      { metric: "100%", label: "Real Blueberries" },
-      { metric: "0%",   label: "Preservatives" },
-      { metric: "Live", label: "Probiotic Cultures" },
-    ],
-    description: "Wild blueberries paired with silky smooth organic yogurt. Naturally vibrant, naturally nourishing.",
+    accentLight: "rgba(91,79,194,0.04)",
+    description: "Smooth and delicious yogurt with blueberry flavor. Crafted with organically sourced dairy.",
   },
   {
     id: "plain",
     name: "Plain Yogurt",
-    tag: "Classic & Clean",
+    weight: "100g",
     image: "/Plain_Yogurt.png",
     accent: "#346E5B",
-    accentLight: "rgba(52,110,91,0.08)",
-    badges: [
-      { metric: "Pure", label: "Unsweetened" },
-      { metric: "A2",   label: "Beta-Casein Milk" },
-      { metric: "0%",   label: "Additives" },
-    ],
-    description: "Nothing added, nothing hidden. Just pure organic yogurt in its most honest, versatile form.",
+    accentLight: "rgba(52,110,91,0.06)",
+    description: "Simple, clean, and classic yogurt made from organically sourced dairy.",
   },
 ];
 
+const fadeUp = (delay: number) => ({
+  initial: { opacity: 0, y: 22 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { delay, duration: 0.7, ease: "easeOut" as const },
+});
+
 function ProductCard({ product, index }: { product: typeof products[0]; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    const dx = (e.clientX - cx) / (rect.width / 2);
-    const dy = (e.clientY - cy) / (rect.height / 2);
-    setTilt({ x: dy * -6, y: dx * 6 });
-  }, []);
-
-  const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
-    setHovered(false);
-  };
 
   return (
     <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ delay: index * 0.15, duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
-      style={{
-        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-        transition: hovered ? "transform 0.1s" : "transform 0.5s cubic-bezier(0.25,1,0.5,1)",
-        transformStyle: "preserve-3d",
-      }}
-      onMouseMove={handleMouseMove}
+      {...fadeUp(index * 0.15)}
       onMouseEnter={() => setHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      className="relative rounded-card overflow-hidden cursor-default will-change-transform group"
+      onMouseLeave={() => setHovered(false)}
+      className="relative border p-8 flex flex-col justify-between h-full transition-all duration-300 rounded-none bg-cream-soft"
+      style={{
+        borderColor: hovered ? product.accent + "55" : "rgba(155,183,174,0.22)",
+        boxShadow: hovered
+          ? "0 16px 36px -12px rgba(10,80,57,0.12)"
+          : "0 4px 20px -6px rgba(10,80,57,0.03)",
+        transform: hovered ? "translateY(-6px)" : "translateY(0)",
+      }}
     >
-      {/* Card body */}
-      <div
-        className="rounded-card border p-6 flex flex-col h-full transition-shadow duration-300"
-        style={{
-          background: `radial-gradient(circle at 50% 115%, ${product.accentLight}, #FFF9F0 60%)`,
-          borderColor: hovered ? product.accent + "44" : "rgba(155,183,174,0.28)",
-          boxShadow: hovered
-            ? `0 20px 60px -10px rgba(10,80,57,0.12), 0 4px 20px -4px rgba(10,80,57,0.06)`
-            : "0 4px 20px -2px rgba(10,80,57,0.04)",
-        }}
-      >
-        {/* Tag */}
+      <div>
+        {/* Top Weight Label */}
         <div className="flex items-center justify-between mb-4">
           <span
-            className="text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-pill"
-            style={{ color: product.accent, background: product.accentLight }}
+            className="text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 border transition-colors duration-300 rounded-none"
+            style={{
+              color: product.accent,
+              borderColor: hovered ? product.accent : "rgba(155,183,174,0.3)",
+            }}
           >
-            {product.tag}
+            Net Wt: {product.weight}
           </span>
         </div>
 
         {/* Product image */}
         <div
-          className="relative flex items-center justify-center py-4 mb-6 rounded-2xl"
-          style={{ background: `radial-gradient(circle at 50% 100%, ${product.accentLight} 0%, transparent 65%)` }}
+          className="relative flex items-center justify-center py-6 mb-8"
+          style={{ background: `radial-gradient(circle at 50% 100%, ${product.accentLight} 0%, transparent 72%)` }}
         >
           <motion.div
-            animate={hovered ? { y: -6, scale: 1.03 } : { y: 0, scale: 1 }}
-            transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+            animate={hovered ? { y: -4, scale: 1.02 } : { y: 0, scale: 1 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
           >
             <Image
               src={product.image}
               alt={product.name}
-              width={220}
-              height={260}
-              className="object-contain drop-shadow-lg"
+              width={210}
+              height={250}
+              className="object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.15)]"
             />
           </motion.div>
         </div>
 
-        {/* Name & description */}
+        {/* Name */}
         <h3
-          className="text-xl font-semibold text-pyure-deep mb-2"
+          className="text-2xl font-bold text-pyure-deep mb-3"
           style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
         >
           {product.name}
         </h3>
-        <p className="text-sm text-ink-muted leading-relaxed mb-6">
+
+        {/* Description */}
+        <p className="text-sm text-ink-muted leading-relaxed mb-8">
           {product.description}
         </p>
-
-        {/* Purity badges */}
-        <div className="grid grid-cols-3 gap-2 mb-6">
-          {product.badges.map((badge, i) => (
-            <div
-              key={i}
-              className="flex flex-col items-center text-center rounded-xl py-2.5 px-1"
-              style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(155,183,174,0.2)" }}
-            >
-              <span
-                className="text-base font-bold leading-none"
-                style={{ color: product.accent, fontFamily: "'Konkhmer Sleokchher', serif" }}
-              >
-                {badge.metric}
-              </span>
-              <span className="text-[10px] text-ink-muted mt-1 leading-tight font-medium">
-                {badge.label}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <button
-          onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-          className="w-full py-3 text-sm font-semibold rounded-pill border transition-all duration-300"
-          style={{
-            color: product.accent,
-            borderColor: product.accent + "55",
-            background: hovered ? product.accentLight : "transparent",
-          }}
-        >
-          Inquire to Order
-        </button>
       </div>
+
+      {/* Action Button */}
+      <button
+        onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+        className="w-full py-3 text-sm font-semibold border transition-all duration-300 rounded-none cursor-pointer"
+        style={{
+          color: product.accent,
+          borderColor: product.accent + "55",
+          background: hovered ? product.accentLight : "transparent",
+        }}
+      >
+        Inquire to Order
+      </button>
     </motion.div>
   );
 }
@@ -183,10 +128,7 @@ export default function ProductShowcase() {
 
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
+          {...fadeUp(0)}
           className="text-center mb-16"
         >
           <p className="text-xs font-semibold tracking-widest uppercase text-pyure-sage mb-3">
@@ -198,9 +140,8 @@ export default function ProductShowcase() {
           >
             The Pure Yogurt Range
           </h2>
-          <p className="text-ink-muted max-w-md mx-auto leading-relaxed">
-            Three variants. Zero compromises. Every batch is made from organically sourced dairy
-            with no preservatives, no additives, no shortcuts.
+          <p className="text-ink-muted max-w-lg mx-auto leading-relaxed text-sm lg:text-base">
+            Delicious yogurts crafted from organically sourced dairy. Every batch is made with no preservatives, no artificial additives, and zero compromises.
           </p>
         </motion.div>
 
