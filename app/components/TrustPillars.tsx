@@ -104,21 +104,21 @@ const pillars: Pillar[] = [
 ];
 
 /* ── SVG curved-root paths  ── */
-/* ViewBox = 800 × 700, seed center = (400, 370) */
-/* The root curves are stretched to make the branches longer and more natural */
+/* ViewBox = 800 × 700, seed center = (400, 350) */
+/* The root curves are exactly equal in size and symmetrical in all 4 directions */
 const rootPaths: Record<Position, string> = {
-  top:    "M 400 336 C 385 270, 415 180, 400 115",
-  right:  "M 434 370 C 490 355, 600 385, 664 370",
-  bottom: "M 400 404 C 415 470, 385 540, 400 595",
-  left:   "M 366 370 C 310 385, 200 355, 136 370",
+  top:    "M 400 314 C 385 260, 415 210, 400 160",
+  right:  "M 436 350 C 480 335, 550 365, 590 350",
+  bottom: "M 400 386 C 415 440, 385 490, 400 540",
+  left:   "M 364 350 C 320 365, 250 335, 210 350",
 };
 
-/* ── Pillar positions (% of container) ── */
+/* ── Pillar positions (% of container) - exactly 220px offset in all directions for perfect symmetry ── */
 const positions: Record<Position, { left: string; top: string }> = {
-  top:    { left: "50%", top: "10%" },
-  right:  { left: "88%", top: "53%" },
-  bottom: { left: "50%", top: "90%" },
-  left:   { left: "12%", top: "53%" },
+  top:    { left: "50%", top: "18.6%" },
+  right:  { left: "77.5%", top: "50%" },
+  bottom: { left: "50%", top: "81.4%" },
+  left:   { left: "22.5%", top: "50%" },
 };
 
 /* ── Pulse delay per branch ── */
@@ -136,7 +136,7 @@ export default function TrustPillars() {
   return (
     <section
       id="pillars"
-      className="py-24 lg:py-32 relative overflow-hidden bg-[#0A5039]"
+      className="py-14 lg:py-16 relative overflow-hidden bg-[#0A5039]"
     >
       {/* Generated organic textured background image */}
       <div
@@ -173,13 +173,13 @@ export default function TrustPillars() {
         </motion.div>
 
         {/* ═══ DESKTOP — radial seed layout ═══ */}
-        {/* Increased height to 700px and added a top margin mt-24 to push it down and prevent card overlaps */}
+        {/* mt-8 lg:mt-10 reduces the spacing so the expanded card is close to the header text */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="hidden md:block relative mx-auto mt-24 lg:mt-32"
+          className="hidden md:block relative mx-auto mt-8 lg:mt-10"
           style={{ maxWidth: "800px", height: "700px", overflow: "visible" }}
         >
           {/* ── SVG root branches ── */}
@@ -190,22 +190,22 @@ export default function TrustPillars() {
           >
             <defs>
               {/* Gradients for each branch direction */}
-              <linearGradient id="grad-top" x1="400" y1="336" x2="400" y2="115" gradientUnits="userSpaceOnUse">
+              <linearGradient id="grad-top" x1="400" y1="314" x2="400" y2="160" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
                 <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
                 <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
               </linearGradient>
-              <linearGradient id="grad-right" x1="434" y1="370" x2="664" y2="370" gradientUnits="userSpaceOnUse">
+              <linearGradient id="grad-right" x1="436" y1="350" x2="590" y2="350" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
                 <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
                 <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
               </linearGradient>
-              <linearGradient id="grad-bottom" x1="400" y1="404" x2="400" y2="595" gradientUnits="userSpaceOnUse">
+              <linearGradient id="grad-bottom" x1="400" y1="386" x2="400" y2="540" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
                 <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
                 <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
               </linearGradient>
-              <linearGradient id="grad-left" x1="366" y1="370" x2="136" y2="370" gradientUnits="userSpaceOnUse">
+              <linearGradient id="grad-left" x1="364" y1="350" x2="210" y2="350" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
                 <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
                 <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
@@ -274,7 +274,7 @@ export default function TrustPillars() {
             className="absolute z-20 flex items-center justify-center"
             style={{
               left: "50%",
-              top: "52.8%",
+              top: "50%",
               transform: "translate(-50%, -50%)",
               width: "160px",
               height: "160px",
@@ -472,12 +472,13 @@ export default function TrustPillars() {
         </div>
 
         {/* ── Bottom tagline ── */}
+        {/* mt-32 pushes the bottom text down to clear the bottom expanded card */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="mt-14 lg:mt-10 text-center"
+          className="mt-32 text-center"
         >
           <p className="text-pyure-mint/75 text-sm">
             Trusted by families across the region —&nbsp;

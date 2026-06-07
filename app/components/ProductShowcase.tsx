@@ -87,7 +87,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
             </h3>
           </div>
           
-          <p className="text-[10px] font-bold tracking-wider text-pyure-sage uppercase mb-2.5">
+          <p className="text-xs font-bold tracking-widest text-[#E8A940] uppercase mb-2.5">
             Probiotic Yogurt
           </p>
 
