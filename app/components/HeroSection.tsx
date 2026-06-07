@@ -47,7 +47,7 @@ export default function HeroSection() {
           {/* Product image — constrained so it doesn't push text off screen */}
           <motion.div
             {...fadeUp(0)}
-            className="w-full mb-5 -ml-6 lg:-ml-10"
+            className="w-full mb-1 -ml-10 lg:-ml-16"
           >
             <Image
               src="/hero-products.png"
@@ -55,7 +55,7 @@ export default function HeroSection() {
               width={760}
               height={510}
               className="w-full object-contain object-left drop-shadow-[0_20px_44px_rgba(0,0,0,0.55)]"
-              style={{ maxHeight: "52vh" }}
+              style={{ maxHeight: "57vh" }}
               priority
             />
           </motion.div>
