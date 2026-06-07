@@ -23,19 +23,10 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: "url('/hero-mango-bg.png')",
+          backgroundImage: "url('/hero-split-bg.png')",
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
-        }}
-      />
-
-      {/* Left-to-right dark gradient so left text is readable */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(7,37,28,0.92) 0%, rgba(7,37,28,0.75) 40%, rgba(7,37,28,0.15) 70%, transparent 100%)",
         }}
       />
 
@@ -47,16 +38,12 @@ export default function HeroSection() {
           {/* Product image and stand container */}
           <motion.div
             {...fadeUp(0)}
-            className="relative -ml-16 lg:-ml-26 z-10 -mb-6 lg:-mb-10"
-            style={{
-              width: "min(100%, calc(57vh * 6000 / 3375))",
-              aspectRatio: "6000/3375",
-            }}
+            className="relative -ml-6 lg:-ml-14 w-[calc(100%+1.5rem)] lg:w-[48vw] max-w-[min(780px,140.4vh)] aspect-[6000/3375] z-10 -mb-4 lg:-mb-8 max-h-[79vh]"
           >
             {/* The stand (wooden shelf) */}
             <div
               className="absolute left-0 w-full z-0 pointer-events-none"
-              style={{ top: "74.55%" }}
+              style={{ top: "52.4%" }}
             >
               <Image
                 src="/stand.png"
@@ -68,14 +55,14 @@ export default function HeroSection() {
               />
             </div>
 
-            {/* Yogurt cups sitting on the stand */}
-            <div className="absolute inset-0 z-10">
+            {/* Yogurt cups sitting on the right edge of the stand */}
+            <div className="absolute right-0 top-0 w-[72%] z-10">
               <Image
                 src="/hero-products.png"
                 alt="GoPyure Mango, Plain and Blueberry Yogurt — full range"
                 width={6000}
                 height={3375}
-                className="w-full h-full object-contain object-left drop-shadow-[0_5px_8px_rgba(0,0,0,0.5)] drop-shadow-[0_15px_30px_rgba(0,0,0,0.35)]"
+                className="w-full h-auto object-contain object-right drop-shadow-[0_5px_8px_rgba(0,0,0,0.5)] drop-shadow-[0_15px_30px_rgba(0,0,0,0.35)]"
                 priority
               />
             </div>
