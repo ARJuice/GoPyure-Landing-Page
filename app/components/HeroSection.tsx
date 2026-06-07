@@ -42,7 +42,7 @@ export default function HeroSection() {
       {/* ── Content: single left column, all within h-screen ── */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-14 flex items-center h-full">
 
-        <div className="flex flex-col items-start justify-center w-full max-w-[520px] lg:max-w-[580px] pt-20">
+        <div className="flex flex-col items-start justify-center w-full max-w-[640px] lg:max-w-[760px] pt-16">
 
           {/* Product image — constrained so it doesn't push text off screen */}
           <motion.div
@@ -55,7 +55,7 @@ export default function HeroSection() {
               width={660}
               height={440}
               className="w-full object-contain drop-shadow-[0_20px_44px_rgba(0,0,0,0.55)]"
-              style={{ maxHeight: "38vh" }}
+              style={{ maxHeight: "45vh" }}
               priority
             />
           </motion.div>
