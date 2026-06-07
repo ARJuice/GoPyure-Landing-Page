@@ -81,20 +81,21 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
 
         {/* Product Details */}
         <div className="flex flex-col mb-6">
-          <div className="flex items-baseline justify-between mb-1.5">
+          <div className="flex items-baseline justify-between mb-2">
             <h3
               className="text-xl font-bold text-pyure-deep"
               style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
             >
               {product.name}
             </h3>
-            <div className="flex items-center gap-1 flex-shrink-0">
-              <span className="text-lg font-extrabold text-pyure-deep">₹{product.mrp}</span>
-              <span className="text-[8px] text-ink-muted font-bold uppercase tracking-wider bg-[#F2E8DC] px-1 py-0.5 rounded-none">MRP</span>
-            </div>
           </div>
           
-          <p className="text-[10px] font-bold tracking-wider text-pyure-sage uppercase mb-3">
+          <div className="flex items-center gap-1.5 px-2.5 py-1 border border-[#E8A940]/40 bg-[#FFFDF9] self-start mb-3.5">
+            <span className="text-[9px] font-bold tracking-widest text-[#E8A940] uppercase">MRP</span>
+            <span className="text-base font-extrabold text-[#E8A940]">₹{product.mrp}</span>
+          </div>
+          
+          <p className="text-[10px] font-bold tracking-wider text-pyure-sage uppercase mb-2.5">
             Probiotic Yogurt
           </p>
 

@@ -5,25 +5,42 @@ import Image from "next/image";
 
 const contactInfo = [
   {
-    icon: "📍",
+    icon: (
+      <svg className="w-5 h-5 text-pyure-sage" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25s-7.5-4.108-7.5-11.25C4.5 6.358 7.858 3 12 3c4.142 0 7.5 3.358 7.5 7.5z" />
+      </svg>
+    ),
     label: "Visit Us",
     value: "Bldg No-12/175, Grama Panchayat\nGOPYURE FOOD PRODUCTS, near Pooram foods\nWest Vellanikara, Madakkathara\nKerala – 680651",
     link: "https://maps.app.goo.gl/2YUXEBkpa3ugVMZ36",
   },
   {
-    icon: "📞",
+    icon: (
+      <svg className="w-5 h-5 text-pyure-sage" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.622C2.25 5.72 2.923 5 3.75 5h3.013c.485 0 .91.318 1.045.782l1.244 4.298c.118.409-.017.854-.343 1.129l-1.94 1.616a12.015 12.015 0 0 0 4.8 4.8l1.616-1.94c.275-.326.72-.46 1.129-.343l4.298 1.244c.484.136.802.56.802 1.045V19.75c0 .828-.672 1.5-1.5 1.5H19.5c-9.665 0-17.5-7.835-17.5-17.5V6.622z" />
+      </svg>
+    ),
     label: "Call / WhatsApp",
     value: "+91 98765 43210",
     link: "tel:+919876543210",
   },
   {
-    icon: "✉️",
+    icon: (
+      <svg className="w-5 h-5 text-pyure-sage" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+      </svg>
+    ),
     label: "Email",
     value: "hello@gopyure.in",
     link: "mailto:hello@gopyure.in",
   },
   {
-    icon: "🕐",
+    icon: (
+      <svg className="w-5 h-5 text-pyure-sage" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
     label: "Hours",
     value: "Mon – Sat: 9:00 AM – 7:00 PM\nSunday: 10:00 AM – 4:00 PM",
     link: null,
@@ -246,7 +263,10 @@ export default function ContactHub() {
                 href="tel:+919876543210"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-cream-ivory text-pyure-deep font-semibold text-sm rounded-pill hover:bg-cream-soft transition-all duration-300"
               >
-                📞 Call to Order
+                <svg className="w-4 h-4 text-pyure-deep" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.622C2.25 5.72 2.923 5 3.75 5h3.013c.485 0 .91.318 1.045.782l1.244 4.298c.118.409-.017.854-.343 1.129l-1.94 1.616a12.015 12.015 0 0 0 4.8 4.8l1.616-1.94c.275-.326.72-.46 1.129-.343l4.298 1.244c.484.136.802.56.802 1.045V19.75c0 .828-.672 1.5-1.5 1.5H19.5c-9.665 0-17.5-7.835-17.5-17.5V6.622z" />
+                </svg>
+                Call to Order
               </a>
               <a
                 href="https://wa.me/919876543210"
@@ -262,26 +282,16 @@ export default function ContactHub() {
         </div>
 
         {/* Map Section */}
-        <div className="mt-16 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h3
-              className="text-lg font-semibold text-pyure-deep"
-              style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
-            >
-              Our Office Location
-            </h3>
-            <p className="text-xs text-ink-muted mt-1">
-              Bldg No-12/175, Grama Panchayat, GOPYURE FOOD PRODUCTS, near Pooram foods, West Vellanikara, Madakkathara, Kerala – 680651
-            </p>
-          </div>
-          <a
-            href="https://maps.app.goo.gl/2YUXEBkpa3ugVMZ36"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-pyure-deep hover:bg-pyure-sage text-cream-ivory text-xs font-semibold rounded-pill transition-all duration-300 shadow-sm self-start sm:self-auto"
+        <div className="mt-16 mb-6">
+          <h3
+            className="text-lg font-semibold text-pyure-deep"
+            style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
           >
-            🗺️ Locate on Google Maps ↗
-          </a>
+            Our Office Location
+          </h3>
+          <p className="text-xs text-ink-muted mt-1">
+            Bldg No-12/175, Grama Panchayat, GOPYURE FOOD PRODUCTS, near Pooram foods, West Vellanikara, Madakkathara, Kerala – 680651
+          </p>
         </div>
 
         <motion.div
