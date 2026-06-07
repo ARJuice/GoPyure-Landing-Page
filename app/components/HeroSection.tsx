@@ -33,7 +33,7 @@ export default function HeroSection() {
       {/* ── Content: single left column, all within h-screen ── */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-14 flex items-center h-full">
 
-        <div className="flex flex-col items-start justify-center w-full max-w-[640px] lg:max-w-[760px] pt-16">
+        <div className="flex flex-col items-start justify-center w-full max-w-[640px] lg:max-w-[760px] pt-16 -mt-8 lg:-mt-12">
 
           {/* Spacer that holds the height in flow, and overlays the viewport-absolute stand & cups */}
           <div className="relative w-full aspect-[6000/3375] max-h-[83vh] -mb-4 lg:-mb-8">
@@ -57,7 +57,7 @@ export default function HeroSection() {
               </div>
 
               {/* Yogurt cups sitting on the right edge of the stand */}
-              <div className="absolute right-0 top-[5%] w-[72%] z-10">
+              <div className="absolute right-0 top-[17%] w-[72%] z-10">
                 <Image
                   src="/hero-products.png"
                   alt="GoPyure Mango, Plain and Blueberry Yogurt — full range"
@@ -70,36 +70,39 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Headline */}
-          <motion.h1
-            {...fadeUp(0.16)}
-            className="text-cream-ivory font-bold leading-[1.1] tracking-tight mb-3"
-            style={{
-              fontFamily: "'Konkhmer Sleokchher', serif",
-              fontSize: "clamp(1.65rem, 3.4vw, 3.4rem)",
-            }}
-          >
-            Good for your gut.<br />
-            <span className="text-[#E8A940]">Great for your taste buds.</span>
-          </motion.h1>
-
-          {/* Sub-line */}
-          <motion.p
-            {...fadeUp(0.28)}
-            className="text-cream-linen/68 text-sm lg:text-base leading-relaxed mb-7"
-          >
-            Delicious probiotic yogurts crafted to support everyday gut health.
-          </motion.p>
-
-          {/* CTA pill */}
-          <motion.div {...fadeUp(0.4)}>
-            <button
-              onClick={() => scrollTo("#collection")}
-              className="inline-flex items-center px-8 py-3 rounded-pill border-2 border-cream-ivory text-cream-ivory font-semibold text-sm tracking-widest uppercase hover:bg-cream-ivory hover:text-pyure-deep transition-all duration-300 cursor-pointer"
+          {/* Text Content Wrapper — shifted left for better alignment with the display shelf */}
+          <div className="w-full -ml-8 lg:-ml-18">
+            {/* Headline */}
+            <motion.h1
+              {...fadeUp(0.16)}
+              className="text-cream-ivory font-bold leading-[1.1] tracking-tight mb-3"
+              style={{
+                fontFamily: "'Konkhmer Sleokchher', serif",
+                fontSize: "clamp(1.65rem, 3.4vw, 3.4rem)",
+              }}
             >
-              Our Yogurts
-            </button>
-          </motion.div>
+              Good for your gut.<br />
+              <span className="text-[#E8A940]">Great for your taste buds.</span>
+            </motion.h1>
+
+            {/* Sub-line */}
+            <motion.p
+              {...fadeUp(0.28)}
+              className="text-cream-linen/68 text-sm lg:text-base leading-relaxed mb-7"
+            >
+              Delicious probiotic yogurts crafted to support everyday gut health.
+            </motion.p>
+
+            {/* CTA pill */}
+            <motion.div {...fadeUp(0.4)}>
+              <button
+                onClick={() => scrollTo("#collection")}
+                className="inline-flex items-center px-8 py-3 rounded-pill border-2 border-cream-ivory text-cream-ivory font-semibold text-sm tracking-widest uppercase hover:bg-cream-ivory hover:text-pyure-deep transition-all duration-300 cursor-pointer"
+              >
+                Our Yogurts
+              </button>
+            </motion.div>
+          </div>
 
         </div>
       </div>
