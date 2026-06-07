@@ -44,20 +44,41 @@ export default function HeroSection() {
 
         <div className="flex flex-col items-start justify-center w-full max-w-[640px] lg:max-w-[760px] pt-16">
 
-          {/* Product image — constrained so it doesn't push text off screen */}
+          {/* Product image and stand container */}
           <motion.div
             {...fadeUp(0)}
-            className="w-full -mb-5 lg:-mb-8 -ml-16 lg:-ml-26"
+            className="relative -ml-16 lg:-ml-26 z-10 -mb-6 lg:-mb-10"
+            style={{
+              width: "min(100%, calc(57vh * 6000 / 3375))",
+              aspectRatio: "6000/3375",
+            }}
           >
-            <Image
-              src="/hero-products.png"
-              alt="GoPyure Mango, Plain and Blueberry Yogurt — full range"
-              width={760}
-              height={510}
-              className="w-full object-contain object-left drop-shadow-[0_20px_44px_rgba(0,0,0,0.55)]"
-              style={{ maxHeight: "57vh" }}
-              priority
-            />
+            {/* The stand (wooden shelf) */}
+            <div
+              className="absolute left-0 w-full z-0 pointer-events-none"
+              style={{ top: "74.55%" }}
+            >
+              <Image
+                src="/stand.png"
+                alt="Wooden display stand"
+                width={5451}
+                height={904}
+                className="w-full h-auto object-contain object-left drop-shadow-[0_12px_20px_rgba(0,0,0,0.6)]"
+                priority
+              />
+            </div>
+
+            {/* Yogurt cups sitting on the stand */}
+            <div className="absolute inset-0 z-10">
+              <Image
+                src="/hero-products.png"
+                alt="GoPyure Mango, Plain and Blueberry Yogurt — full range"
+                width={6000}
+                height={3375}
+                className="w-full h-full object-contain object-left drop-shadow-[0_5px_8px_rgba(0,0,0,0.5)] drop-shadow-[0_15px_30px_rgba(0,0,0,0.35)]"
+                priority
+              />
+            </div>
           </motion.div>
 
           {/* Headline */}
