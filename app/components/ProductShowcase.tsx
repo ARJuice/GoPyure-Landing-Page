@@ -10,27 +10,21 @@ const products = [
     name: "Mango Yogurt",
     weight: "100g",
     image: "/Mango_Yogurt.png",
-    accent: "#E8A940",
-    accentLight: "rgba(232,169,64,0.06)",
-    description: "Creamy yogurt blended with rich mango flavor. Made with quality organic dairy for a delicious and refreshing snack.",
+    description: "A smooth blend of our signature probiotic yogurt and mango fruit preparation. Clean, refreshing, and naturally flavored.",
   },
   {
     id: "blueberry",
     name: "Blueberry Yogurt",
     weight: "100g",
     image: "/Blueberry_Yogurt.png",
-    accent: "#5B4FC2",
-    accentLight: "rgba(91,79,194,0.04)",
-    description: "Smooth and delicious yogurt with blueberry flavor. Crafted with organically sourced dairy.",
+    description: "Our classic probiotic yogurt combined with blueberry fruit preparation. Smooth texture with a delicious berry taste.",
   },
   {
     id: "plain",
     name: "Plain Yogurt",
     weight: "100g",
     image: "/Plain_Yogurt.png",
-    accent: "#346E5B",
-    accentLight: "rgba(52,110,91,0.06)",
-    description: "Simple, clean, and classic yogurt made from organically sourced dairy.",
+    description: "Pure, unsweetened probiotic yogurt made simply with organically sourced dairy and active live cultures.",
   },
 ];
 
@@ -49,71 +43,62 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
       {...fadeUp(index * 0.15)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative border p-8 flex flex-col justify-between h-full transition-all duration-300 rounded-none bg-cream-soft"
+      className="relative flex flex-col justify-between h-full bg-white border border-[#E5ECE9] p-6 transition-all duration-300 rounded-none"
       style={{
-        borderColor: hovered ? product.accent + "55" : "rgba(155,183,174,0.22)",
         boxShadow: hovered
-          ? "0 16px 36px -12px rgba(10,80,57,0.12)"
-          : "0 4px 20px -6px rgba(10,80,57,0.03)",
+          ? "0 12px 28px -8px rgba(10,80,57,0.12)"
+          : "0 4px 16px -6px rgba(10,80,57,0.02)",
         transform: hovered ? "translateY(-6px)" : "translateY(0)",
       }}
     >
       <div>
-        {/* Top Weight Label */}
-        <div className="flex items-center justify-between mb-4">
-          <span
-            className="text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 border transition-colors duration-300 rounded-none"
-            style={{
-              color: product.accent,
-              borderColor: hovered ? product.accent : "rgba(155,183,174,0.3)",
-            }}
-          >
-            Net Wt: {product.weight}
-          </span>
-        </div>
+        {/* Image Display Box with Neutral Background */}
+        <div className="relative flex items-center justify-center p-6 mb-6 bg-cream-soft border border-[#EFE8DE] rounded-none overflow-hidden aspect-[4/3]">
+          {/* Weight label inside image container, top-right */}
+          <div className="absolute top-3 right-3 z-10">
+            <span className="text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 border border-pyure-sage/30 text-pyure-sage bg-[#FFFDF9]">
+              Net Wt. {product.weight}
+            </span>
+          </div>
 
-        {/* Product image */}
-        <div
-          className="relative flex items-center justify-center py-6 mb-8"
-          style={{ background: `radial-gradient(circle at 50% 100%, ${product.accentLight} 0%, transparent 72%)` }}
-        >
           <motion.div
-            animate={hovered ? { y: -4, scale: 1.02 } : { y: 0, scale: 1 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
+            animate={hovered ? { y: -4, scale: 1.03 } : { y: 0, scale: 1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="h-full flex items-center justify-center"
           >
             <Image
               src={product.image}
               alt={product.name}
-              width={210}
-              height={250}
-              className="object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.15)]"
+              width={160}
+              height={190}
+              className="object-contain max-h-[85%] drop-shadow-[0_8px_16px_rgba(0,0,0,0.08)]"
             />
           </motion.div>
         </div>
 
-        {/* Name */}
-        <h3
-          className="text-2xl font-bold text-pyure-deep mb-3"
-          style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
-        >
-          {product.name}
-        </h3>
+        {/* Product Details */}
+        <div className="flex flex-col mb-6">
+          <h3
+            className="text-xl font-bold text-pyure-deep mb-1.5"
+            style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
+          >
+            {product.name}
+          </h3>
+          
+          <p className="text-[10px] font-bold tracking-wider text-pyure-sage uppercase mb-3">
+            Probiotic Yogurt
+          </p>
 
-        {/* Description */}
-        <p className="text-sm text-ink-muted leading-relaxed mb-8">
-          {product.description}
-        </p>
+          <p className="text-xs text-ink-muted leading-relaxed">
+            {product.description}
+          </p>
+        </div>
       </div>
 
       {/* Action Button */}
       <button
         onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-        className="w-full py-3 text-sm font-semibold border transition-all duration-300 rounded-none cursor-pointer"
-        style={{
-          color: product.accent,
-          borderColor: product.accent + "55",
-          background: hovered ? product.accentLight : "transparent",
-        }}
+        className="w-full py-3 text-xs font-bold tracking-widest uppercase bg-pyure-deep text-[#FFFDF9] hover:bg-pyure-sage transition-all duration-300 rounded-none cursor-pointer border-none"
       >
         Inquire to Order
       </button>
@@ -140,8 +125,8 @@ export default function ProductShowcase() {
           >
             The Pure Yogurt Range
           </h2>
-          <p className="text-ink-muted max-w-lg mx-auto leading-relaxed text-sm lg:text-base">
-            Delicious yogurts crafted from organically sourced dairy. Every batch is made with no preservatives, no artificial additives, and zero compromises.
+          <p className="text-ink-muted max-w-xl mx-auto leading-relaxed text-sm lg:text-base">
+            Our signature range of probiotic-rich yogurts, crafted from organically sourced dairy. Made in small batches with no artificial additives, no preservatives, and zero compromises.
           </p>
         </motion.div>
 
