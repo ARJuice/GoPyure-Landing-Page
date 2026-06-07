@@ -9,6 +9,7 @@ const products = [
     id: "mango",
     name: "Mango Yogurt",
     weight: "100g",
+    mrp: 40,
     image: "/Mango_Yogurt.png",
     description: "A smooth blend of our signature probiotic yogurt and mango fruit preparation. Clean, refreshing, and naturally flavored.",
   },
@@ -16,6 +17,7 @@ const products = [
     id: "blueberry",
     name: "Blueberry Yogurt",
     weight: "100g",
+    mrp: 40,
     image: "/Blueberry_Yogurt.png",
     description: "Our classic probiotic yogurt combined with blueberry fruit preparation. Smooth texture with a delicious berry taste.",
   },
@@ -23,6 +25,7 @@ const products = [
     id: "plain",
     name: "Plain Yogurt",
     weight: "100g",
+    mrp: 30,
     image: "/Plain_Yogurt.png",
     description: "Pure, unsweetened probiotic yogurt made simply with organically sourced dairy and active live cultures.",
   },
@@ -53,10 +56,10 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
     >
       <div>
         {/* Image Display Box with Neutral Background */}
-        <div className="relative flex items-center justify-center p-6 mb-6 bg-cream-soft border border-[#EFE8DE] rounded-none overflow-hidden aspect-[4/3]">
+        <div className="relative flex items-center justify-center p-4 mb-6 bg-cream-soft border border-[#EFE8DE] rounded-none overflow-hidden h-72 w-full">
           {/* Weight label inside image container, top-right */}
           <div className="absolute top-3 right-3 z-10">
-            <span className="text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 border border-pyure-sage/30 text-pyure-sage bg-[#FFFDF9]">
+            <span className="text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 border border-[#B33C29]/30 text-[#B33C29] bg-[#FFFDF9]">
               Net Wt. {product.weight}
             </span>
           </div>
@@ -64,26 +67,32 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
           <motion.div
             animate={hovered ? { y: -4, scale: 1.03 } : { y: 0, scale: 1 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="h-full flex items-center justify-center"
+            className="h-full flex items-center justify-center w-full"
           >
             <Image
               src={product.image}
               alt={product.name}
-              width={160}
-              height={190}
-              className="object-contain max-h-[85%] drop-shadow-[0_8px_16px_rgba(0,0,0,0.08)]"
+              width={240}
+              height={280}
+              className="object-contain max-h-[92%] w-auto drop-shadow-[0_12px_24px_rgba(0,0,0,0.08)]"
             />
           </motion.div>
         </div>
 
         {/* Product Details */}
         <div className="flex flex-col mb-6">
-          <h3
-            className="text-xl font-bold text-pyure-deep mb-1.5"
-            style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
-          >
-            {product.name}
-          </h3>
+          <div className="flex items-baseline justify-between mb-1.5">
+            <h3
+              className="text-xl font-bold text-pyure-deep"
+              style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
+            >
+              {product.name}
+            </h3>
+            <div className="flex items-center gap-1 flex-shrink-0">
+              <span className="text-lg font-extrabold text-pyure-deep">₹{product.mrp}</span>
+              <span className="text-[8px] text-ink-muted font-bold uppercase tracking-wider bg-[#F2E8DC] px-1 py-0.5 rounded-none">MRP</span>
+            </div>
+          </div>
           
           <p className="text-[10px] font-bold tracking-wider text-pyure-sage uppercase mb-3">
             Probiotic Yogurt
@@ -98,7 +107,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
       {/* Action Button */}
       <button
         onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-        className="w-full py-3 text-xs font-bold tracking-widest uppercase bg-pyure-deep text-[#FFFDF9] hover:bg-pyure-sage transition-all duration-300 rounded-none cursor-pointer border-none"
+        className="btn-product-order"
       >
         Inquire to Order
       </button>
@@ -109,6 +118,51 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
 export default function ProductShowcase() {
   return (
     <section id="collection" className="py-24 lg:py-32" style={{ background: "#FFFDF9" }}>
+      <style>{`
+        .btn-product-order {
+          position: relative;
+          z-index: 1;
+          overflow: hidden;
+          cursor: pointer;
+          border: 1px solid var(--pyure-deep);
+          border-radius: 0 !important;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          transition: color 0.5s ease, border-color 0.5s ease;
+          background-color: var(--pyure-deep);
+          color: var(--cream-ivory);
+          width: 100%;
+          padding-top: 12px;
+          padding-bottom: 12px;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+        }
+
+        .btn-product-order:after {
+          content: "";
+          position: absolute;
+          z-index: -1;
+          left: -20%;
+          right: -20%;
+          top: 0;
+          bottom: 0;
+          background-color: var(--cream-linen);
+          transform: skewX(-45deg) scale(0, 1);
+          transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        .btn-product-order:hover {
+          color: var(--pyure-deep);
+          border-color: var(--pyure-deep);
+        }
+
+        .btn-product-order:hover:after {
+          transform: skewX(-45deg) scale(1, 1);
+        }
+      `}</style>
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
         {/* Header */}
