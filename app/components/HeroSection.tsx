@@ -35,38 +35,40 @@ export default function HeroSection() {
 
         <div className="flex flex-col items-start justify-center w-full max-w-[640px] lg:max-w-[760px] pt-16">
 
-          {/* Product image and stand container */}
-          <motion.div
-            {...fadeUp(0)}
-            className="relative -ml-6 lg:-ml-14 w-[calc(100%+1.5rem)] lg:w-[48vw] max-w-[min(780px,140.4vh)] aspect-[6000/3375] z-10 -mb-4 lg:-mb-8 max-h-[79vh]"
-          >
-            {/* The stand (wooden shelf) */}
-            <div
-              className="absolute left-0 w-full z-0 pointer-events-none"
-              style={{ top: "52.4%" }}
+          {/* Spacer that holds the height in flow, and overlays the viewport-absolute stand & cups */}
+          <div className="relative w-full aspect-[6000/3375] max-h-[79vh] -mb-4 lg:-mb-8">
+            <motion.div
+              {...fadeUp(0)}
+              className="absolute left-0 lg:left-[calc(-50vw+50%)] top-0 w-[88vw] md:w-[60vw] lg:w-[46vw] max-w-[min(780px,140.4vh)] aspect-[6000/3375] z-10 pointer-events-none"
             >
-              <Image
-                src="/stand.png"
-                alt="Wooden display stand"
-                width={5451}
-                height={904}
-                className="w-full h-auto object-contain object-left drop-shadow-[0_12px_20px_rgba(0,0,0,0.6)]"
-                priority
-              />
-            </div>
+              {/* The stand (wooden shelf) */}
+              <div
+                className="absolute left-0 w-full z-0 pointer-events-none"
+                style={{ top: "52.4%" }}
+              >
+                <Image
+                  src="/stand.png"
+                  alt="Wooden display stand"
+                  width={5451}
+                  height={904}
+                  className="w-full h-auto object-contain object-left drop-shadow-[0_12px_20px_rgba(0,0,0,0.6)]"
+                  priority
+                />
+              </div>
 
-            {/* Yogurt cups sitting on the right edge of the stand */}
-            <div className="absolute right-0 top-0 w-[72%] z-10">
-              <Image
-                src="/hero-products.png"
-                alt="GoPyure Mango, Plain and Blueberry Yogurt — full range"
-                width={6000}
-                height={3375}
-                className="w-full h-auto object-contain object-right drop-shadow-[0_5px_8px_rgba(0,0,0,0.5)] drop-shadow-[0_15px_30px_rgba(0,0,0,0.35)]"
-                priority
-              />
-            </div>
-          </motion.div>
+              {/* Yogurt cups sitting on the right edge of the stand */}
+              <div className="absolute right-0 top-[5%] w-[72%] z-10">
+                <Image
+                  src="/hero-products.png"
+                  alt="GoPyure Mango, Plain and Blueberry Yogurt — full range"
+                  width={6000}
+                  height={3375}
+                  className="w-full h-auto object-contain object-right drop-shadow-[0_5px_8px_rgba(0,0,0,0.5)] drop-shadow-[0_15px_30px_rgba(0,0,0,0.35)]"
+                  priority
+                />
+              </div>
+            </motion.div>
+          </div>
 
           {/* Headline */}
           <motion.h1
