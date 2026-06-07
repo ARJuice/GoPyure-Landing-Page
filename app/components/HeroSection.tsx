@@ -33,7 +33,7 @@ export default function HeroSection() {
       {/* ── Content: single left column, all within h-screen ── */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-14 flex items-center h-full">
 
-        <div className="flex flex-col items-start justify-center w-full max-w-[640px] lg:max-w-[760px] pt-16 -mt-8 lg:-mt-12">
+        <div className="flex flex-col items-start justify-center w-full max-w-[640px] lg:max-w-[760px] pt-16 -mt-16 lg:-mt-24">
 
           {/* Spacer that holds the height in flow, and overlays the viewport-absolute stand & cups */}
           <div className="relative w-full aspect-[6000/3375] max-h-[83vh] -mb-4 lg:-mb-8">
