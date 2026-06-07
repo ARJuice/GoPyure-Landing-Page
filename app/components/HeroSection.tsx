@@ -47,7 +47,7 @@ export default function HeroSection() {
           {/* Product image — constrained so it doesn't push text off screen */}
           <motion.div
             {...fadeUp(0)}
-            className="w-full mb-1 -ml-10 lg:-ml-16"
+            className="w-full -mb-5 lg:-mb-8 -ml-16 lg:-ml-26"
           >
             <Image
               src="/hero-products.png"
