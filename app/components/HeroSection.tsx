@@ -36,10 +36,10 @@ export default function HeroSection() {
         <div className="flex flex-col items-start justify-center w-full max-w-[640px] lg:max-w-[760px] pt-16">
 
           {/* Spacer that holds the height in flow, and overlays the viewport-absolute stand & cups */}
-          <div className="relative w-full aspect-[6000/3375] max-h-[79vh] -mb-4 lg:-mb-8">
+          <div className="relative w-full aspect-[6000/3375] max-h-[83vh] -mb-4 lg:-mb-8">
             <motion.div
               {...fadeUp(0)}
-              className="absolute left-0 lg:left-[calc(-50vw+50%)] top-0 w-[88vw] md:w-[60vw] lg:w-[46vw] max-w-[min(780px,140.4vh)] aspect-[6000/3375] z-10 pointer-events-none"
+              className="absolute left-0 lg:left-[calc(-50vw+50%)] top-0 w-[96vw] md:w-[68vw] lg:w-[53vw] max-w-[min(880px,147.5vh)] aspect-[6000/3375] z-10 pointer-events-none"
             >
               {/* The stand (wooden shelf) */}
               <div
