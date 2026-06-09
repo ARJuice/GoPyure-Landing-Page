@@ -94,7 +94,7 @@ export default function HeroSection() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-14 flex items-center min-h-[100dvh] lg:h-full">
 
         {/* Stack elements vertically on mobile, placing text at top and shelf at bottom */}
-        <div className="flex flex-col-reverse lg:flex-col items-center lg:items-start justify-between lg:justify-center w-full max-w-[640px] lg:max-w-[760px] pt-24 pb-8 lg:pt-16 lg:pb-0 -mt-0 lg:-mt-16 xl:-mt-24 gap-6 lg:gap-0 min-h-[calc(100dvh-120px)] lg:min-h-0">
+        <div className="flex flex-col-reverse lg:flex-col items-center lg:items-start justify-between lg:justify-center w-full max-w-[640px] lg:max-w-[760px] pt-24 pb-24 lg:pt-16 lg:pb-0 -mt-0 lg:-mt-16 xl:-mt-24 gap-6 lg:gap-0 min-h-[calc(100dvh-160px)] lg:min-h-0">
 
           {/* Spacer that holds the height in flow, and overlays the viewport-absolute stand & cups */}
           <div className="relative w-[110vw] left-1/2 -translate-x-1/2 lg:left-auto lg:translate-x-0 lg:w-full aspect-[6000/3375] lg:max-h-[83vh] mb-0 lg:-mb-4 xl:-mb-8">
