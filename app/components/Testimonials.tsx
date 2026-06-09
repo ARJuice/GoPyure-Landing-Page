@@ -103,10 +103,17 @@ export default function Testimonials() {
   const isDraggingRef = useRef(false);
   const isInteractingRef = useRef(false);
   const isHoveredRef = useRef(false);
+  const isMomentumActiveRef = useRef(false);
+
   const startXRef = useRef(0);
   const startScrollLeftRef = useRef(0);
 
-  // Auto-scroll loop using requestAnimationFrame
+  const dragVelocityRef = useRef(0);
+  const momentumVelocityRef = useRef(0);
+  const dragHistoryRef = useRef<{ x: number; time: number }[]>([]);
+  const lastScrollTimeRef = useRef(0);
+
+  // Auto-scroll loop using requestAnimationFrame, incorporating momentum scroll physics
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -123,7 +130,7 @@ export default function Testimonials() {
     let initialized = initScroll();
     let animationFrameId: number;
     let lastTime = performance.now();
-    const speed = 35; // Pixels per second (similar to 55s infinite marquee scroll)
+    const autoSpeed = 35; // Normal auto-scroll speed (pixels per second)
 
     const loop = (time: number) => {
       if (!container) return;
@@ -135,8 +142,27 @@ export default function Testimonials() {
       const delta = (time - lastTime) / 1000;
       lastTime = time;
 
-      if (initialized && !isInteractingRef.current && !isHoveredRef.current) {
-        container.scrollLeft += speed * delta;
+      // Cap delta to prevent massive jumps when switching browser tabs
+      const cappedDelta = Math.min(delta, 0.1);
+
+      if (initialized) {
+        if (isMomentumActiveRef.current) {
+          // 1. Move scroll position by momentum velocity
+          container.scrollLeft += momentumVelocityRef.current * cappedDelta;
+
+          // 2. Dampen momentum velocity towards normal autoSpeed (friction simulation)
+          // Uses exponential decay to smoothly slow down and eventually match the autoSpeed
+          momentumVelocityRef.current = momentumVelocityRef.current + (autoSpeed - momentumVelocityRef.current) * (1 - Math.exp(-3.5 * cappedDelta));
+
+          // 3. When momentum velocity is very close to autoSpeed, turn off momentum mode
+          if (Math.abs(momentumVelocityRef.current - autoSpeed) < 1.5) {
+            isMomentumActiveRef.current = false;
+            isInteractingRef.current = false;
+          }
+        } else if (!isInteractingRef.current && !isHoveredRef.current) {
+          // Normal auto-scroll
+          container.scrollLeft += autoSpeed * cappedDelta;
+        }
       }
 
       animationFrameId = requestAnimationFrame(loop);
@@ -151,6 +177,8 @@ export default function Testimonials() {
 
   // Handle infinite wrap-around seamlessly when scrolling (supports drag, touch, wheel)
   const handleScroll = () => {
+    lastScrollTimeRef.current = performance.now();
+
     const container = containerRef.current;
     if (!container) return;
     const scrollWidth = container.scrollWidth;
@@ -159,8 +187,16 @@ export default function Testimonials() {
 
     if (container.scrollLeft >= oneCopyWidth * 2) {
       container.scrollLeft -= oneCopyWidth;
+      // Adjust startScrollLeftRef so that dragging/momentum does not jump
+      if (isDraggingRef.current) {
+        startScrollLeftRef.current -= oneCopyWidth;
+      }
     } else if (container.scrollLeft <= 0) {
       container.scrollLeft += oneCopyWidth;
+      // Adjust startScrollLeftRef so that dragging/momentum does not jump
+      if (isDraggingRef.current) {
+        startScrollLeftRef.current += oneCopyWidth;
+      }
     }
   };
 
@@ -171,8 +207,14 @@ export default function Testimonials() {
 
     isDraggingRef.current = true;
     isInteractingRef.current = true;
+    isMomentumActiveRef.current = false; // Stop any ongoing momentum instantly
+
     startXRef.current = e.pageX - container.offsetLeft;
     startScrollLeftRef.current = container.scrollLeft;
+
+    dragVelocityRef.current = 0;
+    dragHistoryRef.current = [{ x: e.pageX, time: performance.now() }];
+
     container.style.cursor = "grabbing";
   };
 
@@ -183,22 +225,51 @@ export default function Testimonials() {
 
     e.preventDefault();
     const x = e.pageX - container.offsetLeft;
-    const walk = (x - startXRef.current) * 1.5; // Drag speed multiplier
+    const walk = (x - startXRef.current) * 1.5; // Drag sensitivity multiplier
     container.scrollLeft = startScrollLeftRef.current - walk;
+
+    // Track drag position and timestamps for velocity calculations (rolling last 100ms window)
+    const now = performance.now();
+    dragHistoryRef.current.push({ x: e.pageX, time: now });
+    const limit = now - 100;
+    dragHistoryRef.current = dragHistoryRef.current.filter(item => item.time > limit);
   };
 
   const handleMouseUp = () => {
+    if (!isDraggingRef.current) return;
     isDraggingRef.current = false;
+
     const container = containerRef.current;
     if (container) {
       container.style.cursor = "grab";
     }
-    // Resume auto-scroll after a short delay
-    setTimeout(() => {
-      if (!isDraggingRef.current) {
-        isInteractingRef.current = false;
+
+    const now = performance.now();
+    const history = dragHistoryRef.current.filter(item => item.time > now - 100);
+
+    // Calculate final drag velocity upon release
+    if (history.length >= 2) {
+      const first = history[0];
+      const last = history[history.length - 1];
+      const dt = (last.time - first.time) / 1000;
+      if (dt > 0.01) {
+        const dx = (last.x - first.x) * 1.5;
+        // Negative dx (mouse moved left) translates to positive scroll velocity
+        dragVelocityRef.current = -dx / dt;
+      } else {
+        dragVelocityRef.current = 0;
       }
-    }, 100);
+    } else {
+      dragVelocityRef.current = 0;
+    }
+
+    // Trigger momentum mode if they flung it at a reasonable speed
+    if (Math.abs(dragVelocityRef.current) > 20) {
+      momentumVelocityRef.current = dragVelocityRef.current;
+      isMomentumActiveRef.current = true;
+    } else {
+      isInteractingRef.current = false;
+    }
   };
 
   const handleMouseLeave = () => {
@@ -212,15 +283,24 @@ export default function Testimonials() {
     isHoveredRef.current = true;
   };
 
-  // Touch Swipe Events (to pause auto-scroll during swipe interaction)
+  // Touch Swipe Events (mobile native physics and scroll pause)
   const handleTouchStart = () => {
     isInteractingRef.current = true;
+    isMomentumActiveRef.current = false; // Stop any custom momentum if they touch during fling
   };
 
   const handleTouchEnd = () => {
-    setTimeout(() => {
-      isInteractingRef.current = false;
-    }, 100);
+    // Check periodically if the mobile device's native inertial scroll has stopped
+    // before resuming auto-scroll to avoid visual fighting between physics and auto-scroll
+    const checkScrollEnd = () => {
+      const now = performance.now();
+      if (now - lastScrollTimeRef.current > 150) {
+        isInteractingRef.current = false;
+      } else {
+        setTimeout(checkScrollEnd, 50);
+      }
+    };
+    setTimeout(checkScrollEnd, 150);
   };
 
   return (
