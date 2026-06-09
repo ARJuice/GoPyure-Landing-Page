@@ -99,9 +99,130 @@ function Card({ t }: { t: (typeof testimonials)[0] }) {
 }
 
 export default function Testimonials() {
-  const trackRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef(false);
+  const isInteractingRef = useRef(false);
+  const isHoveredRef = useRef(false);
+  const startXRef = useRef(0);
+  const startScrollLeftRef = useRef(0);
 
-  // CSS-only infinite marquee via animation; pause on hover handled in CSS
+  // Auto-scroll loop using requestAnimationFrame
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const initScroll = () => {
+      const oneCopyWidth = container.scrollWidth / 3;
+      if (oneCopyWidth > 0) {
+        container.scrollLeft = oneCopyWidth;
+        return true;
+      }
+      return false;
+    };
+
+    let initialized = initScroll();
+    let animationFrameId: number;
+    let lastTime = performance.now();
+    const speed = 35; // Pixels per second (similar to 55s infinite marquee scroll)
+
+    const loop = (time: number) => {
+      if (!container) return;
+
+      if (!initialized) {
+        initialized = initScroll();
+      }
+
+      const delta = (time - lastTime) / 1000;
+      lastTime = time;
+
+      if (initialized && !isInteractingRef.current && !isHoveredRef.current) {
+        container.scrollLeft += speed * delta;
+      }
+
+      animationFrameId = requestAnimationFrame(loop);
+    };
+
+    animationFrameId = requestAnimationFrame(loop);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  // Handle infinite wrap-around seamlessly when scrolling (supports drag, touch, wheel)
+  const handleScroll = () => {
+    const container = containerRef.current;
+    if (!container) return;
+    const scrollWidth = container.scrollWidth;
+    const oneCopyWidth = scrollWidth / 3;
+    if (oneCopyWidth <= 0) return;
+
+    if (container.scrollLeft >= oneCopyWidth * 2) {
+      container.scrollLeft -= oneCopyWidth;
+    } else if (container.scrollLeft <= 0) {
+      container.scrollLeft += oneCopyWidth;
+    }
+  };
+
+  // Mouse Drag Events
+  const handleMouseDown = (e: React.MouseEvent) => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    isDraggingRef.current = true;
+    isInteractingRef.current = true;
+    startXRef.current = e.pageX - container.offsetLeft;
+    startScrollLeftRef.current = container.scrollLeft;
+    container.style.cursor = "grabbing";
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDraggingRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
+
+    e.preventDefault();
+    const x = e.pageX - container.offsetLeft;
+    const walk = (x - startXRef.current) * 1.5; // Drag speed multiplier
+    container.scrollLeft = startScrollLeftRef.current - walk;
+  };
+
+  const handleMouseUp = () => {
+    isDraggingRef.current = false;
+    const container = containerRef.current;
+    if (container) {
+      container.style.cursor = "grab";
+    }
+    // Resume auto-scroll after a short delay
+    setTimeout(() => {
+      if (!isDraggingRef.current) {
+        isInteractingRef.current = false;
+      }
+    }, 100);
+  };
+
+  const handleMouseLeave = () => {
+    if (isDraggingRef.current) {
+      handleMouseUp();
+    }
+    isHoveredRef.current = false;
+  };
+
+  const handleMouseEnter = () => {
+    isHoveredRef.current = true;
+  };
+
+  // Touch Swipe Events (to pause auto-scroll during swipe interaction)
+  const handleTouchStart = () => {
+    isInteractingRef.current = true;
+  };
+
+  const handleTouchEnd = () => {
+    setTimeout(() => {
+      isInteractingRef.current = false;
+    }, 100);
+  };
+
   return (
     <section
       id="testimonials"
@@ -146,35 +267,40 @@ export default function Testimonials() {
           }}
         />
 
-        {/* Scrolling track */}
+        {/* Scrollable Container */}
         <div
-          ref={trackRef}
-          className="flex items-stretch py-3 testimonial-marquee"
-          style={{ width: "max-content" }}
+          ref={containerRef}
+          className="overflow-x-auto scrollbar-none flex items-stretch py-3 cursor-grab select-none touch-pan-x"
+          onScroll={handleScroll}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+          onMouseEnter={handleMouseEnter}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchEnd}
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
           aria-label="Customer testimonials carousel"
         >
-          {looped.map((t, i) => (
-            <Card key={i} t={t} />
-          ))}
+          {/* Scrolling track */}
+          <div className="flex flex-nowrap" style={{ width: "max-content" }}>
+            {looped.map((t, i) => (
+              <Card key={i} t={t} />
+            ))}
+          </div>
         </div>
       </div>
 
-      <style jsx>{`
-        .testimonial-marquee {
-          animation: marquee-scroll 55s linear infinite;
-        }
-        .testimonial-marquee:hover {
-          animation-play-state: paused;
-        }
-        @keyframes marquee-scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(calc(-100% / 3));
-          }
+      <style>{`
+        .scrollbar-none::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
     </section>
   );
 }
+
