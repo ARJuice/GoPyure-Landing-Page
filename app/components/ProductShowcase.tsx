@@ -9,7 +9,6 @@ const products = [
     id: "mango",
     name: "Mango Yogurt",
     weight: "100g",
-    mrp: "40",
     image: "/Mango_Yogurt.png",
     description: "A smooth blend of our signature probiotic yogurt and mango fruit preparation. Clean, refreshing, and naturally flavored.",
   },
@@ -17,7 +16,6 @@ const products = [
     id: "blueberry",
     name: "Blueberry Yogurt",
     weight: "100g",
-    mrp: "40",
     image: "/Blueberry_Yogurt.png",
     description: "Our classic probiotic yogurt combined with blueberry fruit preparation. Smooth texture with a delicious berry taste.",
   },
@@ -25,7 +23,6 @@ const products = [
     id: "plain",
     name: "Plain Yogurt",
     weight: "100g",
-    mrp: "30",
     image: "/Plain_Yogurt.png",
     description: "Pure, unsweetened probiotic yogurt made simply with organically sourced dairy and active live cultures.",
   },
@@ -56,25 +53,25 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
     >
       <div>
         {/* Image Display Box with Neutral Background */}
-        <div className="relative flex items-center justify-center p-4 mb-6 bg-cream-soft border border-[#EFE8DE] rounded-none overflow-hidden h-80 w-full">
+        <div className="relative flex items-center justify-center p-4 mb-6 bg-cream-soft border border-[#EFE8DE] rounded-none overflow-hidden h-72 w-full">
           {/* Weight label inside image container, top-right */}
           <div className="absolute top-3 right-3 z-10">
-            <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 border border-[#FECACA] text-[#DC2626] bg-[#FEF2F2] shadow-sm rounded-sm">
+            <span className="text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 border border-[#B33C29]/30 text-[#B33C29] bg-[#FFFDF9]">
               Net Wt. {product.weight}
             </span>
           </div>
 
           <motion.div
-            animate={hovered ? { y: -4, scale: 1.05 } : { y: 0, scale: 1.02 }}
+            animate={hovered ? { y: -4, scale: 1.03 } : { y: 0, scale: 1 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="h-full flex items-center justify-center w-full"
           >
             <Image
               src={product.image}
               alt={product.name}
-              width={340}
-              height={380}
-              className="object-contain max-h-[110%] w-auto drop-shadow-[0_16px_32px_rgba(0,0,0,0.12)]"
+              width={240}
+              height={280}
+              className="object-contain max-h-[92%] w-auto drop-shadow-[0_12px_24px_rgba(0,0,0,0.08)]"
             />
           </motion.div>
         </div>
@@ -88,7 +85,6 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
             >
               {product.name}
             </h3>
-            <span className="text-xl font-bold text-pyure-deep">₹{product.mrp}</span>
           </div>
           
           <p className="text-xs font-bold tracking-widest text-[#E8A940] uppercase mb-2.5">
@@ -146,14 +142,14 @@ export default function ProductShowcase() {
           right: -20%;
           top: 0;
           bottom: 0;
-          background-color: var(--cream-ivory);
+          background-color: var(--cream-linen);
           transform: skewX(-45deg) scale(0, 1);
           transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1);
         }
 
         .btn-product-order:hover {
           color: var(--pyure-deep);
-          border-color: var(--cream-ivory);
+          border-color: var(--pyure-deep);
         }
 
         .btn-product-order:hover:after {

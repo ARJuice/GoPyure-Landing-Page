@@ -17,9 +17,21 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative h-screen flex items-center overflow-hidden"
+      className="relative min-h-[100dvh] md:h-screen flex items-center overflow-hidden"
     >
       <style>{`
+        .hero-bg-media {
+          background-image: url('/hero-split-bg.png');
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+        }
+        @media (max-width: 767px) {
+          .hero-bg-media {
+            background-position: 22% center !important;
+          }
+        }
+
         .btn-style-1 {
           border: 2px solid var(--cream-ivory);
           border-radius: 0 !important;
@@ -75,26 +87,19 @@ export default function HeroSection() {
         }
       `}</style>
       {/* ── Background — stretched to fill exactly the viewport ── */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: "url('/hero-split-bg.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
-        }}
-      />
+      <div className="absolute inset-0 pointer-events-none hero-bg-media" />
 
       {/* ── Content: single left column, all within h-screen ── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-14 flex items-center h-full">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-14 flex items-center min-h-[100dvh] md:h-full">
 
-        <div className="flex flex-col items-start justify-center w-full max-w-[640px] lg:max-w-[760px] pt-16 -mt-16 lg:-mt-24">
+        {/* Stack elements vertically on mobile, placing text at top and shelf at bottom */}
+        <div className="flex flex-col-reverse md:flex-col items-center md:items-start justify-between md:justify-center w-full max-w-[640px] lg:max-w-[760px] pt-24 pb-8 md:pt-16 md:pb-0 -mt-0 md:-mt-16 lg:-mt-24 gap-6 md:gap-0 min-h-[calc(100dvh-120px)] md:min-h-0">
 
           {/* Spacer that holds the height in flow, and overlays the viewport-absolute stand & cups */}
-          <div className="relative w-full aspect-[6000/3375] max-h-[83vh] -mb-4 lg:-mb-8">
+          <div className="relative w-[110vw] left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:w-full aspect-[6000/3375] md:max-h-[83vh] mb-0 md:-mb-4 lg:-mb-8">
             <motion.div
               {...fadeUp(0)}
-              className="absolute left-0 lg:left-[calc(-50vw+50%)] top-0 w-[96vw] md:w-[68vw] lg:w-[53vw] max-w-[min(880px,147.5vh)] aspect-[6000/3375] z-10 pointer-events-none"
+              className="absolute inset-0 md:left-0 md:translate-x-0 lg:left-[calc(-50vw+50%)] md:top-0 md:w-[68vw] lg:w-[53vw] md:max-w-[min(880px,147.5vh)] md:aspect-[6000/3375] z-10 pointer-events-none"
             >
               {/* The stand (wooden shelf) */}
               <div
@@ -112,7 +117,7 @@ export default function HeroSection() {
               </div>
 
               {/* Yogurt cups sitting on the right edge of the stand */}
-              <div className="absolute right-0 top-[17%] w-[72%] z-10">
+              <div className="absolute left-1/2 -translate-x-1/2 top-[10%] w-[85%] z-10 md:left-auto md:translate-x-0 md:right-0 md:top-[17%] md:w-[72%]">
                 <Image
                   src="/hero-products.png"
                   alt="GoPyure Mango, Plain and Blueberry Yogurt — full range"
@@ -125,15 +130,15 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Text Content Wrapper — shifted left for better alignment with the display shelf */}
-          <div className="w-full -ml-8 lg:-ml-18">
+          {/* Text Content Wrapper — shifted left on desktop but centered/normal on mobile */}
+          <div className="w-full ml-0 lg:-ml-18 pr-0 md:pr-4 lg:pr-0 flex flex-col items-center md:items-start text-center md:text-left">
             {/* Headline */}
             <motion.h1
               {...fadeUp(0.16)}
               className="text-cream-ivory font-bold leading-[1.1] tracking-tight mb-3"
               style={{
                 fontFamily: "'Konkhmer Sleokchher', serif",
-                fontSize: "clamp(1.65rem, 3.4vw, 3.4rem)",
+                fontSize: "clamp(1.85rem, 4vw, 3.4rem)",
               }}
             >
               Good for your gut.<br />
@@ -143,7 +148,7 @@ export default function HeroSection() {
             {/* Sub-line */}
             <motion.p
               {...fadeUp(0.28)}
-              className="text-cream-linen/68 text-sm lg:text-base leading-relaxed mb-7"
+              className="text-cream-linen/85 md:text-cream-linen/68 text-sm lg:text-base leading-relaxed mb-7 max-w-md"
             >
               Delicious probiotic yogurts crafted to support everyday gut health.
             </motion.p>
@@ -174,7 +179,7 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-cream-linen/30"
+        className="absolute bottom-7 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1.5 text-cream-linen/30"
       >
         <span className="text-[8px] font-semibold tracking-widest uppercase">Scroll</span>
         <motion.div
