@@ -70,7 +70,7 @@ export default function Footer() {
           className="mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 border-t text-xs text-ink-muted"
           style={{ borderColor: "rgba(155,183,174,0.18)" }}
         >
-          <p>© {new Date().getFullYear()} GoPyure. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} GoPyure Food Products. All rights reserved.</p>
           <p>Made with care in India 🇮🇳</p>
         </div>
       </div>

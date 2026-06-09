@@ -104,21 +104,21 @@ const pillars: Pillar[] = [
 ];
 
 /* ── SVG curved-root paths  ── */
-/* ViewBox = 800 × 700, seed center = (400, 350) */
-/* The root curves are exactly equal in size and symmetrical in all 4 directions */
+/* ViewBox = 850 × 750, seed center = (425, 375) */
+/* Paths are balanced to have exactly 154px of visible branch line in all 4 directions */
 const rootPaths: Record<Position, string> = {
-  top:    "M 400 314 C 385 260, 415 210, 400 160",
-  right:  "M 436 350 C 480 335, 550 365, 590 350",
-  bottom: "M 400 386 C 415 440, 385 490, 400 540",
-  left:   "M 364 350 C 320 365, 250 335, 210 350",
+  top:    "M 425 339 C 410 295, 440 225, 425 185",
+  right:  "M 461 375 C 515 360, 565 390, 615 375",
+  bottom: "M 425 411 C 440 455, 410 525, 425 565",
+  left:   "M 389 375 C 335 390, 285 360, 235 375",
 };
 
-/* ── Pillar positions (% of container) - exactly 220px offset in all directions for perfect symmetry ── */
+/* ── Pillar positions (% of container) - compensated for card dimensions ── */
 const positions: Record<Position, { left: string; top: string }> = {
-  top:    { left: "50%", top: "18.6%" },
-  right:  { left: "77.5%", top: "50%" },
-  bottom: { left: "50%", top: "81.4%" },
-  left:   { left: "22.5%", top: "50%" },
+  top:    { left: "50%", top: "22%" },
+  right:  { left: "88%", top: "50%" },
+  bottom: { left: "50%", top: "78%" },
+  left:   { left: "12%", top: "50%" },
 };
 
 /* ── Pulse delay per branch ── */
@@ -136,7 +136,7 @@ export default function TrustPillars() {
   return (
     <section
       id="pillars"
-      className="py-14 lg:py-16 relative overflow-hidden bg-[#0A5039]"
+      className="py-14 lg:py-20 relative overflow-hidden bg-[#0A5039]"
     >
       {/* Generated organic textured background image */}
       <div
@@ -149,273 +149,294 @@ export default function TrustPillars() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
-        {/* ── Section header ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
-          className="text-center mb-6 lg:mb-2"
-        >
-          <p className="text-xs font-semibold tracking-widest uppercase text-[#E8A940] mb-3">
-            The Sprout &amp; Drop Promise
-          </p>
-          <h2
-            className="text-display-lg text-cream-ivory mb-4"
-            style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
-          >
-            The GoPyure Difference
-          </h2>
-          <p className="text-cream-linen/80 max-w-md mx-auto leading-relaxed text-sm">
-            Four principles that shape every product, every process,
-            and every decision we make.
-          </p>
-        </motion.div>
-
-        {/* ═══ DESKTOP — radial seed layout ═══ */}
-        {/* mt-8 lg:mt-10 reduces the spacing so the expanded card is close to the header text */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="hidden md:block relative mx-auto mt-8 lg:mt-10"
-          style={{ maxWidth: "800px", height: "700px", overflow: "visible" }}
-        >
-          {/* ── SVG root branches ── */}
-          <svg
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            viewBox="0 0 800 700"
-            preserveAspectRatio="xMidYMid meet"
-          >
-            <defs>
-              {/* Gradients for each branch direction */}
-              <linearGradient id="grad-top" x1="400" y1="314" x2="400" y2="160" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
-                <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
-                <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
-              </linearGradient>
-              <linearGradient id="grad-right" x1="436" y1="350" x2="590" y2="350" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
-                <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
-                <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
-              </linearGradient>
-              <linearGradient id="grad-bottom" x1="400" y1="386" x2="400" y2="540" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
-                <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
-                <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
-              </linearGradient>
-              <linearGradient id="grad-left" x1="364" y1="350" x2="210" y2="350" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
-                <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
-                <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
-              </linearGradient>
-              
-              {/* Traveling Pulse glow filter */}
-              <filter id="pulse-glow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="1.5" result="blur" />
-                <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-
-            {pillars.map((p) => (
-              <g key={p.id}>
-                {/* Base root (always visible, vein-like gradient) */}
-                <path
-                  d={rootPaths[p.position]}
-                  stroke={`url(#grad-${p.position})`}
-                  strokeWidth={hoveredId === p.id ? "2.5" : "1.4"}
-                  fill="none"
-                  strokeLinecap="round"
-                  style={{ transition: "stroke-width 0.4s" }}
-                />
-
-                {/* Hover glow layer */}
-                <path
-                  d={rootPaths[p.position]}
-                  stroke={`url(#grad-${p.position})`}
-                  strokeWidth="3.5"
-                  fill="none"
-                  strokeLinecap="round"
-                  style={{
-                    opacity: hoveredId === p.id ? 0.75 : 0,
-                    filter: "blur(2px)",
-                    transition: "opacity 0.4s",
-                  }}
-                />
-
-                {/* Traveling pulse droplet */}
-                <path
-                  d={rootPaths[p.position]}
-                  className="root-pulse-path"
-                  stroke={
-                    hoveredId === p.id
-                      ? "#E8A940"
-                      : "rgba(212, 232, 223, 0.75)"
-                  }
-                  strokeWidth={hoveredId === p.id ? "3.2" : "2.2"}
-                  fill="none"
-                  strokeLinecap="round"
-                  filter="url(#pulse-glow)"
-                  style={{
-                    animationDelay: pulseDelays[p.position],
-                    transition: "stroke 0.4s, stroke-width 0.4s",
-                  }}
-                />
-              </g>
-            ))}
-          </svg>
-
-          {/* ── Central seed / sprout (The Heart of the Section) ── */}
-          <div
-            className="absolute z-20 flex items-center justify-center"
-            style={{
-              left: "50%",
-              top: "50%",
-              transform: "translate(-50%, -50%)",
-              width: "160px",
-              height: "160px",
-            }}
-          >
-            {/* Very subtle glow behind to establish visual hierarchy */}
+        
+        {/* Split grid layout: Text content on left, SVG animation on right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          {/* Left Column: Title and Description */}
+          <div className="lg:col-span-4 text-center lg:text-left">
             <motion.div
-              className="absolute w-[130px] h-[130px] rounded-full pointer-events-none seed-glow-backdrop"
-              animate={{
-                x: hoveredId === "ingredients" ? -18 : hoveredId === "preservatives" ? 18 : 0,
-                y: hoveredId === "vision" ? -18 : hoveredId === "established" ? 18 : 0,
-                scale: hoveredId ? 1.25 : 1,
-              }}
-              transition={{ type: "spring", stiffness: 100, damping: 18 }}
-              style={{
-                background: "radial-gradient(circle, rgba(212, 232, 223, 0.28) 0%, rgba(10, 80, 57, 0) 70%)",
-                filter: "blur(8px)",
-              }}
-            />
-
-            {/* Faint expanding water ripple ring */}
-            <div
-              className="absolute ripple-ring rounded-full pointer-events-none"
-              style={{
-                width: "76px",
-                height: "76px",
-                border: "1px solid rgba(155, 183, 174, 0.35)",
-              }}
-            />
-
-            {/* Inner seed capsule */}
-            <div
-              className={`w-[76px] h-[76px] rounded-full flex items-center justify-center seed-breathe relative z-10 ${
-                hoveredId ? "seed-breathe--active" : ""
-              }`}
-              style={{
-                background: "rgba(8, 46, 35, 0.9)",
-                border: "1px solid rgba(155, 183, 174, 0.3)",
-              }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
             >
-              <div 
-                style={{ transform: "translateY(-4px) translateX(1.4px)" }}
+              <p className="text-sm font-bold tracking-widest uppercase text-[#E8A940] mb-3">
+                The Sprout &amp; Drop Promise
+              </p>
+              {/* Increased size of heading title */}
+              <h2
+                className="text-4xl md:text-5xl lg:text-6xl text-cream-ivory mb-6 leading-[1.1] font-bold"
+                style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
               >
-                <Image
-                  src="/white logo - Icon Only.svg"
-                  alt="GoPyure sprout"
-                  width={44}
-                  height={44}
-                />
+                The GoPyure Difference
+              </h2>
+              {/* Increased size and readability of description */}
+              <p className="text-cream-linen/85 max-w-md mx-auto lg:mx-0 leading-relaxed text-base">
+                Four principles that shape every product, every process,
+                and every decision we make. We believe in providing nutrition you can trust, without compromise.
+              </p>
+
+              {/* Tagline block for desktop (placed cleanly in the left text column) */}
+              <div className="border-t border-[#9BB7AE]/20 pt-6 mt-8 hidden lg:block">
+                <p className="text-pyure-mint/75 text-sm leading-relaxed">
+                  Trusted by families across the region —&nbsp;
+                  <span className="text-[#E8A940] font-semibold block">
+                    pure, honest food since day one.
+                  </span>
+                </p>
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          {/* ── 4 Pillar icon-blocks ── */}
-          {pillars.map((p) => {
-            const isHovered = hoveredId === p.id;
-            return (
-              <div
-                key={p.id}
-                className="absolute z-10 flex flex-col items-center cursor-pointer select-none"
-                style={{
-                  left: positions[p.position].left,
-                  top: positions[p.position].top,
-                  transform: "translate(-50%, -50%)",
-                  width: "265px", /* expanded to give description more comfortable line wraps */
-                }}
-                onMouseEnter={() => setHoveredId(p.id)}
-                onMouseLeave={() => setHoveredId(null)}
+          {/* Right Column: Radial SVG Animation container */}
+          <div className="lg:col-span-8 flex justify-center lg:justify-end w-full">
+            {/* Desktop radial seed layout */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="hidden md:block relative w-full max-w-[850px] lg:translate-x-12"
+              style={{ height: "750px", overflow: "visible" }}
+            >
+              {/* ── SVG root branches ── */}
+              <svg
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                viewBox="0 0 850 750"
+                preserveAspectRatio="xMidYMid meet"
               >
-                {/* Glassmorphic Background Card on hover */}
+                <defs>
+                  {/* Gradients for each branch direction */}
+                  <linearGradient id="grad-top" x1="425" y1="339" x2="425" y2="185" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
+                    <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
+                    <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
+                  </linearGradient>
+                  <linearGradient id="grad-right" x1="461" y1="375" x2="615" y2="375" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
+                    <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
+                    <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
+                  </linearGradient>
+                  <linearGradient id="grad-bottom" x1="425" y1="411" x2="425" y2="565" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
+                    <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
+                    <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
+                  </linearGradient>
+                  <linearGradient id="grad-left" x1="389" y1="375" x2="235" y2="375" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#d4e8df" stopOpacity="0.55" />
+                    <stop offset="40%" stopColor="#9BB7AE" stopOpacity="0.25" />
+                    <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0.03" />
+                  </linearGradient>
+                  
+                  {/* Traveling Pulse glow filter */}
+                  <filter id="pulse-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="1.5" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                {pillars.map((p) => (
+                  <g key={p.id}>
+                    {/* Base root (always visible, vein-like gradient) */}
+                    <path
+                      d={rootPaths[p.position]}
+                      stroke={`url(#grad-${p.position})`}
+                      strokeWidth={hoveredId === p.id ? "2.5" : "1.4"}
+                      fill="none"
+                      strokeLinecap="round"
+                      style={{ transition: "stroke-width 0.4s" }}
+                    />
+
+                    {/* Hover glow layer */}
+                    <path
+                      d={rootPaths[p.position]}
+                      stroke={`url(#grad-${p.position})`}
+                      strokeWidth="3.5"
+                      fill="none"
+                      strokeLinecap="round"
+                      style={{
+                        opacity: hoveredId === p.id ? 0.75 : 0,
+                        filter: "blur(2px)",
+                        transition: "opacity 0.4s",
+                      }}
+                    />
+
+                    {/* Traveling pulse droplet */}
+                    <path
+                      d={rootPaths[p.position]}
+                      className="root-pulse-path"
+                      stroke={
+                        hoveredId === p.id
+                          ? "#E8A940"
+                          : "rgba(212, 232, 223, 0.75)"
+                      }
+                      strokeWidth={hoveredId === p.id ? "3.2" : "2.2"}
+                      fill="none"
+                      strokeLinecap="round"
+                      filter="url(#pulse-glow)"
+                      style={{
+                        animationDelay: pulseDelays[p.position],
+                        transition: "stroke 0.4s, stroke-width 0.4s",
+                      }}
+                    />
+                  </g>
+                ))}
+              </svg>
+
+              {/* ── Central seed / sprout (The Heart of the Section) ── */}
+              <div
+                className="absolute z-20 flex items-center justify-center"
+                style={{
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "160px",
+                  height: "160px",
+                }}
+              >
+                {/* Very subtle glow behind to establish visual hierarchy */}
                 <motion.div
-                  className="absolute inset-0 bg-[#073629]/88 border border-[#9BB7AE]/25 backdrop-blur-md rounded-sm -z-10 shadow-2xl"
-                  initial={{ opacity: 0, scale: 0.94 }}
+                  className="absolute w-[130px] h-[130px] rounded-full pointer-events-none seed-glow-backdrop"
                   animate={{
-                    opacity: isHovered ? 1 : 0,
-                    scale: isHovered ? 1 : 0.94,
+                    x: hoveredId === "ingredients" ? -18 : hoveredId === "preservatives" ? 18 : 0,
+                    y: hoveredId === "vision" ? -18 : hoveredId === "established" ? 18 : 0,
+                    scale: hoveredId ? 1.25 : 1,
                   }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  transition={{ type: "spring", stiffness: 100, damping: 18 }}
                   style={{
-                    padding: "22px 26px",
-                    margin: "-18px -22px", /* expands outward for comfortable breathing room */
+                    background: "radial-gradient(circle, rgba(212, 232, 223, 0.28) 0%, rgba(10, 80, 57, 0) 70%)",
+                    filter: "blur(8px)",
                   }}
                 />
 
-                {/* Content Wrapper */}
-                <div className="flex flex-col items-center w-full">
-                  {/* Icon */}
-                  <motion.div
-                    className="mb-2.5"
-                    animate={{
-                      scale: isHovered ? 1.18 : 1,
-                      color: isHovered ? "#E8A940" : "#9BB7AE",
-                    }}
-                    transition={{ type: "spring", stiffness: 120, damping: 22 }}
-                    style={{ color: "#9BB7AE" }}
-                  >
-                    {icons[p.iconKey]}
-                  </motion.div>
+                {/* Faint expanding water ripple ring */}
+                <div
+                  className="absolute ripple-ring rounded-full pointer-events-none"
+                  style={{
+                    width: "76px",
+                    height: "76px",
+                    border: "1px solid rgba(155, 183, 174, 0.35)",
+                  }}
+                />
 
-                  {/* Title */}
-                  <motion.p
-                    className="text-base font-bold text-center tracking-wide whitespace-nowrap"
-                    style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
-                    animate={{ color: isHovered ? "#E8A940" : "rgba(255,253,249,0.85)" }}
-                    transition={{ duration: 0.3 }}
+                {/* Inner seed capsule */}
+                <div
+                  className={`w-[76px] h-[76px] rounded-full flex items-center justify-center seed-breathe relative z-10 ${
+                    hoveredId ? "seed-breathe--active" : ""
+                  }`}
+                  style={{
+                    background: "rgba(8, 46, 35, 0.9)",
+                    border: "1px solid rgba(155, 183, 174, 0.3)",
+                  }}
+                >
+                  <div 
+                    style={{ transform: "translateY(-4px) translateX(1.4px)" }}
                   >
-                    {p.title}
-                  </motion.p>
-
-                  {/* Expanding description on hover */}
-                  <AnimatePresence>
-                    {isHovered && (
-                      <motion.div
-                        initial={{ opacity: 0, maxHeight: 0 }}
-                        animate={{ opacity: 1, maxHeight: 240 }}
-                        exit={{ opacity: 0, maxHeight: 0 }}
-                        transition={{ duration: 0.4, ease: "easeOut" }}
-                        className="overflow-hidden w-full"
-                      >
-                        <div className="text-center mt-3 w-full">
-                          {/* Yellow Headline */}
-                          <span
-                            className="block text-sm font-bold mb-1.5 text-[#E8A940]"
-                          >
-                            {p.headline}
-                          </span>
-                          {/* Readable body description */}
-                          <span
-                            className="text-[13px] leading-relaxed text-cream-linen/90 font-medium block"
-                          >
-                            {p.description}
-                          </span>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                    <Image
+                      src="/white logo - Icon Only.svg"
+                      alt="GoPyure sprout"
+                      width={44}
+                      height={44}
+                    />
+                  </div>
                 </div>
               </div>
-            );
-          })}
-        </motion.div>
+
+              {/* ── 4 Pillar icon-blocks ── */}
+              {pillars.map((p) => {
+                const isHovered = hoveredId === p.id;
+                return (
+                  <div
+                    key={p.id}
+                    className="absolute z-10 flex flex-col items-center cursor-pointer select-none"
+                    style={{
+                      left: positions[p.position].left,
+                      top: positions[p.position].top,
+                      transform: "translate(-50%, -50%)",
+                      width: "265px",
+                    }}
+                    onMouseEnter={() => setHoveredId(p.id)}
+                    onMouseLeave={() => setHoveredId(null)}
+                  >
+                    {/* Glassmorphic Background Card on hover */}
+                    <motion.div
+                      className="absolute inset-0 bg-[#073629]/88 border border-[#9BB7AE]/25 backdrop-blur-md rounded-sm -z-10 shadow-2xl"
+                      initial={{ opacity: 0, scale: 0.94 }}
+                      animate={{
+                        opacity: isHovered ? 1 : 0,
+                        scale: isHovered ? 1 : 0.94,
+                      }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      style={{
+                        padding: "22px 26px",
+                        margin: "-18px -22px",
+                      }}
+                    />
+
+                    {/* Content Wrapper */}
+                    <div className="flex flex-col items-center w-full">
+                      {/* Icon */}
+                      <motion.div
+                        className="mb-2.5"
+                        animate={{
+                          scale: isHovered ? 1.18 : 1,
+                          color: isHovered ? "#E8A940" : "#9BB7AE",
+                        }}
+                        transition={{ type: "spring", stiffness: 120, damping: 22 }}
+                        style={{ color: "#9BB7AE" }}
+                      >
+                        {icons[p.iconKey]}
+                      </motion.div>
+
+                      {/* Title */}
+                      <motion.p
+                        className="text-base font-bold text-center tracking-wide whitespace-nowrap"
+                        style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
+                        animate={{ color: isHovered ? "#E8A940" : "rgba(255,253,249,0.85)" }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {p.title}
+                      </motion.p>
+
+                      {/* Expanding description on hover */}
+                      <AnimatePresence>
+                        {isHovered && (
+                          <motion.div
+                            initial={{ opacity: 0, maxHeight: 0 }}
+                            animate={{ opacity: 1, maxHeight: 240 }}
+                            exit={{ opacity: 0, maxHeight: 0 }}
+                            transition={{ duration: 0.4, ease: "easeOut" }}
+                            className="overflow-hidden w-full"
+                          >
+                            <div className="text-center mt-3 w-full">
+                              {/* Yellow Headline */}
+                              <span
+                                className="block text-sm font-bold mb-1.5 text-[#E8A940]"
+                              >
+                                {p.headline}
+                              </span>
+                              {/* Readable body description */}
+                              <span
+                                className="text-[13px] leading-relaxed text-cream-linen/90 font-medium block"
+                              >
+                                {p.description}
+                              </span>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
+                );
+              })}
+            </motion.div>
+          </div>
+
+        </div>
 
         {/* ═══ MOBILE — clean vertical list ═══ */}
         <div className="md:hidden flex flex-col gap-8 pt-8">
@@ -471,14 +492,13 @@ export default function TrustPillars() {
           ))}
         </div>
 
-        {/* ── Bottom tagline ── */}
-        {/* mt-32 pushes the bottom text down to clear the bottom expanded card */}
+        {/* Tagline block for mobile at the very bottom */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="mt-32 text-center"
+          className="mt-12 text-center block lg:hidden"
         >
           <p className="text-pyure-mint/75 text-sm">
             Trusted by families across the region —&nbsp;
