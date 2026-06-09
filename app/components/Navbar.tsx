@@ -112,7 +112,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <button
                 key={link.label}
@@ -129,7 +129,7 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <button
               onClick={() => handleNavClick("#contact")}
               className={`btn-style-2 px-5 py-2.5 text-sm font-semibold tracking-wide ${
@@ -143,7 +143,7 @@ export default function Navbar() {
           {/* Mobile Hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5"
+            className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5"
             aria-label="Toggle menu"
           >
             <motion.span
@@ -176,7 +176,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed inset-x-0 top-16 z-40 navbar-glass md:hidden"
+            className="fixed inset-x-0 top-16 z-40 navbar-glass lg:hidden"
           >
             <nav className="flex flex-col px-6 py-6 gap-1">
               {navLinks.map((link, i) => (
