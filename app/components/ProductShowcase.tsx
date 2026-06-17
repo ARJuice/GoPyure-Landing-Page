@@ -52,8 +52,8 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
       }}
     >
       <div>
-        {/* Image Display Box with Neutral Background */}
-        <div className="relative flex items-center justify-center p-4 mb-6 bg-cream-soft border border-[#EFE8DE] rounded-none overflow-hidden h-72 w-full">
+        {/* Image Display Container (No neutral background box) */}
+        <div className="relative flex items-center justify-center p-4 mb-6 rounded-none overflow-hidden h-72 w-full">
           {/* Weight label inside image container, top-right */}
           <div className="absolute top-3 right-3 z-10">
             <span className="text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 border border-[#B33C29]/30 text-[#B33C29] bg-[#FFFDF9]">
