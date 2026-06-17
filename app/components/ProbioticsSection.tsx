@@ -521,11 +521,11 @@ export default function ProbioticsSection() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-[11px] text-ink-muted/50 mt-6 leading-relaxed max-w-lg"
+              className="text-[11px] text-ink-muted/80 mt-6 leading-relaxed max-w-lg"
             >
-              Probiotics are present in fermented foods like yogurt and are
-              generally recognised as safe. For best results, consume as part of
-              a balanced diet.
+              Probiotics are naturally present in fermented foods like yogurt and
+              are generally recognized as safe. For the best results, they should
+              be consumed as part of a balanced diet.
             </motion.p>
           </div>
         </div>
