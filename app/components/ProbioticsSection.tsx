@@ -52,7 +52,7 @@ function GutIllustration() {
         >
           {/* Vector Line 1: Top-Right (100T+) */}
           <motion.circle 
-            cx="66" cy="30" r="0.75" 
+            cx="74" cy="24" r="0.75" 
             fill="#0A5039" 
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
@@ -60,7 +60,7 @@ function GutIllustration() {
             transition={{ delay: 0.6 }}
           />
           <motion.path 
-            d="M 66 30 L 78 18 L 88 18" 
+            d="M 74 24 L 78 18 L 88 18" 
             stroke="#0A5039" 
             strokeWidth="0.35" 
             strokeOpacity="0.4"
@@ -73,7 +73,7 @@ function GutIllustration() {
 
           {/* Vector Line 2: Bottom-Left (70%) */}
           <motion.circle 
-            cx="34" cy="68" r="0.75" 
+            cx="25" cy="75" r="0.75" 
             fill="#346E5B" 
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
@@ -81,7 +81,7 @@ function GutIllustration() {
             transition={{ delay: 0.8 }}
           />
           <motion.path 
-            d="M 34 68 L 22 80 L 12 80" 
+            d="M 25 75 L 22 80 L 12 80" 
             stroke="#346E5B" 
             strokeWidth="0.35" 
             strokeOpacity="0.4"
@@ -92,9 +92,9 @@ function GutIllustration() {
             transition={{ delay: 0.9, duration: 0.5 }}
           />
 
-          {/* Vector Line 3: Middle-Left (1000+) - starts further right inside circle */}
+          {/* Vector Line 3: Middle-Left (1000+) */}
           <motion.circle 
-            cx="38" cy="48" r="0.75" 
+            cx="15" cy="48" r="0.75" 
             fill="#E8A940" 
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
@@ -102,7 +102,7 @@ function GutIllustration() {
             transition={{ delay: 1.0 }}
           />
           <motion.path 
-            d="M 38 48 L 12 48" 
+            d="M 15 48 L 12 48" 
             stroke="#E8A940" 
             strokeWidth="0.35" 
             strokeOpacity="0.45"
