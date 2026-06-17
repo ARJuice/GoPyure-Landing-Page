@@ -38,195 +38,291 @@ function GutIllustration() {
         className="w-full h-full"
         aria-hidden="true"
       >
-        {/* Soft background circle */}
-        <circle cx="200" cy="200" r="160" fill="#0A5039" fillOpacity="0.06" />
-        <circle cx="200" cy="200" r="120" fill="#0A5039" fillOpacity="0.04" />
+        {/* ── Organic background wash ── */}
+        <defs>
+          <radialGradient id="bgWash" cx="50%" cy="48%" r="50%">
+            <stop offset="0%" stopColor="#0A5039" stopOpacity="0.07" />
+            <stop offset="65%" stopColor="#346E5B" stopOpacity="0.03" />
+            <stop offset="100%" stopColor="#9BB7AE" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#E8A940" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="#E8A940" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <circle cx="200" cy="200" r="175" fill="url(#bgWash)" />
 
-        {/* Intestinal curve path */}
+        {/* ── Flowing gut tract — organic S-curve ── */}
         <motion.path
-          d="M80 120 C120 80, 180 80, 220 120 C260 160, 300 140, 320 180 C340 220, 300 260, 260 280 C220 300, 160 300, 120 280 C80 260, 60 220, 80 180"
+          d="M60 155 C90 95, 155 75, 200 100 C250 128, 310 105, 340 155 C365 198, 330 250, 285 275 C240 300, 175 310, 130 285 C85 260, 55 215, 60 155Z"
           stroke="#0A5039"
-          strokeWidth="3"
+          strokeWidth="2.5"
           strokeLinecap="round"
           fill="none"
-          strokeOpacity="0.15"
+          strokeOpacity="0.12"
           initial={{ pathLength: 0 }}
           whileInView={{ pathLength: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 2, ease: "easeInOut" }}
+          transition={{ duration: 2.5, ease: "easeInOut" }}
         />
 
-        {/* Inner intestinal detail line */}
-        <motion.path
-          d="M100 140 C130 110, 180 100, 210 130 C240 160, 280 150, 300 185 C315 210, 290 240, 255 260 C220 275, 170 280, 140 265 C110 250, 90 220, 100 190"
-          stroke="#346E5B"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeDasharray="6 8"
-          fill="none"
-          strokeOpacity="0.2"
-          initial={{ pathLength: 0 }}
-          whileInView={{ pathLength: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 2.5, ease: "easeInOut", delay: 0.3 }}
-        />
-
-        {/* Bacteria clusters — rod-shaped (bacilli) */}
+        {/* Villi-like interior folds */}
         {[
-          { cx: 150, cy: 130, rot: -30, delay: 0.5 },
-          { cx: 260, cy: 160, rot: 15, delay: 0.8 },
-          { cx: 190, cy: 250, rot: -45, delay: 1.1 },
-          { cx: 130, cy: 220, rot: 60, delay: 0.7 },
-          { cx: 280, cy: 230, rot: -20, delay: 1.3 },
+          "M130 130 Q145 118, 160 128",
+          "M175 105 Q188 92, 200 103",
+          "M225 108 Q240 95, 252 110",
+          "M290 135 Q305 122, 315 138",
+          "M325 175 Q340 165, 338 185",
+          "M310 230 Q325 222, 318 245",
+          "M260 280 Q275 272, 268 292",
+          "M195 295 Q208 287, 200 305",
+          "M130 270 Q143 260, 135 280",
+          "M88 225 Q100 215, 92 235",
+          "M72 180 Q85 170, 78 190",
+        ].map((d, i) => (
+          <motion.path
+            key={`villi-${i}`}
+            d={d}
+            stroke="#346E5B"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+            fill="none"
+            strokeOpacity="0.12"
+            initial={{ pathLength: 0, opacity: 0 }}
+            whileInView={{ pathLength: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.8 + i * 0.08, duration: 0.6 }}
+          />
+        ))}
+
+        {/* ── Traveling pulse along gut path ── */}
+        <motion.circle
+          r="4"
+          fill="#E8A940"
+          fillOpacity="0.5"
+          initial={{ offsetDistance: "0%" }}
+          animate={{ offsetDistance: ["0%", "100%"] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+          style={{
+            offsetPath: `path("M60 155 C90 95, 155 75, 200 100 C250 128, 310 105, 340 155 C365 198, 330 250, 285 275 C240 300, 175 310, 130 285 C85 260, 55 215, 60 155Z")`,
+          }}
+        />
+        <motion.circle
+          r="3"
+          fill="#9BB7AE"
+          fillOpacity="0.4"
+          initial={{ offsetDistance: "0%" }}
+          animate={{ offsetDistance: ["0%", "100%"] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "linear", delay: 3 }}
+          style={{
+            offsetPath: `path("M60 155 C90 95, 155 75, 200 100 C250 128, 310 105, 340 155 C365 198, 330 250, 285 275 C240 300, 175 310, 130 285 C85 260, 55 215, 60 155Z")`,
+          }}
+        />
+
+        {/* ── Rod bacteria (bacilli) — organic capsule shapes with flagella ── */}
+        {[
+          { x: 145, y: 145, rot: -25, scale: 1, driftY: 6, dur: 4.2 },
+          { x: 260, y: 148, rot: 40, scale: 0.9, driftY: -5, dur: 3.8 },
+          { x: 300, y: 210, rot: -55, scale: 0.75, driftY: 4, dur: 5.0 },
+          { x: 115, y: 235, rot: 70, scale: 0.85, driftY: -7, dur: 4.5 },
+          { x: 210, y: 275, rot: 10, scale: 1.1, driftY: 5, dur: 3.5 },
+          { x: 175, y: 120, rot: -60, scale: 0.7, driftY: -4, dur: 4.8 },
         ].map((b, i) => (
           <motion.g
-            key={`rod-${i}`}
-            transform={`translate(${b.cx}, ${b.cy}) rotate(${b.rot})`}
+            key={`bacillus-${i}`}
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: b.delay, duration: 0.5, type: "spring" }}
+            transition={{ delay: 0.5 + i * 0.12, duration: 0.5, type: "spring", stiffness: 120 }}
           >
-            <motion.rect
-              x="-10" y="-4" width="20" height="8" rx="4"
-              fill="#0A5039" fillOpacity="0.18"
-              animate={{ y: [-4, -6, -4] }}
-              transition={{ duration: 3 + i * 0.5, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <circle cx="-6" cy="0" r="1.5" fill="#0A5039" fillOpacity="0.3" />
-            <circle cx="6" cy="0" r="1.5" fill="#0A5039" fillOpacity="0.3" />
+            <motion.g
+              animate={{
+                y: [0, b.driftY, 0],
+                rotate: [b.rot, b.rot + (i % 2 === 0 ? 8 : -8), b.rot],
+              }}
+              transition={{ duration: b.dur, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {/* Main body */}
+              <rect
+                x={b.x - 11 * b.scale} y={b.y - 4.5 * b.scale}
+                width={22 * b.scale} height={9 * b.scale}
+                rx={4.5 * b.scale}
+                fill="#0A5039" fillOpacity="0.2"
+                transform={`rotate(${b.rot}, ${b.x}, ${b.y})`}
+              />
+              {/* Inner membrane */}
+              <rect
+                x={b.x - 7 * b.scale} y={b.y - 2.5 * b.scale}
+                width={14 * b.scale} height={5 * b.scale}
+                rx={2.5 * b.scale}
+                fill="#0A5039" fillOpacity="0.08"
+                transform={`rotate(${b.rot}, ${b.x}, ${b.y})`}
+              />
+              {/* Flagellum tail */}
+              <motion.path
+                d={`M${b.x + 11 * b.scale * Math.cos(b.rot * Math.PI / 180)} ${b.y + 11 * b.scale * Math.sin(b.rot * Math.PI / 180)} q${8 * b.scale} ${(i % 2 === 0 ? -6 : 6) * b.scale} ${16 * b.scale} ${(i % 2 === 0 ? 2 : -2) * b.scale}`}
+                stroke="#346E5B"
+                strokeWidth={0.8 * b.scale}
+                strokeLinecap="round"
+                fill="none"
+                strokeOpacity="0.18"
+                animate={{ strokeDashoffset: [0, -20] }}
+                strokeDasharray="3 4"
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              />
+            </motion.g>
           </motion.g>
         ))}
 
-        {/* Bacteria clusters — round (cocci) */}
+        {/* ── Round bacteria (cocci) — organic clusters with membrane rings ── */}
         {[
-          { cx: 200, cy: 170, delay: 0.6 },
-          { cx: 170, cy: 190, delay: 0.9 },
-          { cx: 230, cy: 200, delay: 1.0 },
-          { cx: 145, cy: 175, delay: 1.2 },
-          { cx: 250, cy: 250, delay: 1.4 },
-          { cx: 180, cy: 140, delay: 0.7 },
-          { cx: 220, cy: 270, delay: 1.1 },
-        ].map((b, i) => (
-          <motion.circle
+          { x: 190, y: 170, r: 7, delay: 0.6, driftX: 3, driftY: -4, dur: 5 },
+          { x: 230, y: 195, r: 5.5, delay: 0.8, driftX: -2, driftY: 3, dur: 4.2 },
+          { x: 155, y: 200, r: 6, delay: 1.0, driftX: 4, driftY: 2, dur: 4.7 },
+          { x: 275, y: 240, r: 5, delay: 1.1, driftX: -3, driftY: -5, dur: 3.9 },
+          { x: 200, y: 240, r: 8, delay: 0.9, driftX: 2, driftY: 4, dur: 5.5 },
+          { x: 245, y: 155, r: 4.5, delay: 1.2, driftX: -4, driftY: 2, dur: 4.4 },
+          { x: 165, y: 260, r: 5.5, delay: 1.3, driftX: 3, driftY: -3, dur: 5.2 },
+          { x: 295, y: 175, r: 4, delay: 1.0, driftX: -2, driftY: -4, dur: 4.0 },
+        ].map((c, i) => (
+          <motion.g
             key={`coccus-${i}`}
-            cx={b.cx}
-            cy={b.cy}
-            r={4 + (i % 3)}
-            fill="#346E5B"
-            fillOpacity={0.15 + (i % 3) * 0.05}
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: b.delay, duration: 0.4, type: "spring" }}
+            transition={{ delay: c.delay, duration: 0.45, type: "spring", stiffness: 150 }}
+          >
+            <motion.g
+              animate={{
+                x: [0, c.driftX, -c.driftX * 0.5, 0],
+                y: [0, c.driftY, -c.driftY * 0.7, 0],
+              }}
+              transition={{ duration: c.dur, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {/* Outer membrane ring */}
+              <circle cx={c.x} cy={c.y} r={c.r + 2} fill="none" stroke="#346E5B" strokeWidth="0.6" strokeOpacity="0.12" />
+              {/* Cell body */}
+              <circle cx={c.x} cy={c.y} r={c.r} fill="#346E5B" fillOpacity={0.12 + (i % 3) * 0.04} />
+              {/* Nucleus */}
+              <circle cx={c.x + 1} cy={c.y - 1} r={c.r * 0.35} fill="#0A5039" fillOpacity="0.15" />
+            </motion.g>
+          </motion.g>
+        ))}
+
+        {/* ── Diplococcus pairs (two cells touching) ── */}
+        {[
+          { x: 210, y: 210, r: 4, rot: 30, delay: 1.0, dur: 4.6 },
+          { x: 140, y: 170, r: 3.5, rot: -50, delay: 1.3, dur: 5.1 },
+          { x: 280, y: 260, r: 3, rot: 15, delay: 1.5, dur: 4.3 },
+        ].map((d, i) => (
+          <motion.g
+            key={`diplo-${i}`}
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: d.delay, duration: 0.4, type: "spring" }}
+          >
+            <motion.g
+              animate={{ rotate: [d.rot, d.rot + 15, d.rot - 10, d.rot] }}
+              transition={{ duration: d.dur, repeat: Infinity, ease: "easeInOut" }}
+              style={{ transformOrigin: `${d.x}px ${d.y}px` }}
+            >
+              <circle cx={d.x - d.r * 0.9} cy={d.y} r={d.r} fill="#0A5039" fillOpacity="0.15" />
+              <circle cx={d.x + d.r * 0.9} cy={d.y} r={d.r} fill="#0A5039" fillOpacity="0.12" />
+            </motion.g>
+          </motion.g>
+        ))}
+
+        {/* ── Central microbiome core with heartbeat ── */}
+        <motion.circle
+          cx="200" cy="200" r="20"
+          fill="url(#coreGlow)"
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
+        />
+        <motion.circle
+          cx="200" cy="200" r="8"
+          fill="#0A5039" fillOpacity="0.1"
+          animate={{ scale: [1, 1.15, 1], opacity: [0.1, 0.18, 0.1] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        />
+        {/* Multiple expanding ripples from core */}
+        {[0, 1.5, 3].map((ringDelay, i) => (
+          <motion.circle
+            key={`ripple-${i}`}
+            cx="200" cy="200" r="20"
+            fill="none"
+            stroke="#9BB7AE" strokeWidth="0.8"
+            animate={{ scale: [1, 3.5], opacity: [0.2, 0] }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: "easeOut", delay: ringDelay }}
           />
         ))}
 
-        {/* Floating particles — representing nutrients */}
+        {/* ── Nutrient particles with varied organic drift ── */}
         {[
-          { cx: 120, cy: 160, r: 2.5, delay: 0.8 },
-          { cx: 290, cy: 200, r: 2, delay: 1.0 },
-          { cx: 160, cy: 260, r: 3, delay: 1.2 },
-          { cx: 240, cy: 140, r: 2, delay: 0.9 },
-          { cx: 300, cy: 260, r: 2.5, delay: 1.4 },
-          { cx: 110, cy: 200, r: 2, delay: 1.1 },
+          { x: 105, y: 165, r: 2.2, color: "#E8A940", dur: 6, dx: 5, dy: -8 },
+          { x: 310, y: 195, r: 1.8, color: "#E8A940", dur: 7, dx: -4, dy: 6 },
+          { x: 150, y: 280, r: 2.5, color: "#E8A940", dur: 5.5, dx: 6, dy: -4 },
+          { x: 255, y: 130, r: 2, color: "#E8A940", dur: 6.5, dx: -3, dy: 7 },
+          { x: 95, y: 210, r: 1.5, color: "#E8A940", dur: 5, dx: 4, dy: 3 },
+          { x: 320, y: 255, r: 2.2, color: "#9BB7AE", dur: 7.5, dx: -5, dy: -6 },
+          { x: 180, y: 310, r: 1.8, color: "#9BB7AE", dur: 6, dx: 3, dy: -5 },
+          { x: 230, y: 105, r: 2, color: "#9BB7AE", dur: 5.5, dx: -4, dy: 4 },
         ].map((p, i) => (
           <motion.circle
-            key={`particle-${i}`}
-            cx={p.cx}
-            cy={p.cy}
-            r={p.r}
-            fill="#E8A940"
-            fillOpacity="0.35"
+            key={`nutrient-${i}`}
+            cx={p.x} cy={p.y} r={p.r}
+            fill={p.color}
+            fillOpacity="0.3"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: p.delay, duration: 0.5 }}
-          />
-        ))}
-
-        {/* Central core — gut microbiome hub */}
-        <motion.circle
-          cx="200" cy="200" r="24"
-          fill="#0A5039" fillOpacity="0.08"
-          stroke="#0A5039" strokeWidth="1.5" strokeOpacity="0.15"
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.6, type: "spring" }}
-        />
-        <motion.circle
-          cx="200" cy="200" r="10"
-          fill="#0A5039" fillOpacity="0.12"
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.5, type: "spring" }}
-        />
-
-        {/* Pulsing ring around core */}
-        <motion.circle
-          cx="200" cy="200" r="32"
-          fill="none"
-          stroke="#0A5039" strokeWidth="1" strokeOpacity="0.1"
-          animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0, 0.1] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* Connection lines from core to bacteria */}
-        {[
-          { x2: 150, y2: 130 },
-          { x2: 260, y2: 160 },
-          { x2: 190, y2: 250 },
-          { x2: 130, y2: 220 },
-          { x2: 280, y2: 230 },
-        ].map((line, i) => (
-          <motion.line
-            key={`line-${i}`}
-            x1="200" y1="200"
-            x2={line.x2} y2={line.y2}
-            stroke="#9BB7AE"
-            strokeWidth="0.8"
-            strokeOpacity="0.15"
-            strokeDasharray="3 5"
-            initial={{ pathLength: 0 }}
-            whileInView={{ pathLength: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.8 + i * 0.15, duration: 0.8 }}
+            transition={{ delay: 1 + i * 0.1, duration: 0.4 }}
+            animate={{
+              cx: [p.x, p.x + p.dx, p.x - p.dx * 0.5, p.x],
+              cy: [p.y, p.y + p.dy, p.y - p.dy * 0.3, p.y],
+              opacity: [0.3, 0.5, 0.25, 0.3],
+            }}
+            // @ts-expect-error framer motion animate transition
+            transition={{ duration: p.dur, repeat: Infinity, ease: "easeInOut" }}
           />
         ))}
       </svg>
 
-      {/* Label badges floating around the illustration */}
+      {/* ── Stat callouts instead of generic labels ── */}
       <motion.div
-        className="absolute top-[8%] right-[5%] px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wider uppercase"
-        style={{ background: "rgba(10,80,57,0.08)", color: "#0A5039" }}
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 1.5, duration: 0.5 }}
-      >
-        Lactobacillus
-      </motion.div>
-      <motion.div
-        className="absolute bottom-[12%] left-[5%] px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wider uppercase"
-        style={{ background: "rgba(52,110,91,0.08)", color: "#346E5B" }}
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 1.8, duration: 0.5 }}
-      >
-        Bifidobacterium
-      </motion.div>
-      <motion.div
-        className="absolute top-[45%] left-[-2%] px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wider uppercase"
-        style={{ background: "rgba(232,169,64,0.1)", color: "#B8860B" }}
-        initial={{ opacity: 0, x: -10 }}
+        className="absolute top-[6%] right-[2%] flex items-center gap-2"
+        initial={{ opacity: 0, x: 12 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        transition={{ delay: 2.0, duration: 0.5 }}
+        transition={{ delay: 1.6, duration: 0.6 }}
       >
-        Live cultures
+        <span className="text-[22px] font-bold text-pyure-deep leading-none" style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}>100T+</span>
+        <span className="text-[9px] text-ink-muted leading-tight max-w-[60px]">bacteria in your gut</span>
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-[10%] left-[2%] flex items-center gap-2"
+        initial={{ opacity: 0, x: -12 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 1.9, duration: 0.6 }}
+      >
+        <span className="text-[22px] font-bold text-pyure-sage leading-none" style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}>70%</span>
+        <span className="text-[9px] text-ink-muted leading-tight max-w-[65px]">of immunity lives in the gut</span>
+      </motion.div>
+
+      <motion.div
+        className="absolute top-[48%] left-[-5%] flex items-center gap-1.5"
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 2.1, duration: 0.6 }}
+      >
+        <span className="text-[18px] font-bold leading-none" style={{ fontFamily: "'Konkhmer Sleokchher', serif", color: "#E8A940" }}>1000+</span>
+        <span className="text-[9px] text-ink-muted leading-tight max-w-[55px]">species of bacteria</span>
       </motion.div>
     </div>
   );
