@@ -29,152 +29,162 @@ const topics = [
 
 function GutIllustration() {
   return (
-    <div className="relative w-full max-w-[360px] lg:max-w-[400px] aspect-square mx-auto flex items-center justify-center select-none">
-      {/* ── Central Petri Dish Capsule with 3D Glass Depth ── */}
-      <div 
-        className="relative w-[78%] h-[78%] rounded-full overflow-hidden border border-[#0A5039]/15 bg-white shadow-[0_25px_60px_-15px_rgba(10,80,57,0.18),0_15px_30px_-10px_rgba(0,0,0,0.06),inset_0_-8px_20px_rgba(10,80,57,0.05)]"
-      >
-        {/* The active GIF animation */}
-        <img
-          src="/bacteria-cropped.gif"
-          alt="Animated gut bacteria ecosystem"
-          className="w-full h-full object-cover select-none pointer-events-none"
-        />
-
-        {/* 3D Glass reflection overlay for depth */}
+    <div className="w-full flex flex-col items-center select-none">
+      {/* Square container for central image and lines */}
+      <div className="relative w-full max-w-[360px] lg:max-w-[400px] aspect-square flex items-center justify-center">
+        {/* ── Central Petri Dish Capsule ── */}
         <div 
-          className="absolute inset-0 rounded-full pointer-events-none border border-white/40 z-10"
-          style={{
-            background: "linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%, rgba(10,80,57,0.03) 100%)",
-            boxShadow: "inset 0 10px 20px rgba(255,255,255,0.65), inset 0 -6px 12px rgba(10,80,57,0.08)"
-          }}
-        />
+          className="relative w-[78%] h-[78%] rounded-full overflow-hidden border border-[#0A5039]/15 bg-white"
+        >
+          {/* The active GIF animation */}
+          <img
+            src="/bacteria-cropped.gif"
+            alt="Animated gut bacteria ecosystem"
+            className="w-full h-full object-cover select-none pointer-events-none"
+          />
+        </div>
+
+        {/* ── Scientific Annotation Vectors (SVG overlay) ── */}
+        <svg 
+          viewBox="0 0 100 100" 
+          className="absolute inset-0 w-full h-full pointer-events-none z-20 hidden lg:block"
+          aria-hidden="true"
+        >
+          {/* Vector Line 1: Top-Right (100T+) */}
+          <motion.circle 
+            cx="66" cy="30" r="0.75" 
+            fill="#0A5039" 
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+          />
+          <motion.path 
+            d="M 66 30 L 78 18 L 88 18" 
+            stroke="#0A5039" 
+            strokeWidth="0.35" 
+            strokeOpacity="0.4"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            whileInView={{ pathLength: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+          />
+
+          {/* Vector Line 2: Bottom-Left (70%) */}
+          <motion.circle 
+            cx="34" cy="68" r="0.75" 
+            fill="#346E5B" 
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.8 }}
+          />
+          <motion.path 
+            d="M 34 68 L 22 80 L 12 80" 
+            stroke="#346E5B" 
+            strokeWidth="0.35" 
+            strokeOpacity="0.4"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            whileInView={{ pathLength: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.9, duration: 0.5 }}
+          />
+
+          {/* Vector Line 3: Middle-Left (1000+) - starts further right inside circle */}
+          <motion.circle 
+            cx="38" cy="48" r="0.75" 
+            fill="#E8A940" 
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 1.0 }}
+          />
+          <motion.path 
+            d="M 38 48 L 12 48" 
+            stroke="#E8A940" 
+            strokeWidth="0.35" 
+            strokeOpacity="0.45"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            whileInView={{ pathLength: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 1.1, duration: 0.4 }}
+          />
+        </svg>
+
+        {/* ── Scientific Annotation Text Labels (Pure typography, no AI tag boxes) ── */}
+        <motion.div
+          className="absolute top-[15.5%] left-[89.5%] flex flex-col items-start select-none hidden lg:flex"
+          initial={{ opacity: 0, x: 8 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 1.1, duration: 0.5 }}
+        >
+          <span 
+            className="text-[19px] lg:text-[21px] font-bold text-pyure-deep leading-none tracking-tight" 
+            style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
+          >
+            100T+
+          </span>
+          <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-0.5 whitespace-nowrap">
+            bacteria in your gut
+          </span>
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-[17.5%] right-[89.5%] flex flex-col items-end select-none text-right hidden lg:flex"
+          initial={{ opacity: 0, x: -8 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 1.3, duration: 0.5 }}
+        >
+          <span 
+            className="text-[19px] lg:text-[21px] font-bold text-pyure-sage leading-none tracking-tight" 
+            style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
+          >
+            70%
+          </span>
+          <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-0.5 whitespace-nowrap">
+            of immunity lives in the gut
+          </span>
+        </motion.div>
+
+        <motion.div
+          className="absolute top-[45.5%] right-[89.5%] flex flex-col items-end select-none text-right hidden lg:flex"
+          initial={{ opacity: 0, x: -8 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 1.4, duration: 0.5 }}
+        >
+          <span 
+            className="text-[17px] lg:text-[19px] font-bold leading-none tracking-tight" 
+            style={{ fontFamily: "'Konkhmer Sleokchher', serif", color: "#E8A940" }}
+          >
+            1000+
+          </span>
+          <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-0.5 whitespace-nowrap">
+            species of bacteria
+          </span>
+        </motion.div>
       </div>
 
-      {/* ── Scientific Annotation Vectors (SVG overlay) ── */}
-      <svg 
-        viewBox="0 0 100 100" 
-        className="absolute inset-0 w-full h-full pointer-events-none z-20"
-        aria-hidden="true"
-      >
-        {/* Vector Line 1: Top-Right (100T+) */}
-        <motion.circle 
-          cx="66" cy="30" r="0.75" 
-          fill="#0A5039" 
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-        />
-        <motion.path 
-          d="M 66 30 L 78 18 L 88 18" 
-          stroke="#0A5039" 
-          strokeWidth="0.35" 
-          strokeOpacity="0.4"
-          fill="none"
-          initial={{ pathLength: 0 }}
-          whileInView={{ pathLength: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.7, duration: 0.5 }}
-        />
-
-        {/* Vector Line 2: Bottom-Left (70%) */}
-        <motion.circle 
-          cx="34" cy="68" r="0.75" 
-          fill="#346E5B" 
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8 }}
-        />
-        <motion.path 
-          d="M 34 68 L 22 80 L 12 80" 
-          stroke="#346E5B" 
-          strokeWidth="0.35" 
-          strokeOpacity="0.4"
-          fill="none"
-          initial={{ pathLength: 0 }}
-          whileInView={{ pathLength: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.9, duration: 0.5 }}
-        />
-
-        {/* Vector Line 3: Middle-Left (1000+) */}
-        <motion.circle 
-          cx="22" cy="48" r="0.75" 
-          fill="#E8A940" 
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 1.0 }}
-        />
-        <motion.path 
-          d="M 22 48 L 12 48" 
-          stroke="#E8A940" 
-          strokeWidth="0.35" 
-          strokeOpacity="0.45"
-          fill="none"
-          initial={{ pathLength: 0 }}
-          whileInView={{ pathLength: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 1.1, duration: 0.4 }}
-        />
-      </svg>
-
-      {/* ── Scientific Annotation Text Labels (Pure typography, no AI tag boxes) ── */}
-      <motion.div
-        className="absolute top-[15.5%] left-[89.5%] flex flex-col items-start select-none"
-        initial={{ opacity: 0, x: 8 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 1.1, duration: 0.5 }}
-      >
-        <span 
-          className="text-[19px] lg:text-[21px] font-bold text-pyure-deep leading-none tracking-tight" 
-          style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
-        >
-          100T+
-        </span>
-        <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-0.5 whitespace-nowrap">
-          bacteria in your gut
-        </span>
-      </motion.div>
-
-      <motion.div
-        className="absolute bottom-[17.5%] right-[89.5%] flex flex-col items-end select-none text-right"
-        initial={{ opacity: 0, x: -8 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 1.3, duration: 0.5 }}
-      >
-        <span 
-          className="text-[19px] lg:text-[21px] font-bold text-pyure-sage leading-none tracking-tight" 
-          style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
-        >
-          70%
-        </span>
-        <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-0.5 whitespace-nowrap">
-          of immunity lives in the gut
-        </span>
-      </motion.div>
-
-      <motion.div
-        className="absolute top-[45.5%] right-[89.5%] flex flex-col items-end select-none text-right"
-        initial={{ opacity: 0, x: -8 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 1.4, duration: 0.5 }}
-      >
-        <span 
-          className="text-[17px] lg:text-[19px] font-bold leading-none tracking-tight" 
-          style={{ fontFamily: "'Konkhmer Sleokchher', serif", color: "#E8A940" }}
-        >
-          1000+
-        </span>
-        <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-0.5 whitespace-nowrap">
-          species of bacteria
-        </span>
-      </motion.div>
+      {/* Mobile Stats Grid (visible on mobile/tablet, hidden on desktop) */}
+      <div className="grid grid-cols-3 gap-4 w-full max-w-[360px] mt-6 lg:hidden text-center">
+        <div className="flex flex-col items-center">
+          <span className="text-[18px] font-bold text-pyure-deep leading-none" style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}>100T+</span>
+          <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-1">bacteria in gut</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-[18px] font-bold text-pyure-sage leading-none" style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}>70%</span>
+          <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-1">immunity in gut</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-[16px] font-bold leading-none" style={{ fontFamily: "'Konkhmer Sleokchher', serif", color: "#E8A940" }}>1000+</span>
+          <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-1">species</span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -316,8 +326,8 @@ export default function ProbioticsSection() {
               fontSize: "clamp(1.75rem, 4vw, 3.2rem)",
             }}
           >
-            What Are Probiotics?{" "}
-            <br className="hidden sm:block" />
+            What Are Probiotics?
+            <br />
             <span className="text-[#E8A940]">Why Do They Matter?</span>
           </motion.h2>
           <motion.p
