@@ -60,7 +60,7 @@ function GutIllustration() {
             transition={{ delay: 0.6 }}
           />
           <motion.path 
-            d="M 74 24 L 78 18 L 88 18" 
+            d="M 74 24 L 80 14 L 95 14" 
             stroke="#0A5039" 
             strokeWidth="0.35" 
             strokeOpacity="0.4"
@@ -81,7 +81,7 @@ function GutIllustration() {
             transition={{ delay: 0.8 }}
           />
           <motion.path 
-            d="M 25 75 L 22 80 L 12 80" 
+            d="M 25 75 L 18 84 L 4 84" 
             stroke="#346E5B" 
             strokeWidth="0.35" 
             strokeOpacity="0.4"
@@ -102,7 +102,7 @@ function GutIllustration() {
             transition={{ delay: 1.0 }}
           />
           <motion.path 
-            d="M 15 48 L 12 48" 
+            d="M 15 48 L 4 48" 
             stroke="#E8A940" 
             strokeWidth="0.35" 
             strokeOpacity="0.45"
@@ -116,7 +116,7 @@ function GutIllustration() {
 
         {/* ── Scientific Annotation Text Labels (Pure typography, no AI tag boxes) ── */}
         <motion.div
-          className="absolute top-[15.5%] left-[89.5%] flex flex-col items-start select-none hidden lg:flex"
+          className="absolute top-[11.5%] left-[96.5%] flex flex-col items-start select-none hidden lg:flex"
           initial={{ opacity: 0, x: 8 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -134,7 +134,7 @@ function GutIllustration() {
         </motion.div>
 
         <motion.div
-          className="absolute bottom-[17.5%] right-[89.5%] flex flex-col items-end select-none text-right hidden lg:flex"
+          className="absolute bottom-[13.5%] right-[97.5%] flex flex-col items-end select-none text-right hidden lg:flex"
           initial={{ opacity: 0, x: -8 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -152,7 +152,7 @@ function GutIllustration() {
         </motion.div>
 
         <motion.div
-          className="absolute top-[45.5%] right-[89.5%] flex flex-col items-end select-none text-right hidden lg:flex"
+          className="absolute top-[45.5%] right-[97.5%] flex flex-col items-end select-none text-right hidden lg:flex"
           initial={{ opacity: 0, x: -8 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
