@@ -15,7 +15,7 @@ const hanken = Hanken_Grotesk({
   variable: "--font-sans",
 });
 
-const BASE_URL = "https://gopyure.com";
+const BASE_URL = "https://gopyurefoodproducts.in";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -100,7 +100,7 @@ const jsonLd = {
       },
       description:
         "GoPyure makes fresh, preservative-free probiotic yogurts in Kerala using A2 dairy and live probiotic cultures. No artificial additives, no preservatives.",
-      email: "hello@gopyure.in",
+      email: "gopyurefoodproducts@gmail.com",
       telephone: "+91-98765-43210",
       address: {
         "@type": "PostalAddress",
@@ -136,7 +136,7 @@ const jsonLd = {
       image: `${BASE_URL}/hero-products.webp`,
       url: BASE_URL,
       telephone: "+91-98765-43210",
-      email: "hello@gopyure.in",
+      email: "gopyurefoodproducts@gmail.com",
       address: {
         "@type": "PostalAddress",
         streetAddress:
@@ -275,7 +275,7 @@ const jsonLd = {
           name: "How can I order GoPyure yogurt or find it near me?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "GoPyure currently operates through direct orders and select local stockists in Kerala. You can reach us via phone, WhatsApp, or email at hello@gopyure.in and we will guide you to the nearest available option or arrange home delivery where possible.",
+            text: "GoPyure currently operates through direct orders and select local stockists in Kerala. You can reach us via phone, WhatsApp, or email at gopyurefoodproducts@gmail.com and we will guide you to the nearest available option or arrange home delivery where possible.",
           },
         },
         {

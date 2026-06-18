@@ -32,8 +32,8 @@ const contactInfo = [
       </svg>
     ),
     label: "Email",
-    value: "hello@gopyure.in",
-    link: "mailto:hello@gopyure.in",
+    value: "gopyurefoodproducts@gmail.com",
+    link: "mailto:gopyurefoodproducts@gmail.com",
   },
   {
     icon: (
