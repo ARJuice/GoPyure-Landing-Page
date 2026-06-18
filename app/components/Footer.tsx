@@ -54,11 +54,11 @@ export default function Footer() {
           </nav>
 
           {/* Contact quick links */}
-          <div className="flex flex-col gap-1.5 text-right">
-            <a href="mailto:hello@gopyure.in" className="text-xs text-ink-muted hover:text-pyure-deep transition-colors">
+          <div className="flex flex-col gap-3 text-right">
+            <a href="mailto:hello@gopyure.in" className="text-sm py-1 text-ink-muted hover:text-pyure-deep transition-colors">
               hello@gopyure.in
             </a>
-            <a href="tel:+919876543210" className="text-xs text-ink-muted hover:text-pyure-deep transition-colors">
+            <a href="tel:+919876543210" className="text-sm py-1 text-ink-muted hover:text-pyure-deep transition-colors">
               +91 98765 43210
             </a>
           </div>
