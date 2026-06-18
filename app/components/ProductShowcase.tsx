@@ -53,7 +53,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
     >
       <div>
         {/* Image Display Container (No neutral background box) */}
-        <div className="relative flex items-center justify-center p-0 mb-6 rounded-none overflow-hidden h-80 w-full">
+        <div className="relative flex items-center justify-center p-2 mb-6 rounded-none overflow-hidden h-76 w-full">
           {/* Weight label inside image container, top-right */}
           <div className="absolute top-0 right-0 z-10">
             <span className="text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 border border-[#B33C29]/30 text-[#B33C29] bg-[#FFFDF9]">
@@ -69,9 +69,9 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
             <Image
               src={product.image}
               alt={product.name}
-              width={280}
-              height={320}
-              className="object-contain max-h-full w-auto drop-shadow-[0_12px_24px_rgba(0,0,0,0.08)]"
+              width={260}
+              height={300}
+              className="object-contain max-h-[96%] w-auto drop-shadow-[0_12px_24px_rgba(0,0,0,0.08)]"
             />
           </motion.div>
         </div>
