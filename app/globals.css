@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 @import "tw-animate-css";
 
 @import "shadcn/tailwind.css";
@@ -16,6 +17,8 @@
   --color-ink-black: #0D0D0D;
   --color-ink-charcoal: #282827;
   --color-ink-muted: #555555;
+  --color-glass-border: rgba(155,183,174,0.3);
+  --color-glass-bg: rgba(255,249,240,0.75);
 
   --font-display: var(--font-display), serif;
   --font-sans: var(--font-sans), sans-serif;
@@ -36,6 +39,32 @@
   /* Shadow tokens */
   --shadow-card: 0 4px 20px -2px rgba(10,80,57,0.04), 0 10px 30px -5px rgba(10,80,57,0.02);
   --shadow-card-lg: 0 8px 40px -4px rgba(10,80,57,0.08), 0 20px 50px -10px rgba(10,80,57,0.04);
+  --shadow-green: 0 4px 24px rgba(10,80,57,0.18);
+
+  /* Backdrop Blur tokens */
+  --backdrop-blur-glass: 12px;
+
+  /* Background image gradients */
+  --background-image-cream-glow: radial-gradient(circle at 50% 110%, rgba(155,183,174,0.18) 0%, rgba(255,249,240,1) 65%);
+  --background-image-hero-gradient: linear-gradient(135deg, #FFFDF9 0%, #F9F1E6 60%, #EEE9DC 100%);
+  --background-image-section-green: linear-gradient(180deg, #0A5039 0%, #093328 100%);
+
+  /* Custom Easings */
+  --transition-timing-function-premium: cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* Keyframe definitions */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes sway {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to: { opacity: 1; transform: translateY(0); }
+  }
 }
 
 :root {
