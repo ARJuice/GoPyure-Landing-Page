@@ -306,6 +306,7 @@ export default function ContactHub() {
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3922.379207010486!2d76.25172577484439!3d10.549543798934988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7ef7118c56f9d%3A0x55437b467e7d66e7!2sGOPYURE%20FOOD%20PRODUCTS!5e0!3m2!1sen!2sin!4v1716733200000!5m2!1sen!2sin"
             width="100%"
             height="100%"
+            title="Google Maps Location of GoPyure Food Products"
             className="w-full h-full border-0 absolute inset-0 z-0"
             allowFullScreen={true}
             loading="lazy"
