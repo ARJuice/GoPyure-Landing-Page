@@ -140,7 +140,7 @@ export default function ContactHub() {
           className="text-center mb-16"
         >
           <p className="text-xs font-semibold tracking-widest uppercase text-pyure-sage mb-3">
-            We're Here
+            We&apos;re Here
           </p>
           <h2
             className="text-display-lg text-pyure-deep mb-4"
@@ -149,7 +149,7 @@ export default function ContactHub() {
             Get in Touch
           </h2>
           <p className="text-ink-muted max-w-sm mx-auto text-sm leading-relaxed">
-            To order, inquire about stockists, or just say hello — we'd love to hear from you.
+            To order, inquire about stockists, or just say hello — we&apos;d love to hear from you.
           </p>
         </motion.div>
 
@@ -253,7 +253,7 @@ export default function ContactHub() {
               <p className="text-cream-ivory/80 text-sm leading-relaxed max-w-xs">
                 We believe everyone deserves food they can truly trust.
                 Pure ingredients, honest processes, genuine care —
-                that's GoPyure, every day.
+                that&apos;s GoPyure, every day.
               </p>
             </div>
 

@@ -141,7 +141,7 @@ export default function TrustPillars() {
       {/* Generated organic textured background image */}
       <div
         className="absolute inset-0 bg-cover bg-center pointer-events-none opacity-[0.45] mix-blend-overlay"
-        style={{ backgroundImage: "url('/promise-bg.png')" }}
+        style={{ backgroundImage: "url('/promise-bg.webp')" }}
       />
       {/* Smooth backdrop styling overlay */}
       <div

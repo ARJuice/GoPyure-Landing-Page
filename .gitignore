@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Browser/E2E test artifacts
+.chrome-user-data/
+.brave-user-data/
+brave_debug.log
+brave_start.log
+trace.json
+
+# Scratch and temporary files
+.agents/scratch/
+

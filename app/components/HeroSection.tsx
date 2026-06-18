@@ -19,9 +19,10 @@ export default function HeroSection() {
       id="hero"
       className="relative min-h-[100dvh] lg:h-screen flex items-center overflow-hidden"
     >
+      <link rel="preload" href="/hero-split-bg.webp" as="image" />
       <style>{`
         .hero-bg-media {
-          background-image: url('/hero-split-bg.png');
+          background-image: url('/hero-split-bg.webp');
           background-size: cover;
           background-position: center center;
           background-repeat: no-repeat;
@@ -108,7 +109,7 @@ export default function HeroSection() {
                 style={{ top: "52.4%" }}
               >
                 <Image
-                  src="/stand.png"
+                  src="/stand.webp"
                   alt="Wooden display stand"
                   width={5451}
                   height={904}
@@ -120,12 +121,13 @@ export default function HeroSection() {
               {/* Yogurt cups sitting on the right edge of the stand */}
               <div className="absolute left-1/2 -translate-x-1/2 top-[10%] w-[85%] z-10 lg:left-auto lg:translate-x-0 lg:right-0 lg:top-[17%] lg:w-[72%]">
                 <Image
-                  src="/hero-products.png"
+                  src="/hero-products.webp"
                   alt="GoPyure Mango, Plain and Blueberry Yogurt — full range"
                   width={6000}
                   height={3375}
                   className="w-full h-auto object-contain object-right drop-shadow-[0_5px_8px_rgba(0,0,0,0.5)] drop-shadow-[0_15px_30px_rgba(0,0,0,0.35)]"
                   priority
+                  fetchPriority="high"
                 />
               </div>
             </motion.div>

@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Marquee } from "@/components/ui/marquee";
 
 const testimonials = [
   {
@@ -51,9 +51,6 @@ const testimonials = [
   },
 ];
 
-// Duplicate the list so the loop feels truly infinite
-const looped = [...testimonials, ...testimonials, ...testimonials];
-
 function StarRating({ count }: { count: number }) {
   return (
     <div className="flex gap-0.5 mb-5">
@@ -69,7 +66,7 @@ function StarRating({ count }: { count: number }) {
 function Card({ t }: { t: (typeof testimonials)[0] }) {
   return (
     <div
-      className="flex-shrink-0 w-[340px] sm:w-[380px] mx-4 rounded-sm p-7 select-none border border-pyure-mint/28 hover:border-pyure-sage/45 transition-colors duration-300"
+      className="flex-shrink-0 w-[340px] sm:w-[380px] rounded-sm p-7 select-none border border-pyure-mint/28 hover:border-pyure-sage/45 transition-colors duration-300"
       style={{
         background: "rgba(255,249,240,0.92)",
         boxShadow: "0 6px 32px -4px rgba(10,80,57,0.07)",
@@ -99,210 +96,6 @@ function Card({ t }: { t: (typeof testimonials)[0] }) {
 }
 
 export default function Testimonials() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isDraggingRef = useRef(false);
-  const isInteractingRef = useRef(false);
-  const isHoveredRef = useRef(false);
-  const isMomentumActiveRef = useRef(false);
-
-  const startXRef = useRef(0);
-  const startScrollLeftRef = useRef(0);
-
-  const dragVelocityRef = useRef(0);
-  const momentumVelocityRef = useRef(0);
-  const dragHistoryRef = useRef<{ x: number; time: number }[]>([]);
-  const lastScrollTimeRef = useRef(0);
-
-  // Auto-scroll loop using requestAnimationFrame, incorporating momentum scroll physics
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const initScroll = () => {
-      const oneCopyWidth = container.scrollWidth / 3;
-      if (oneCopyWidth > 0) {
-        container.scrollLeft = oneCopyWidth;
-        return true;
-      }
-      return false;
-    };
-
-    let initialized = initScroll();
-    let animationFrameId: number;
-    let lastTime = performance.now();
-    const autoSpeed = 35; // Normal auto-scroll speed (pixels per second)
-
-    const loop = (time: number) => {
-      if (!container) return;
-
-      if (!initialized) {
-        initialized = initScroll();
-      }
-
-      const delta = (time - lastTime) / 1000;
-      lastTime = time;
-
-      // Cap delta to prevent massive jumps when switching browser tabs
-      const cappedDelta = Math.min(delta, 0.1);
-
-      if (initialized) {
-        if (isMomentumActiveRef.current) {
-          // 1. Move scroll position by momentum velocity
-          container.scrollLeft += momentumVelocityRef.current * cappedDelta;
-
-          // 2. Dampen momentum velocity towards normal autoSpeed (friction simulation)
-          // Uses exponential decay to smoothly slow down and eventually match the autoSpeed
-          momentumVelocityRef.current = momentumVelocityRef.current + (autoSpeed - momentumVelocityRef.current) * (1 - Math.exp(-3.5 * cappedDelta));
-
-          // 3. When momentum velocity is very close to autoSpeed, turn off momentum mode
-          if (Math.abs(momentumVelocityRef.current - autoSpeed) < 1.5) {
-            isMomentumActiveRef.current = false;
-            isInteractingRef.current = false;
-          }
-        } else if (!isInteractingRef.current && !isHoveredRef.current) {
-          // Normal auto-scroll
-          container.scrollLeft += autoSpeed * cappedDelta;
-        }
-      }
-
-      animationFrameId = requestAnimationFrame(loop);
-    };
-
-    animationFrameId = requestAnimationFrame(loop);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
-  // Handle infinite wrap-around seamlessly when scrolling (supports drag, touch, wheel)
-  const handleScroll = () => {
-    lastScrollTimeRef.current = performance.now();
-
-    const container = containerRef.current;
-    if (!container) return;
-    const scrollWidth = container.scrollWidth;
-    const oneCopyWidth = scrollWidth / 3;
-    if (oneCopyWidth <= 0) return;
-
-    if (container.scrollLeft >= oneCopyWidth * 2) {
-      container.scrollLeft -= oneCopyWidth;
-      // Adjust startScrollLeftRef so that dragging/momentum does not jump
-      if (isDraggingRef.current) {
-        startScrollLeftRef.current -= oneCopyWidth;
-      }
-    } else if (container.scrollLeft <= 0) {
-      container.scrollLeft += oneCopyWidth;
-      // Adjust startScrollLeftRef so that dragging/momentum does not jump
-      if (isDraggingRef.current) {
-        startScrollLeftRef.current += oneCopyWidth;
-      }
-    }
-  };
-
-  // Mouse Drag Events
-  const handleMouseDown = (e: React.MouseEvent) => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    isDraggingRef.current = true;
-    isInteractingRef.current = true;
-    isMomentumActiveRef.current = false; // Stop any ongoing momentum instantly
-
-    startXRef.current = e.pageX - container.offsetLeft;
-    startScrollLeftRef.current = container.scrollLeft;
-
-    dragVelocityRef.current = 0;
-    dragHistoryRef.current = [{ x: e.pageX, time: performance.now() }];
-
-    container.style.cursor = "grabbing";
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDraggingRef.current) return;
-    const container = containerRef.current;
-    if (!container) return;
-
-    e.preventDefault();
-    const x = e.pageX - container.offsetLeft;
-    const walk = (x - startXRef.current) * 1.5; // Drag sensitivity multiplier
-    container.scrollLeft = startScrollLeftRef.current - walk;
-
-    // Track drag position and timestamps for velocity calculations (rolling last 100ms window)
-    const now = performance.now();
-    dragHistoryRef.current.push({ x: e.pageX, time: now });
-    const limit = now - 100;
-    dragHistoryRef.current = dragHistoryRef.current.filter(item => item.time > limit);
-  };
-
-  const handleMouseUp = () => {
-    if (!isDraggingRef.current) return;
-    isDraggingRef.current = false;
-
-    const container = containerRef.current;
-    if (container) {
-      container.style.cursor = "grab";
-    }
-
-    const now = performance.now();
-    const history = dragHistoryRef.current.filter(item => item.time > now - 100);
-
-    // Calculate final drag velocity upon release
-    if (history.length >= 2) {
-      const first = history[0];
-      const last = history[history.length - 1];
-      const dt = (last.time - first.time) / 1000;
-      if (dt > 0.01) {
-        const dx = (last.x - first.x) * 1.5;
-        // Negative dx (mouse moved left) translates to positive scroll velocity
-        dragVelocityRef.current = -dx / dt;
-      } else {
-        dragVelocityRef.current = 0;
-      }
-    } else {
-      dragVelocityRef.current = 0;
-    }
-
-    // Trigger momentum mode if they flung it at a reasonable speed
-    if (Math.abs(dragVelocityRef.current) > 20) {
-      momentumVelocityRef.current = dragVelocityRef.current;
-      isMomentumActiveRef.current = true;
-    } else {
-      isInteractingRef.current = false;
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (isDraggingRef.current) {
-      handleMouseUp();
-    }
-    isHoveredRef.current = false;
-  };
-
-  const handleMouseEnter = () => {
-    isHoveredRef.current = true;
-  };
-
-  // Touch Swipe Events (mobile native physics and scroll pause)
-  const handleTouchStart = () => {
-    isInteractingRef.current = true;
-    isMomentumActiveRef.current = false; // Stop any custom momentum if they touch during fling
-  };
-
-  const handleTouchEnd = () => {
-    // Check periodically if the mobile device's native inertial scroll has stopped
-    // before resuming auto-scroll to avoid visual fighting between physics and auto-scroll
-    const checkScrollEnd = () => {
-      const now = performance.now();
-      if (now - lastScrollTimeRef.current > 150) {
-        isInteractingRef.current = false;
-      } else {
-        setTimeout(checkScrollEnd, 50);
-      }
-    };
-    setTimeout(checkScrollEnd, 150);
-  };
-
   return (
     <section
       id="testimonials"
@@ -332,7 +125,7 @@ export default function Testimonials() {
       <div className="relative">
         {/* Left fade */}
         <div
-          className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+          className="absolute left-0 top-0 bottom-0 w-24 sm:w-32 z-10 pointer-events-none"
           style={{
             background:
               "linear-gradient(to right, #F9F1E6 0%, rgba(249,241,230,0) 100%)",
@@ -340,46 +133,20 @@ export default function Testimonials() {
         />
         {/* Right fade */}
         <div
-          className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+          className="absolute right-0 top-0 bottom-0 w-24 sm:w-32 z-10 pointer-events-none"
           style={{
             background:
               "linear-gradient(to left, #F9F1E6 0%, rgba(249,241,230,0) 100%)",
           }}
         />
 
-        {/* Scrollable Container */}
-        <div
-          ref={containerRef}
-          className="overflow-x-auto scrollbar-none flex items-stretch py-3 cursor-grab select-none touch-pan-x"
-          onScroll={handleScroll}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseLeave}
-          onMouseEnter={handleMouseEnter}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          onTouchCancel={handleTouchEnd}
-          style={{
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-          }}
-          aria-label="Customer testimonials carousel"
-        >
-          {/* Scrolling track */}
-          <div className="flex flex-nowrap" style={{ width: "max-content" }}>
-            {looped.map((t, i) => (
-              <Card key={i} t={t} />
-            ))}
-          </div>
-        </div>
+        {/* Single Row Marquee */}
+        <Marquee pauseOnHover className="[--duration:40s] [--gap:1.5rem]">
+          {testimonials.map((t, i) => (
+            <Card key={i} t={t} />
+          ))}
+        </Marquee>
       </div>
-
-      <style>{`
-        .scrollbar-none::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </section>
   );
 }

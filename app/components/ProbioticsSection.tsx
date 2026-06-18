@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 /* ── Accordion data — educational, gut-health focused ── */
 const topics = [
@@ -43,10 +44,13 @@ function GutIllustration() {
           }}
         >
           {/* The animated gut icon */}
-          <img
-            src="/gut-bacteria.gif"
+          <Image
+            src="/gut-bacteria.webp"
             alt="Animated gut microbiome illustration"
+            width={640}
+            height={640}
             className="w-[90%] h-[90%] object-contain select-none pointer-events-none"
+            unoptimized
           />
         </div>
 
