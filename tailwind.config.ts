@@ -38,7 +38,7 @@ const config: Config = {
         glass: "12px",
       },
       borderRadius: {
-        "card": "20px",
+        "card": "2px",
         "pill": "9999px",
       },
       boxShadow: {

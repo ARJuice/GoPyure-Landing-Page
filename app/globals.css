@@ -25,6 +25,19 @@
   --animate-float-slow: float 6s ease-in-out infinite;
   --animate-sway: sway 4s ease-in-out infinite;
   --animate-fade-up: fadeUp 0.7s ease forwards;
+
+  /* Display font sizes — used as text-display-lg etc. */
+  --text-display-xl: clamp(2.6rem, 5vw, 4.5rem);
+  --text-display-lg: clamp(2rem, 3.5vw, 3rem);
+  --text-display-md: clamp(1.5rem, 2.5vw, 2rem);
+
+  /* Border radius tokens */
+  --radius-card: 2px;       /* boxy — consistent with brand sharp-corner aesthetic */
+  --radius-pill: 9999px;
+
+  /* Shadow tokens */
+  --shadow-card: 0 4px 20px -2px rgba(10,80,57,0.04), 0 10px 30px -5px rgba(10,80,57,0.02);
+  --shadow-card-lg: 0 8px 40px -4px rgba(10,80,57,0.08), 0 20px 50px -10px rgba(10,80,57,0.04);
 }
 
 :root {
@@ -454,4 +467,29 @@ body {
 .btn-style-2-whatsapp:hover {
   color: var(--pyure-deep);
   border-color: var(--cream-ivory);
+}
+
+/* ── Missing utility classes used across site ── */
+
+/* Large section heading — used on all section h2s */
+.text-display-lg {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+/* Boxy card border-radius — consistent with brand sharp-corner aesthetic */
+.rounded-card {
+  border-radius: 2px;
+}
+
+/* Pill radius — for specific rounded pill buttons */
+.rounded-pill {
+  border-radius: 999px;
+}
+
+/* Card drop shadow */
+.shadow-card {
+  box-shadow: 0 8px 32px -6px rgba(10,80,57,0.08);
 }

@@ -43,11 +43,13 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
       {...fadeUp(index * 0.15)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative flex flex-col justify-between h-full bg-white border border-[#E5ECE9] p-6 transition-all duration-300 rounded-none"
+      className="relative flex flex-col justify-between h-full border p-6 transition-all duration-300 rounded-none"
       style={{
+        background: "rgba(255,253,249,0.92)",
+        borderColor: hovered ? "rgba(52,110,91,0.3)" : "rgba(155,183,174,0.25)",
         boxShadow: hovered
           ? "0 12px 28px -8px rgba(10,80,57,0.12)"
-          : "0 4px 16px -6px rgba(10,80,57,0.02)",
+          : "0 4px 16px -6px rgba(10,80,57,0.04)",
         transform: hovered ? "translateY(-6px)" : "translateY(0)",
       }}
     >

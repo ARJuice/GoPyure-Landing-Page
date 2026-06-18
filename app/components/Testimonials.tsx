@@ -321,7 +321,7 @@ export default function Testimonials() {
           Real Experiences
         </p>
         <h2
-          className="text-display-lg text-pyure-deep"
+          className="text-display-lg text-pyure-deep mb-4"
           style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
         >
           What Our Customers Say
