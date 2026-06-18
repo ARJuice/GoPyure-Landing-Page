@@ -160,9 +160,9 @@ export default function HeroSection() {
                 onClick={() => scrollTo("#collection")}
                 className="btn-style-1"
               >
-                <div className="original">Our Yogurts</div>
+                <div className="original">Our Products</div>
                 <div className="letters">
-                  {["O", "u", "r", "\u00A0", "Y", "o", "g", "u", "r", "t", "s"].map((char, index) => (
+                  {["O", "u", "r", "\u00A0", "P", "r", "o", "d", "u", "c", "t", "s"].map((char, index) => (
                     <span key={index} style={{ "--i": index } as React.CSSProperties}>
                       {char}
                     </span>
