@@ -32,15 +32,21 @@ function GutIllustration() {
     <div className="w-full flex flex-col items-center select-none">
       {/* Square container for central image and lines */}
       <div className="relative w-full max-w-[360px] lg:max-w-[400px] aspect-square flex items-center justify-center">
-        {/* ── Central Petri Dish Capsule ── */}
-        <div 
-          className="relative w-[78%] h-[78%] rounded-full overflow-hidden border border-[#0A5039]/15 bg-white"
+        {/* ── Central Icon Frame — square, warm-cream tinted ── */}
+        <div
+          className="relative w-[82%] h-[82%] flex items-center justify-center"
+          style={{
+            background: "rgba(255,253,249,0.6)",
+            border: "1px solid rgba(10,80,57,0.1)",
+            borderRadius: "4px",
+            boxShadow: "0 8px 40px -8px rgba(10,80,57,0.08), inset 0 1px 0 rgba(255,255,255,0.9)",
+          }}
         >
-          {/* The active GIF animation */}
+          {/* The animated gut icon */}
           <img
-            src="/bacteria-cropped.gif"
-            alt="Animated gut bacteria ecosystem"
-            className="w-full h-full object-cover select-none pointer-events-none"
+            src="/gut-bacteria.gif"
+            alt="Animated gut microbiome illustration"
+            className="w-[90%] h-[90%] object-contain select-none pointer-events-none"
           />
         </div>
 
@@ -123,13 +129,13 @@ function GutIllustration() {
           transition={{ delay: 1.1, duration: 0.5 }}
         >
           <span 
-            className="text-[19px] lg:text-[21px] font-bold text-pyure-deep leading-none tracking-tight" 
+            className="text-[13px] lg:text-[14px] font-bold text-pyure-deep leading-tight tracking-tight whitespace-nowrap" 
             style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
           >
-            100T+
+            Beneficial Bacteria
           </span>
           <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-0.5 whitespace-nowrap">
-            bacteria in your gut
+            the gut&apos;s living workforce
           </span>
         </motion.div>
 
@@ -141,13 +147,13 @@ function GutIllustration() {
           transition={{ delay: 1.3, duration: 0.5 }}
         >
           <span 
-            className="text-[19px] lg:text-[21px] font-bold text-pyure-sage leading-none tracking-tight" 
+            className="text-[13px] lg:text-[14px] font-bold text-pyure-sage leading-tight tracking-tight whitespace-nowrap" 
             style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}
           >
-            70%
+            ~70% of Immune Cells
           </span>
           <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-0.5 whitespace-nowrap">
-            of immunity lives in the gut
+            are associated with the gut
           </span>
         </motion.div>
 
@@ -159,13 +165,13 @@ function GutIllustration() {
           transition={{ delay: 1.4, duration: 0.5 }}
         >
           <span 
-            className="text-[17px] lg:text-[19px] font-bold leading-none tracking-tight" 
+            className="text-[13px] lg:text-[14px] font-bold leading-tight tracking-tight whitespace-nowrap" 
             style={{ fontFamily: "'Konkhmer Sleokchher', serif", color: "#E8A940" }}
           >
-            1000+
+            Microbial Diversity
           </span>
           <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-0.5 whitespace-nowrap">
-            species of bacteria
+            1,000+ species coexist
           </span>
         </motion.div>
       </div>
@@ -173,16 +179,16 @@ function GutIllustration() {
       {/* Mobile Stats Grid (visible on mobile/tablet, hidden on desktop) */}
       <div className="grid grid-cols-3 gap-4 w-full max-w-[360px] mt-6 lg:hidden text-center">
         <div className="flex flex-col items-center">
-          <span className="text-[18px] font-bold text-pyure-deep leading-none" style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}>100T+</span>
-          <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-1">bacteria in gut</span>
+          <span className="text-[11px] font-bold text-pyure-deep leading-tight" style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}>Beneficial{"\n"}Bacteria</span>
+          <span className="text-[8px] font-semibold text-ink-muted leading-tight mt-1">living workforce</span>
         </div>
         <div className="flex flex-col items-center">
-          <span className="text-[18px] font-bold text-pyure-sage leading-none" style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}>70%</span>
-          <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-1">immunity in gut</span>
+          <span className="text-[11px] font-bold text-pyure-sage leading-tight" style={{ fontFamily: "'Konkhmer Sleokchher', serif" }}>~70% Immune</span>
+          <span className="text-[8px] font-semibold text-ink-muted leading-tight mt-1">gut-associated</span>
         </div>
         <div className="flex flex-col items-center">
-          <span className="text-[16px] font-bold leading-none" style={{ fontFamily: "'Konkhmer Sleokchher', serif", color: "#E8A940" }}>1000+</span>
-          <span className="text-[9px] font-semibold text-ink-muted leading-tight mt-1">species</span>
+          <span className="text-[11px] font-bold leading-tight" style={{ fontFamily: "'Konkhmer Sleokchher', serif", color: "#E8A940" }}>Microbial{"\n"}Diversity</span>
+          <span className="text-[8px] font-semibold text-ink-muted leading-tight mt-1">1,000+ species</span>
         </div>
       </div>
     </div>
