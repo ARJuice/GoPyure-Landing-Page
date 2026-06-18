@@ -1,15 +1,13 @@
-import dynamic from "next/dynamic";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
+import ProbioticsSection from "./components/ProbioticsSection";
+import ProductShowcase from "./components/ProductShowcase";
+import TrustPillars from "./components/TrustPillars";
+import Testimonials from "./components/Testimonials";
+import FAQ from "./components/FAQ";
+import ContactHub from "./components/ContactHub";
+import Footer from "./components/Footer";
 import MobileBottomBar from "./components/MobileBottomBar";
-
-const ProbioticsSection = dynamic(() => import("./components/ProbioticsSection"));
-const ProductShowcase = dynamic(() => import("./components/ProductShowcase"));
-const TrustPillars = dynamic(() => import("./components/TrustPillars"));
-const Testimonials = dynamic(() => import("./components/Testimonials"));
-const FAQ = dynamic(() => import("./components/FAQ"));
-const ContactHub = dynamic(() => import("./components/ContactHub"));
-const Footer = dynamic(() => import("./components/Footer"));
 
 export default function Home() {
   return (
