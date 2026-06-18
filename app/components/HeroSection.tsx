@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useLenis } from "lenis/react";
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 22 },
@@ -10,8 +11,14 @@ const fadeUp = (delay: number) => ({
 });
 
 export default function HeroSection() {
+  const lenis = useLenis();
+
   const scrollTo = (id: string) => {
-    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+    if (lenis) {
+      lenis.scrollTo(id);
+    } else {
+      document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (

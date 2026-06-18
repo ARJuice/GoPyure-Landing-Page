@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Konkhmer_Sleokchher, Hanken_Grotesk } from "next/font/google";
 import { cn } from "@/lib/utils";
+import SmoothScrollProvider from "./components/SmoothScrollProvider";
+
 
 const konkhmer = Konkhmer_Sleokchher({
   weight: "400",
@@ -305,13 +307,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cn("scroll-smooth", konkhmer.variable, hanken.variable)}>
+    <html lang="en" className={cn(konkhmer.variable, hanken.variable)}>
       <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {children}
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
   );
