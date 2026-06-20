@@ -81,9 +81,9 @@ function GutIllustration() {
             transition={{ delay: 0.7, duration: 0.5 }}
           />
 
-          {/* Vector Line 2: Bottom-Left (70%) */}
+          {/* Vector Line 2: Bottom-Right circle -> label below-right (70%) */}
           <motion.circle 
-            cx="30" cy="70" r="0.75" 
+            cx="66" cy="74" r="0.75" 
             fill="#346E5B" 
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
@@ -91,7 +91,7 @@ function GutIllustration() {
             transition={{ delay: 0.8 }}
           />
           <motion.path 
-            d="M 30 70 L 18 84 L 4 84" 
+            d="M 66 74 L 74 88 L 96 88" 
             stroke="#346E5B" 
             strokeWidth="0.35" 
             strokeOpacity="0.4"
@@ -144,8 +144,8 @@ function GutIllustration() {
         </motion.div>
 
         <motion.div
-          className="absolute bottom-[13.5%] right-[97.5%] flex flex-col items-end select-none text-right hidden lg:flex"
-          initial={{ opacity: 0, x: -8 }}
+          className="absolute bottom-[4%] left-[96.5%] flex flex-col items-start select-none text-left hidden lg:flex"
+          initial={{ opacity: 0, x: 8 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 1.3, duration: 0.5 }}
