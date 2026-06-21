@@ -260,7 +260,7 @@ export default function ContactHub() {
             {/* Bottom row */}
             <div className="relative z-10 flex items-center gap-3 mt-8">
               <a
-                href="tel:+919876543210"
+                href="tel:+918848250602"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-cream-ivory text-pyure-deep font-semibold text-sm rounded-pill hover:bg-cream-soft transition-all duration-300"
               >
                 <svg className="w-4 h-4 text-pyure-deep" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -269,7 +269,7 @@ export default function ContactHub() {
                 Call to Order
               </a>
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/918848250602"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-style-2 btn-style-2-whatsapp px-5 py-2.5 text-sm font-semibold"

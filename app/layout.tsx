@@ -253,7 +253,7 @@ const jsonLd = {
           name: "What makes GoPyure different from regular supermarket yogurt?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "GoPyure yogurts are made from A2 beta-casein dairy sourced from organic, grass-fed cows. We use zero preservatives, stabilisers, or synthetic additives. Every batch is freshly made and cold-chain delivered — so what you get is as close to homemade as a packaged product can be.",
+            text: "GoPyure yogurts are made with zero preservatives, stabilisers, or synthetic additives. Every batch is freshly made and cold-chain delivered — so what you get is as close to homemade as a packaged product can be. Most commercial yogurts rely on heat treatment and chemical preservatives to extend shelf life; we rely on proper cold storage and high manufacturing hygiene instead.",
           },
         },
         {
@@ -266,10 +266,10 @@ const jsonLd = {
         },
         {
           "@type": "Question",
-          name: "What is A2 milk and why does it matter?",
+          name: "What live cultures are used in GoPyure yogurt?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "A2 milk comes from cows that produce only the A2 beta-casein protein, which many people find easier to digest compared to conventional A1 milk. GoPyure sources exclusively from A2 herds to ensure our yogurts are gentle on the stomach, especially for children and sensitive individuals.",
+            text: "GoPyure yogurt is fermented using two well-established, scientifically recognised probiotic strains: Streptococcus thermophilus and Lactobacillus delbrueckii subsp. bulgaricus. These are the classic yogurt cultures used in traditional dairy fermentation worldwide, known for producing a smooth texture, natural sourness, and genuine probiotic activity. Both strains are extensively studied and considered safe for all age groups.",
           },
         },
         {
@@ -277,15 +277,15 @@ const jsonLd = {
           name: "How can I order GoPyure yogurt or find it near me?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "GoPyure currently operates through direct orders and select local stockists in Kerala. You can reach us via phone, WhatsApp, or email at gopyurefoodproducts@gmail.com and we will guide you to the nearest available option or arrange home delivery where possible.",
+            text: "You can reach us via phone, WhatsApp, or email at gopyurefoodproducts@gmail.com and we will guide you to the nearest available option. GoPyure is also stocked in select supermarkets and bakeries that maintain cold storage — we prioritise outlets where proper refrigeration is guaranteed.",
           },
         },
         {
           "@type": "Question",
-          name: "Does GoPyure offer bulk or wholesale orders?",
+          name: "Does GoPyure supply for events, hospitals, or bulk orders?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes — GoPyure works with restaurants, cafés, and health stores. Please reach out directly via email with your requirements and we will arrange a tasting and supply discussion.",
+            text: "Yes — GoPyure is available for bulk supply and has been trusted in several hospitals, making it a reliable choice for health-conscious environments. We also supply to events as a healthy dessert option — our Mango and Blueberry yogurts have been especially well-received at weddings and corporate gatherings. We regularly stock supermarkets and bakeries with cold storage capacity. Please reach out via email or phone with your requirements and we will arrange a tasting and supply discussion.",
           },
         },
         {
@@ -298,6 +298,7 @@ const jsonLd = {
         },
       ],
     },
+
   ],
 };
 
