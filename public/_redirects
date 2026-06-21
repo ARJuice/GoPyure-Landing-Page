@@ -1,0 +1,2 @@
+# Redirect production pages.dev to custom domain (keeps preview URLs working for testing)
+https://gopyure-landing-page.pages.dev/* https://gopyurefoodproducts.in/:splat 301
