@@ -103,7 +103,7 @@ const jsonLd = {
       description:
         "GoPyure makes fresh, preservative-free probiotic yogurts in Kerala using A2 dairy and live probiotic cultures. No artificial additives, no preservatives.",
       email: "gopyurefoodproducts@gmail.com",
-      telephone: "+91-98765-43210",
+      telephone: "+91-88482-50602",
       address: {
         "@type": "PostalAddress",
         streetAddress:
@@ -137,7 +137,7 @@ const jsonLd = {
       name: "GoPyure Food Products",
       image: `${BASE_URL}/hero-products.webp`,
       url: BASE_URL,
-      telephone: "+91-98765-43210",
+      telephone: "+91-88482-50602",
       email: "gopyurefoodproducts@gmail.com",
       address: {
         "@type": "PostalAddress",

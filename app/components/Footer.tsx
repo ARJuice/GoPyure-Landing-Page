@@ -58,8 +58,8 @@ export default function Footer() {
             <a href="mailto:gopyurefoodproducts@gmail.com" className="text-sm py-1 text-ink-muted hover:text-pyure-deep transition-colors">
               gopyurefoodproducts@gmail.com
             </a>
-            <a href="tel:+919876543210" className="text-sm py-1 text-ink-muted hover:text-pyure-deep transition-colors">
-              +91 98765 43210
+            <a href="tel:+918848250602" className="text-sm py-1 text-ink-muted hover:text-pyure-deep transition-colors">
+              +91 88482 50602
             </a>
           </div>
         </div>
