@@ -196,8 +196,9 @@ const jsonLd = {
             category: "Probiotic Yogurt",
             offers: {
               "@type": "Offer",
-              availability: "https://schema.org/InStock",
+              price: "40.00",
               priceCurrency: "INR",
+              availability: "https://schema.org/InStock",
               seller: { "@id": `${BASE_URL}/#organization` },
             },
           },
@@ -215,8 +216,9 @@ const jsonLd = {
             category: "Probiotic Yogurt",
             offers: {
               "@type": "Offer",
-              availability: "https://schema.org/InStock",
+              price: "40.00",
               priceCurrency: "INR",
+              availability: "https://schema.org/InStock",
               seller: { "@id": `${BASE_URL}/#organization` },
             },
           },
@@ -234,8 +236,9 @@ const jsonLd = {
             category: "Probiotic Yogurt",
             offers: {
               "@type": "Offer",
-              availability: "https://schema.org/InStock",
+              price: "30.00",
               priceCurrency: "INR",
+              availability: "https://schema.org/InStock",
               seller: { "@id": `${BASE_URL}/#organization` },
             },
           },
