@@ -12,7 +12,7 @@ export default function MobileBottomBar() {
     >
       <a
         href="tel:+918848250602"
-        className="flex-1 flex items-center justify-center gap-2 py-3 bg-pyure-deep text-cream-ivory font-semibold text-sm rounded-pill hover:bg-pyure-sage transition-all"
+        className="flex-1 flex items-center justify-center gap-2 py-3 bg-pyure-deep text-cream-ivory font-semibold text-sm rounded-none hover:bg-pyure-sage transition-all"
       >
         📞 Call to Order
       </a>
@@ -20,7 +20,7 @@ export default function MobileBottomBar() {
         href="https://wa.me/918848250602"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex-1 flex items-center justify-center gap-2 py-3 border border-pyure-sage text-pyure-sage font-semibold text-sm rounded-pill hover:bg-pyure-deep hover:text-cream-ivory hover:border-pyure-deep transition-all"
+        className="flex-1 flex items-center justify-center gap-2 py-3 border border-pyure-sage text-pyure-sage font-semibold text-sm rounded-none hover:bg-pyure-deep hover:text-cream-ivory hover:border-pyure-deep transition-all"
       >
         WhatsApp
       </a>

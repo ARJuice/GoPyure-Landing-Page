@@ -261,9 +261,9 @@ export default function ContactHub() {
             <div className="relative z-10 flex items-center gap-3 mt-8">
               <a
                 href="tel:+918848250602"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-cream-ivory text-pyure-deep font-semibold text-sm rounded-pill hover:bg-cream-soft transition-all duration-300"
+                className="btn-style-2 btn-style-2-unscrolled px-5 py-2.5 text-sm font-semibold inline-flex items-center gap-2"
               >
-                <svg className="w-4 h-4 text-pyure-deep" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.622C2.25 5.72 2.923 5 3.75 5h3.013c.485 0 .91.318 1.045.782l1.244 4.298c.118.409-.017.854-.343 1.129l-1.94 1.616a12.015 12.015 0 0 0 4.8 4.8l1.616-1.94c.275-.326.72-.46 1.129-.343l4.298 1.244c.484.136.802.56.802 1.045V19.75c0 .828-.672 1.5-1.5 1.5H19.5c-9.665 0-17.5-7.835-17.5-17.5V6.622z" />
                 </svg>
                 Call to Order
