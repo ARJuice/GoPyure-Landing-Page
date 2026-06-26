@@ -5,46 +5,64 @@ import { Marquee } from "@/components/ui/marquee";
 
 const testimonials = [
   {
-    name: "Priya Sharma",
-    role: "Mother of two, Bangalore",
+    name: "Deepa Krishnan",
+    role: "Home Baker & Culinary Enthusiast, Thrissur",
     quote:
-      "I've been buying GoPyure yogurt every week for the past three months. Knowing there are zero preservatives gives me real peace of mind when feeding my kids.",
+      "We've been using GoPyure plain yogurt for our home baking and daily cooking for over a month now. The consistency is incredibly thick and the natural, mild sourness is just perfect—unlike most store-bought curds that are either too sour or watery. It blends so smoothly and doesn't curdle when heated. Truly premium quality.",
     rating: 5,
-    initial: "PS",
+    initial: "DK",
     color: "#0A5039",
   },
   {
-    name: "Dr. Anita Menon",
-    role: "Nutritionist, Chennai",
+    name: "Anjali Menon",
+    role: "Mother & Daily Customer, Kochi",
     quote:
-      "GoPyure is one of the few brands I confidently recommend to my clients. The pure dairy base and live cultures make this genuinely good food, not just marketing.",
+      "Honestly the best yogurt I've found in Kerala. The Blueberry flavor is a huge hit with my toddler—I love that there are no added preservatives or stabilizers. It's thick, creamy, and actually tastes like real fruit rather than artificial syrup. Will definitely keep buying!",
     rating: 5,
     initial: "AM",
     color: "#346E5B",
   },
   {
-    name: "Rahul Nair",
-    role: "Fitness Coach, Kochi",
+    name: "Gautham Krishna",
+    role: "Fitness Coach & Client Advisor, Thrissur",
     quote:
-      "Plain yogurt with no fillers, no gums, no nonsense. It's exactly what it says it is — and it tastes exceptional. The texture is unlike anything I've had from a packaged brand.",
+      "Tried their Mango probiotic yogurt recently after a friend recommended it. Very refreshing taste and not overly sweet, which is a rare find. It has a very natural thickness, and you can tell it's freshly made. It's great to have a local brand making clean-label dairy here in Thrissur.",
     rating: 5,
-    initial: "RN",
+    initial: "GK",
     color: "#0A5039",
   },
   {
-    name: "Deepa Krishnan",
-    role: "Home chef, Hyderabad",
+    name: "Meera Joseph",
+    role: "Retired Bank Officer, Kottayam",
     quote:
-      "I use the plain yogurt in all my cooking. The quality is consistent, the sourness is natural, and it never breaks when heated. Truly a premium product.",
+      "Extremely satisfied with the Plain yogurt. I've had chronic digestive issues, and incorporating this live culture yogurt into my daily lunch has made a noticeable difference. It has a beautiful, rich texture and a clean finish. Very authentic taste!",
     rating: 5,
-    initial: "DK",
+    initial: "MJ",
     color: "#346E5B",
   },
   {
-    name: "Harvest Catering Co.",
-    role: "Event Caterer, Thrissur",
+    name: "Abhijith R.",
+    role: "Software Engineer & Food Lover, Ernakulam",
     quote:
-      "We started offering GoPyure Mango & Blueberry yogurts as healthy mini-dessert cups at weddings and corporate events. The response has been overwhelming — guests rave about the authentic fruit flavours and smooth finish.",
+      "I usually find commercial yogurts too gelatinous, but GoPyure got the texture spot on. It is incredibly smooth and creamy. The fact that it is preservative-free and delivered fresh makes it worth every rupee. Mango is my absolute favorite, highly recommend trying it.",
+    rating: 5,
+    initial: "AR",
+    color: "#0A5039",
+  },
+  {
+    name: "Dr. Sandeep K.",
+    role: "Consultant Pediatrician, Thrissur",
+    quote:
+      "Being a pediatrician, parents often ask me for healthy dairy options. I always advise avoiding yogurts with artificial thickeners and high sugar. GoPyure's plain probiotic yogurt is excellent—clean ingredients list, no gums, and packed with active cultures. My own family uses it daily.",
+    rating: 5,
+    initial: "SK",
+    color: "#346E5B",
+  },
+  {
+    name: "Harvest Event Caterers",
+    role: "Professional Event Services, Thrissur",
+    quote:
+      "As an event caterer, finding high-quality desserts that satisfy health-conscious guests is tough. We started ordering GoPyure's Mango and Blueberry yogurts for corporate events and private gatherings in Thrissur. The feedback has been amazing—guests absolutely love the real fruit taste and how light it feels. The packaging is neat, and delivery is always on time.",
     rating: 5,
     initial: "HC",
     color: "#0A5039",
