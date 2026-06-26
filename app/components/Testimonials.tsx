@@ -17,7 +17,7 @@ const testimonials = [
     name: "Dr. Anita Menon",
     role: "Nutritionist, Chennai",
     quote:
-      "GoPyure is one of the few brands I confidently recommend to my clients. The A2 dairy base and live cultures make this genuinely good food, not just marketing.",
+      "GoPyure is one of the few brands I confidently recommend to my clients. The pure dairy base and live cultures make this genuinely good food, not just marketing.",
     rating: 5,
     initial: "AM",
     color: "#346E5B",

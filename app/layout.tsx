@@ -26,12 +26,12 @@ export const metadata: Metadata = {
     template: "%s | GoPyure",
   },
   description:
-    "GoPyure makes fresh, preservative-free probiotic yogurts in Kerala — Mango, Blueberry, and Plain. Made from A2 dairy with live cultures. No artificial additives, cold-chain delivered.",
+    "GoPyure makes fresh, preservative-free probiotic yogurts in Kerala — Mango, Blueberry, and Plain. Made from pure dairy with live active cultures. No artificial additives, cold-chain delivered.",
   keywords: [
     "probiotic yogurt Kerala",
     "organic yogurt India",
     "preservative free yogurt",
-    "A2 milk yogurt",
+    "pure milk yogurt",
     "GoPyure",
     "gut health yogurt",
     "fresh dairy Kerala",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "GoPyure — Pure Probiotic Yogurt, Kerala",
     description:
-      "Fresh, preservative-free probiotic yogurts made from A2 dairy in Kerala. Mango, Blueberry & Plain — with live cultures, zero artificial additives.",
+      "Fresh, preservative-free probiotic yogurts made from pure dairy in Kerala. Mango, Blueberry & Plain — with live cultures, zero artificial additives.",
     url: BASE_URL,
     siteName: "GoPyure",
     type: "website",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "GoPyure — Pure Probiotic Yogurt, Kerala",
     description:
-      "Fresh, preservative-free probiotic yogurts made from A2 dairy. Gut-healthy, clean-label, Kerala made.",
+      "Fresh, preservative-free probiotic yogurts made from pure dairy. Gut-healthy, clean-label, Kerala made.",
     images: [`${BASE_URL}/hero-products.webp`],
   },
   robots: {
@@ -101,7 +101,7 @@ const jsonLd = {
         caption: "GoPyure — The Goodness You Can Trust",
       },
       description:
-        "GoPyure makes fresh, preservative-free probiotic yogurts in Kerala using A2 dairy and live probiotic cultures. No artificial additives, no preservatives.",
+        "GoPyure makes fresh, preservative-free probiotic yogurts in Kerala using pure dairy and live probiotic cultures. No artificial additives, no preservatives.",
       email: "gopyurefoodproducts@gmail.com",
       telephone: "+91-88482-50602",
       address: {
@@ -180,7 +180,7 @@ const jsonLd = {
       "@id": `${BASE_URL}/#products`,
       name: "GoPyure Probiotic Yogurt Range",
       description:
-        "Fresh, preservative-free probiotic yogurts made from A2 dairy with live cultures.",
+        "Fresh, preservative-free probiotic yogurts made from pure dairy with live cultures.",
       numberOfItems: 3,
       itemListElement: [
         {
