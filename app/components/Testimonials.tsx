@@ -41,12 +41,12 @@ const testimonials = [
     color: "#346E5B",
   },
   {
-    name: "Abhijith R.",
-    role: "Software Engineer & Food Lover, Ernakulam",
+    name: "Nithin Devassy",
+    role: "Gym Owner & Fitness Enthusiast, Ernakulam",
     quote:
-      "I usually find commercial yogurts too gelatinous, but GoPyure got the texture spot on. It is incredibly smooth and creamy. The fact that it is preservative-free and delivered fresh makes it worth every rupee. Mango is my absolute favorite, highly recommend trying it.",
+      "As someone who runs a fitness center, I am very conscious about what my clients and family consume. Finding a clean source of protein and gut-healthy probiotics is always a challenge. GoPyure's Mango yogurt has become a staple for us. It has no artificial flavors or synthetic colors, just wholesome milk and real fruit pulp. Everyone who has tried it at our gym loves the clean, authentic taste.",
     rating: 5,
-    initial: "AR",
+    initial: "ND",
     color: "#0A5039",
   },
   {
